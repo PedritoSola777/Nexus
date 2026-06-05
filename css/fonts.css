@@ -1,0 +1,56 @@
+  :root{
+    --font-body:'Inter', Arial, sans-serif;
+    --font-title:'Libre Baskerville', Georgia, serif;
+    --font-display:'Bebas Neue', Impact, sans-serif;
+  }
+
+  body,
+  input, textarea, select, button{
+    font-family:var(--font-body)!important;
+  }
+
+  p, li, a, label, small,
+  .section-sub, .breadcrumb, .footer-brand p, .footer-col a,
+  .fc-row, .faq-answer, .faq-answer p, .form-check-lbl,
+  .submit-note, .office-block p, .office-block a,
+  .contact-line a, .contact-line p, .privacy-card p, .privacy-card li,
+  .mini-card p, .page-hero p, .hero-p{
+    font-family:var(--font-body)!important;
+    font-weight:400;
+    letter-spacing:normal;
+  }
+
+  .nav-links a, .nav-cta, .btn-primary, .btn-ghost, .wa-btn,
+  .email-btn, .submit-btn, .faq-cat, .eyebrow, .hero-label,
+  .hcard-tag, .strip-item, .mini-label, .fc-lbl{
+    font-family:var(--font-body)!important;
+  }
+
+  .section-title, .section-title em,
+  .about-text h2, .wcard h4, .scard h3, .form-head h2,
+  .office-card h3, .faq-question span, .faq-cta-txt h3,
+  .privacy-card h2, .privacy-sidebar h3{
+    font-family:var(--font-title)!important;
+  }
+
+  .hero-h1, .hero-h1 span, .page-hero h1, .page-hero h1 span,
+  .mob-menu a, .stat-n, .hcard-big{
+    font-family:var(--font-display)!important;
+  }
+
+  @media (max-width:640px){
+    p, li, a, label, .section-sub, .hero-p, .page-hero p,
+    .privacy-card p, .privacy-card li{
+      font-size:clamp(.9rem, 3.65vw, 1rem);
+      line-height:1.7;
+    }
+
+    .eyebrow, .hero-label{
+      font-size:.66rem;
+      line-height:1.35;
+    }
+
+    .section-title{
+      line-height:1.18;
+    }
+  }

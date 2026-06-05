@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aviso de Privacidad | Nexus Consultores</title>
+  <meta name="description" content="Aviso de Privacidad de Nexus Consultores. Conoce cómo protegemos tus datos personales conforme a la LFPDPPP."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+
+  <style>
+    :root {
+      --navy:#0a1628;--navy2:#0d1f3c;--blue:#1a3a6e;--blue-mid:#1e4fa0;--blue-lt:#2d6cdf;--blue-pale:#5b8fe8;--silver:#9ca3af;--silver-lt:#d1d5db;--charcoal:#1f2937;--offwhite:#f7f8fa;--white:#ffffff;--text:#111827;--muted:#6b7280;--r:12px;--r-lg:20px;--sh:0 8px 40px rgba(10,22,40,.12);--sh-lg:0 20px 60px rgba(10,22,40,.18);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:linear-gradient(165deg,#060e1d 0%,#0a1628 45%,#0e2248 100%);color:var(--white);overflow-x:hidden;min-height:100vh}
+    img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}.container{width:90%;max-width:1200px;margin:0 auto}
+    #navbar{position:fixed;top:0;left:0;right:0;z-index:999;padding:1.1rem 0;background:rgba(8,16,32,0);backdrop-filter:blur(0px);transition:background .35s,box-shadow .35s,backdrop-filter .35s,padding .3s}
+    #navbar.scrolled{background:rgba(8,16,32,.95);backdrop-filter:blur(18px);box-shadow:0 1px 0 rgba(255,255,255,.05),0 4px 24px rgba(0,0,0,.3);padding:.72rem 0}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between}.nav-logo img{height:44px;width:auto;filter:brightness(0) invert(1)}.nav-links{display:flex;gap:2rem;align-items:center}
+    .nav-links a{font-size:.83rem;font-weight:500;color:rgba(255,255,255,.72);transition:color .2s;position:relative}.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:var(--blue-lt);transform:scaleX(0);transform-origin:left;transition:transform .25s}.nav-links a:hover,.nav-links a.active{color:var(--white)}.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+    .nav-cta{background:var(--blue-mid)!important;color:var(--white)!important;padding:.48rem 1.2rem!important;border-radius:var(--r)!important;font-weight:600!important}.nav-cta::after{display:none!important}.nav-cta:hover{background:var(--blue-lt)!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.4rem;background:none;border:none}.hamburger span{display:block;width:22px;height:1.5px;background:var(--white);border-radius:2px;transition:transform .3s,opacity .3s}
+    .mob-menu{display:none;position:fixed;inset:0;z-index:998;background:rgba(4,11,24,.97);flex-direction:column;align-items:center;justify-content:center;gap:2.8rem}.mob-menu.open{display:flex}.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:.06em;color:rgba(255,255,255,.75);transition:color .2s}.mob-menu a:hover{color:var(--white)}.mob-close{position:absolute;top:1.5rem;right:1.8rem;background:none;border:none;color:rgba(255,255,255,.5);font-size:1.5rem;cursor:pointer}
+    .page-hero{position:relative;overflow:hidden;padding:9rem 0 5rem;text-align:center}.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:72px 72px}.page-hero-glow{position:absolute;border-radius:50%;pointer-events:none}.page-hero-glow-1{width:700px;height:700px;background:radial-gradient(circle,rgba(30,79,160,.18) 0%,transparent 68%);top:-300px;left:50%;transform:translateX(-50%)}.page-hero-glow-2{width:400px;height:400px;background:radial-gradient(circle,rgba(45,108,223,.09) 0%,transparent 68%);bottom:-100px;right:-100px}.page-hero-inner{position:relative;z-index:2}
+    .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-pale);margin-bottom:.9rem}.eyebrow::before{content:'';width:22px;height:2px;background:var(--blue-pale);border-radius:2px;flex-shrink:0}
+    .page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,5.5rem);letter-spacing:.03em;line-height:.95;color:var(--white);margin-bottom:1.2rem}.page-hero h1 span{display:block;background:linear-gradient(90deg,var(--blue-pale),#a8c4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.page-hero p{font-size:1rem;color:rgba(255,255,255,.55);line-height:1.8;max-width:680px;margin:0 auto}
+    .breadcrumb{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:2rem;font-size:.78rem;color:rgba(255,255,255,.38)}.breadcrumb a{color:rgba(255,255,255,.5);transition:color .2s}.breadcrumb a:hover{color:var(--white)}.breadcrumb-sep{font-size:.65rem;color:rgba(255,255,255,.22)}.breadcrumb-cur{color:var(--blue-pale)}
+    .privacy-section{padding:2rem 0 7rem;position:relative}.privacy-layout{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:1.4rem;align-items:start}
+    .privacy-sidebar{position:sticky;top:6.2rem;background:rgba(255,255,255,.042);border:1px solid rgba(255,255,255,.085);border-radius:18px;backdrop-filter:blur(20px);padding:1.3rem;box-shadow:0 12px 48px rgba(10,22,40,.24)}.privacy-sidebar h3{font-family:'Libre Baskerville',serif;font-size:1rem;margin-bottom:.9rem}.privacy-sidebar a{display:block;padding:.72rem .8rem;border-radius:10px;font-size:.82rem;color:rgba(255,255,255,.55);transition:background .2s,color .2s}.privacy-sidebar a:hover{background:rgba(30,79,160,.22);color:#fff}
+    .privacy-card{background:rgba(255,255,255,.042);border:1px solid rgba(255,255,255,.085);border-radius:18px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:2.2rem 2.5rem;margin-bottom:1rem;position:relative;overflow:hidden;box-shadow:0 8px 40px rgba(10,22,40,.22)}.privacy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);pointer-events:none}.privacy-card:hover{border-color:rgba(45,108,223,.25);background:rgba(20,55,130,.13)}
+    .privacy-card h2{font-family:'Libre Baskerville',serif;font-size:clamp(1.15rem,2vw,1.55rem);line-height:1.35;margin-bottom:1rem;color:#fff}.privacy-card p{font-size:.91rem;color:rgba(255,255,255,.58);line-height:1.85;margin-bottom:.85rem}.privacy-card strong{color:rgba(255,255,255,.9)}.privacy-card ul{display:flex;flex-direction:column;gap:.55rem;margin:.8rem 0 .4rem}.privacy-card li{display:flex;align-items:flex-start;gap:.65rem;font-size:.9rem;color:rgba(255,255,255,.58);line-height:1.7}.privacy-card li::before{content:'';flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--blue-pale);margin-top:.65rem}
+    .privacy-intro{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1rem}.mini-card{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:1.4rem}.mini-label{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-pale);margin-bottom:.45rem}.mini-card p{font-size:.83rem;color:rgba(255,255,255,.58);line-height:1.7;margin:0}
+    .notice{border:1px solid rgba(91,143,232,.25);background:rgba(30,79,160,.14)}.contact-box{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.contact-line{padding:1rem;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}.contact-line span{display:block;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-pale);margin-bottom:.35rem}.contact-line a,.contact-line p{font-size:.88rem;color:rgba(255,255,255,.65);margin:0;line-height:1.6}.wa-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;background:#25d366;color:var(--white);font-weight:700;font-size:.84rem;letter-spacing:.03em;padding:.82rem 1.6rem;border-radius:var(--r);box-shadow:0 4px 18px rgba(37,211,102,.25);transition:background .2s,transform .2s}.wa-btn:hover{background:#1eb359;transform:translateY(-2px)}
+    footer{background:#040b18;color:rgba(255,255,255,.45);padding:5rem 0 2.5rem}.footer-top{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:4rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.07)}.footer-logo img{height:42px;filter:brightness(0) invert(1) opacity(.75)}.footer-brand p{font-size:.82rem;line-height:1.78;margin-top:1rem;max-width:270px}.footer-col h5{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.3rem}.footer-col li{margin-bottom:.65rem}.footer-col a{font-size:.82rem;color:rgba(255,255,255,.42);transition:color .2s}.footer-col a:hover{color:rgba(255,255,255,.88)}.fc-row{display:flex;gap:.65rem;margin-bottom:.85rem;font-size:.82rem;align-items:flex-start}.fc-lbl{font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-lt);flex-shrink:0;padding-top:.14rem}.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.76rem}.footer-bottom a{color:rgba(255,255,255,.32);transition:color .2s}.footer-bottom a:hover{color:rgba(255,255,255,.7)}
+    #scrollTop{position:fixed;bottom:1.8rem;right:1.8rem;z-index:500;width:42px;height:42px;border-radius:var(--r);background:var(--blue-mid);color:var(--white);border:none;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(30,79,160,.38);opacity:0;pointer-events:none;transition:opacity .3s,transform .25s}#scrollTop.visible{opacity:1;pointer-events:all}#scrollTop:hover{transform:translateY(-3px)}
+    @media(max-width:980px){.privacy-layout{grid-template-columns:1fr}.privacy-sidebar{position:relative;top:auto}.privacy-intro{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr;gap:2.5rem}}
+    @media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.privacy-card{padding:1.6rem}.contact-box{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}}
+    @media(max-width:540px){.page-hero{padding:8rem 0 4rem}.privacy-sidebar a{font-size:.78rem}}
+  </style>
+
+  <style>
+
+    .nav-logo img{
+    height:44px;
+    width:auto;
+    filter:none;
+}
+  </style>
+
+<link rel="shortcut icon" href="NexFav.png" type="image/x-icon">
+</head>
+<body>
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo"><img src="NexusOficial1.png" style="width: 200; height: 150px;" alt="Nexus Consultores" /></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="faq.html">Preguntas frecuentes</a></li>
+         <!--<li><a href="blog.html">Blog</a></li>-->
+        <li><a href="contact.html">Contacto</a></li>
+        <li><a href="privacidad.html" class="nav-cta active">Aviso de privacidad</a></li>
+      </ul>
+      <button class="hamburger" id="hambBtn" aria-label="Men&uacute;"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mob-menu" id="mobMenu">
+    <button class="mob-close" id="mobClose">&#x2715;</button>
+    <a href="index.html" class="mml">Inicio</a>
+    <a href="faq.html" class="mml">Preguntas frecuentes</a>
+     <!--<a href="blog.html" class="mml">Blog</a> -->
+    <a href="contact.html" class="mml">Contacto</a>
+    <a href="privacidad.html" class="mml">Aviso de privacidad</a>
+  </div>
+
+  <header class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-glow page-hero-glow-1"></div>
+    <div class="page-hero-glow page-hero-glow-2"></div>
+    <div class="container page-hero-inner" data-aos="fade-up" data-aos-duration="800">
+      <span class="eyebrow">Protecci&oacute;n de datos</span>
+      <h1>Aviso de <span>Privacidad</span></h1>
+      <p>En Nexus Consultores protegemos tu informaci&oacute;n personal con responsabilidad, confidencialidad y apego a la Ley Federal de Protecci&oacute;n de Datos Personales en Posesi&oacute;n de los Particulares.</p>
+      <div class="breadcrumb"><a href="index.html">Inicio</a><span class="breadcrumb-sep">/</span><span class="breadcrumb-cur">Aviso de privacidad</span></div>
+    </div>
+  </header>
+
+  <main class="privacy-section">
+    <div class="container">
+      <div class="privacy-intro" data-aos="fade-up">
+        <div class="mini-card"><div class="mini-label">Responsable</div><p>Nexus Consultores es responsable del tratamiento y resguardo de los datos personales proporcionados.</p></div>
+        <div class="mini-card"><div class="mini-label">Finalidad</div><p>Usamos tus datos para asesor&iacute;a, seguimiento y gesti&oacute;n de tr&aacute;mites de afore, pensiones y retiros.</p></div>
+        <div class="mini-card"><div class="mini-label">Actualizaci&oacute;n</div><p>&Uacute;ltima actualizaci&oacute;n: mayo de 2026.</p></div>
+      </div>
+
+      <div class="privacy-layout">
+        <aside class="privacy-sidebar" data-aos="fade-right">
+          <h3>Contenido</h3>
+          <a href="#responsable">Responsable</a>
+          <a href="#datos">Datos personales</a>
+          <a href="#finalidades">Finalidades</a>
+          <a href="#transferencias">Transferencias</a>
+          <a href="#cookies">Cookies</a>
+          <a href="#seguridad">Seguridad</a>
+          <a href="#arco">Derechos ARCO</a>
+          <a href="#cambios">Cambios al aviso</a>
+          <a href="#contacto">Contacto</a>
+        </aside>
+
+        <section>
+          <article class="privacy-card notice" id="intro" data-aos="fade-up">
+            <h2>Aviso de Privacidad Integral</h2>
+            <p>El presente Aviso de Privacidad se emite en cumplimiento de la Ley Federal de Protecci&oacute;n de Datos Personales en Posesi&oacute;n de los Particulares, su Reglamento y dem&aacute;s disposiciones aplicables en M&eacute;xico.</p>
+            <p>Al proporcionar sus datos personales por medio de nuestro sitio web, formularios, llamadas, WhatsApp, correo electr&oacute;nico, oficinas o cualquier otro canal oficial, usted reconoce haber le&iacute;do y comprendido el presente aviso.</p>
+          </article>
+
+          <article class="privacy-card" id="responsable" data-aos="fade-up">
+            <h2>1. Responsable del tratamiento de datos personales</h2>
+            <p><strong>Nexus Consultores</strong>, empresa dedicada a brindar asesor&iacute;a y gesti&oacute;n de tr&aacute;mites relacionados con afore, pensiones, retiros, IMSS, ISSSTE y servicios financieros vinculados al retiro, es responsable del uso, tratamiento, almacenamiento y protecci&oacute;n de sus datos personales.</p>
+            <p>La informaci&oacute;n personal que usted nos proporcione ser&aacute; tratada bajo principios de licitud, consentimiento, informaci&oacute;n, calidad, finalidad, lealtad, proporcionalidad y responsabilidad.</p>
+          </article>
+
+          <article class="privacy-card" id="datos" data-aos="fade-up">
+            <h2>2. Datos personales que podemos recabar</h2>
+            <p>Para brindar nuestros servicios, podremos solicitar los siguientes datos personales:</p>
+            <ul>
+              <li>Nombre completo, fecha de nacimiento, CURP, RFC, firma e identificaci&oacute;n oficial.</li>
+              <li>N&uacute;mero telef&oacute;nico, correo electr&oacute;nico, domicilio, ciudad y estado.</li>
+              <li>N&uacute;mero de Seguridad Social, informaci&oacute;n laboral, semanas cotizadas y r&eacute;gimen pensionario.</li>
+              <li>Datos relacionados con cuentas afore, IMSS, ISSSTE, tr&aacute;mites de retiro, pensiones o beneficiarios.</li>
+              <li>Datos bancarios estrictamente necesarios para la gesti&oacute;n o seguimiento de tr&aacute;mites autorizados.</li>
+            </ul>
+            <p>En caso de requerir datos sensibles o documentaci&oacute;n confidencial, estos ser&aacute;n solicitados &uacute;nicamente cuando sean indispensables para la prestaci&oacute;n del servicio contratado o solicitado.</p>
+          </article>
+
+          <article class="privacy-card" id="finalidades" data-aos="fade-up">
+            <h2>3. Finalidades del tratamiento</h2>
+            <p>Sus datos personales podr&aacute;n ser utilizados para las siguientes finalidades primarias:</p>
+            <ul>
+              <li>Brindar asesor&iacute;a personalizada sobre afore, pensiones, retiros, Modalidad 40, IMSS e ISSSTE.</li>
+              <li>Dar seguimiento a solicitudes, expedientes, citas, diagn&oacute;sticos y tr&aacute;mites.</li>
+              <li>Validar identidad, documentaci&oacute;n y requisitos relacionados con los servicios solicitados.</li>
+              <li>Elaborar contratos, formatos, autorizaciones y documentos administrativos.</li>
+              <li>Contactarlo por tel&eacute;fono, WhatsApp, correo electr&oacute;nico o medios digitales oficiales.</li>
+              <li>Cumplir obligaciones legales, fiscales, contractuales o regulatorias aplicables.</li>
+            </ul>
+            <p>De manera secundaria, podremos usar sus datos para encuestas de satisfacci&oacute;n, mejora de servicios, comunicaci&oacute;n informativa, estad&iacute;sticas internas y env&iacute;o de contenido relacionado con pensiones, ahorro para el retiro o servicios de Nexus Consultores.</p>
+          </article>
+
+          <article class="privacy-card" id="transferencias" data-aos="fade-up">
+            <h2>4. Transferencia de datos personales</h2>
+            <p>Nexus Consultores no vende, renta ni comercializa sus datos personales. Sus datos podr&aacute;n ser compartidos &uacute;nicamente cuando sea necesario para cumplir con las finalidades descritas en este aviso.</p>
+            <ul>
+              <li>Autoridades competentes que lo soliciten conforme a la ley.</li>
+              <li>Instituciones, dependencias o entidades relacionadas con IMSS, ISSSTE, afore, INFONAVIT o procesos de seguridad social.</li>
+              <li>Proveedores o aliados necesarios para la correcta prestaci&oacute;n del servicio, siempre bajo obligaciones de confidencialidad.</li>
+              <li>Terceros autorizados expresamente por el titular de los datos.</li>
+            </ul>
+          </article>
+
+          <article class="privacy-card" id="cookies" data-aos="fade-up">
+            <h2>5. Uso de cookies y tecnolog&iacute;as similares</h2>
+            <p>Nuestro sitio web podr&aacute; utilizar cookies, herramientas de anal&iacute;tica y tecnolog&iacute;as similares para mejorar la experiencia de navegaci&oacute;n, conocer el comportamiento de los usuarios, optimizar contenido y medir el rendimiento del sitio.</p>
+            <p>Usted puede configurar su navegador para bloquear, rechazar o eliminar cookies. Sin embargo, algunas funciones del sitio podr&iacute;an verse limitadas.</p>
+          </article>
+
+          <article class="privacy-card" id="seguridad" data-aos="fade-up">
+            <h2>6. Medidas de seguridad</h2>
+            <p>Nexus Consultores implementa medidas administrativas, t&eacute;cnicas y f&iacute;sicas razonables para proteger los datos personales contra da&ntilde;o, p&eacute;rdida, alteraci&oacute;n, destrucci&oacute;n, uso, acceso o tratamiento no autorizado.</p>
+            <p>El personal, asesores, colaboradores y terceros relacionados con el tratamiento de datos personales se encuentran sujetos a obligaciones de confidencialidad.</p>
+          </article>
+
+          <article class="privacy-card" id="arco" data-aos="fade-up">
+            <h2>7. Derechos ARCO y revocaci&oacute;n del consentimiento</h2>
+            <p>Usted tiene derecho a acceder, rectificar, cancelar u oponerse al tratamiento de sus datos personales, as&iacute; como a revocar el consentimiento otorgado para su uso.</p>
+            <p>Para ejercer sus Derechos ARCO, deber&aacute; enviar una solicitud que incluya:</p>
+            <ul>
+              <li>Nombre completo del titular.</li>
+              <li>Medio de contacto para recibir respuesta.</li>
+              <li>Documento que acredite su identidad.</li>
+              <li>Descripci&oacute;n clara del derecho que desea ejercer.</li>
+              <li>Cualquier documento que facilite la localizaci&oacute;n de sus datos personales.</li>
+            </ul>
+            <p>La respuesta ser&aacute; atendida dentro de los plazos establecidos por la legislaci&oacute;n aplicable.</p>
+          </article>
+
+          <article class="privacy-card" id="cambios" data-aos="fade-up">
+            <h2>8. Cambios al Aviso de Privacidad</h2>
+            <p>Nexus Consultores se reserva el derecho de modificar, actualizar o complementar el presente Aviso de Privacidad derivado de cambios legales, regulatorios, operativos o de servicios.</p>
+            <p>Cualquier modificaci&oacute;n estar&aacute; disponible a trav&eacute;s de este mismo sitio web o por los medios oficiales de comunicaci&oacute;n de Nexus Consultores.</p>
+          </article>
+
+          <article class="privacy-card" id="contacto" data-aos="fade-up">
+            <h2>9. Contacto para asuntos de privacidad</h2>
+            <p>Para dudas, solicitudes o aclaraciones relacionadas con el tratamiento de sus datos personales, puede contactarnos mediante los siguientes canales:</p>
+            <div class="contact-box">
+              <div class="contact-line"><span>Correo</span><a href="mailto:clientes@nexusconsultores.mx">clientes@nexusconsultores.mx</a></div>
+              <div class="contact-line"><span>Tel&eacute;fono Metepec</span><a href="tel:+527297300264">(729) 730 0264</a></div>
+              <div class="contact-line"><span>Tel&eacute;fono Puebla</span><a href="tel:+522224598535">(222) 459 8535</a></div>
+              <div class="contact-line"><span>Oficina</span><p>Sor Juana In&eacute;s de la Cruz 329, San Mateo, Metepec, Edo. de M&eacute;xico.</p></div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+  <div class="footer-logo footer-text-logo">
+  Nexus Consultores
+</div>          <p>Especialistas en pensiones, retiros de afore y asesor&iacute;a financiera en M&eacute;xico. M&aacute;s de una d&eacute;cada acompa&ntilde;ando a trabajadores mexicanos a alcanzar su mejor retiro.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Navegaci&oacute;n</h5>
+          <ul>
+            <li><a href="index.html#about">Nosotros</a></li>
+            <li><a href="index.html#services">Servicios</a></li>
+            <li><a href="index.html#why">Por qu&eacute; elegirnos</a></li>
+            <li><a href="index.html#testimonials">Testimonios</a></li>
+            <li><a href="faq.html">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contacto</h5>
+  <div class="fc-row">
+    <span class="fc-lbl">Número de oficinas</span>
+    <div>
+        <a href="tel:+522311067600">231 106 7600</a>
+    </div>
+</div>          <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.mx">clientes@nexusconsultores.mx</a></div>
+  <div class="fc-row">
+    <span class="fc-lbl">Oficinas</span>
+    <div>
+        <strong>Puebla:</strong><br>
+        Anillo Perif. Ecológico, 72820 San Bernardino Tlaxcalancingo, Pue., México.
+        <br><br>
+        <strong>CDMX:</strong><br>
+        P.º de los Tamarindos 384-Piso 9, Bosques de las Lomas, Cuajimalpa de Morelos, 05110 Ciudad de México, CDMX.
+    </div>
+</div>        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Nexus Consultores. Todos los derechos reservados.</span>
+        <div style="display:flex;gap:1.4rem;"><a href="privacidad.html">Aviso de privacidad</a><a href="#">T&eacute;rminos de uso</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" aria-label="Volver arriba">&#8593;</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({once:true,offset:60,duration:750,easing:'ease-out-cubic'});
+
+    const nav = document.getElementById('navbar');
+    const stBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+      stBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    stBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+    document.getElementById('hambBtn').addEventListener('click', () =>
+      document.getElementById('mobMenu').classList.add('open'));
+    document.getElementById('mobClose').addEventListener('click', () =>
+      document.getElementById('mobMenu').classList.remove('open'));
+    document.querySelectorAll('.mml').forEach(l =>
+      l.addEventListener('click', () => document.getElementById('mobMenu').classList.remove('open')));
+  </script>
+</body>
+</html>

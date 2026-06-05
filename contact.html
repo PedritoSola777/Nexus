@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto | Nexus Consultores</title>
+  <meta name="description" content="Contacta a Nexus Consultores. Oficinas en Metepec y Puebla. Asesoría en afore, pensiones y retiros."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────── */
+    :root {
+      --navy:       #0a1628;
+      --navy2:      #0d1f3c;
+      --blue-mid:   #1e4fa0;
+      --blue-lt:    #2d6cdf;
+      --blue-pale:  #5b8fe8;
+      --offwhite:   #f7f8fa;
+      --white:      #ffffff;
+      --muted:      #6b7280;
+      --r:          12px;
+      --r-lg:       20px;
+
+      /* metallic silver palette */
+      --metal-1:    rgba(200,210,225,.13);
+      --metal-2:    rgba(180,195,215,.08);
+      --metal-border: rgba(200,215,235,.18);
+      --metal-shine:  rgba(255,255,255,.09);
+      --metal-hi:     rgba(255,255,255,.22);
+    }
+
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(165deg,#060e1d 0%,#0a1628 45%,#0e2248 100%);
+      color:#fff;overflow-x:hidden;min-height:100vh;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none}
+    .container{width:90%;max-width:1200px;margin:0 auto}
+
+    /* ─── NAV ────────────────────────────────────────── */
+    #navbar{
+      position:fixed;top:0;left:0;right:0;z-index:999;
+      padding:1.1rem 0;
+      transition:background .35s,box-shadow .35s,padding .3s;
+    }
+    #navbar.scrolled{
+      background:rgba(8,16,32,.95);
+      backdrop-filter:blur(18px);
+      box-shadow:0 1px 0 rgba(255,255,255,.05),0 4px 24px rgba(0,0,0,.3);
+      padding:.72rem 0;
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo img{height:44px;filter:brightness(0) invert(1);}
+    .nav-links{display:flex;gap:2rem;align-items:center;}
+    .nav-links a{
+      font-size:.83rem;font-weight:500;color:rgba(255,255,255,.72);
+      transition:color .2s;position:relative;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;bottom:-3px;left:0;right:0;
+      height:1.5px;background:var(--blue-lt);
+      transform:scaleX(0);transform-origin:left;transition:transform .25s;
+    }
+    .nav-links a:hover{color:#fff;}
+    .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+    .nav-links a.active{color:#fff;}
+    .nav-cta{
+      background:var(--blue-mid)!important;color:#fff!important;
+      padding:.48rem 1.2rem!important;border-radius:var(--r)!important;font-weight:600!important;
+    }
+    .nav-cta::after{display:none!important;}
+    .nav-cta:hover{background:var(--blue-lt)!important;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.4rem;background:none;border:none;}
+    .hamburger span{display:block;width:22px;height:1.5px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+    .mob-menu{display:none;position:fixed;inset:0;z-index:998;background:rgba(4,11,24,.97);flex-direction:column;align-items:center;justify-content:center;gap:2.8rem;}
+    .mob-menu.open{display:flex;}
+    .mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:.06em;color:rgba(255,255,255,.75);transition:color .2s;}
+    .mob-menu a:hover{color:#fff;}
+    .mob-close{position:absolute;top:1.5rem;right:1.8rem;background:none;border:none;color:rgba(255,255,255,.5);font-size:1.5rem;cursor:pointer;}
+
+    /* ─── EYEBROW ────────────────────────────────────── */
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:.55rem;
+      font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--blue-pale);margin-bottom:.9rem;
+    }
+    .eyebrow::before{content:'';width:22px;height:2px;background:var(--blue-pale);border-radius:2px;flex-shrink:0;}
+
+    /* ─── PAGE HERO ──────────────────────────────────── */
+    .page-hero{
+      position:relative;overflow:hidden;
+      padding:9rem 0 4.5rem;text-align:center;
+    }
+    .hero-grid-bg{
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+      background-size:72px 72px;pointer-events:none;
+    }
+    .hero-glow{position:absolute;border-radius:50%;pointer-events:none;}
+    .g1{width:700px;height:700px;background:radial-gradient(circle,rgba(30,79,160,.18) 0%,transparent 68%);top:-300px;left:50%;transform:translateX(-50%);}
+    .g2{width:350px;height:350px;background:radial-gradient(circle,rgba(45,108,223,.09) 0%,transparent 68%);bottom:-80px;right:-60px;}
+    .page-hero-inner{position:relative;z-index:2;}
+    .page-hero h1{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(3.5rem,7vw,5.5rem);
+      letter-spacing:.03em;line-height:.95;color:#fff;margin-bottom:1.2rem;
+    }
+    .page-hero h1 span{
+      display:block;
+      background:linear-gradient(90deg,var(--blue-pale),#a8c4ff);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .page-hero p{font-size:1rem;color:rgba(255,255,255,.52);line-height:1.8;max-width:520px;margin:0 auto;}
+    .breadcrumb{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:2rem;font-size:.78rem;color:rgba(255,255,255,.35);}
+    .breadcrumb a{color:rgba(255,255,255,.5);transition:color .2s;}
+    .breadcrumb a:hover{color:#fff;}
+    .breadcrumb-sep{font-size:.65rem;color:rgba(255,255,255,.2);}
+    .breadcrumb-cur{color:var(--blue-pale);}
+
+    /* ─── MAIN ───────────────────────────────────────── */
+    .contact-section{padding:2rem 0 7rem;position:relative;}
+
+    /* ══════════════════════════════════════════════════
+       METALLIC OUTER CARD
+    ══════════════════════════════════════════════════ */
+    .metal-card{
+      position:relative;
+      border-radius:24px;
+      padding:2.5rem;
+      /* layered backgrounds: brushed-metal noise + glass */
+      background:
+        linear-gradient(135deg,
+          rgba(220,232,248,.11) 0%,
+          rgba(160,185,220,.06) 40%,
+          rgba(200,218,240,.09) 70%,
+          rgba(140,170,210,.05) 100%);
+      border:1px solid var(--metal-border);
+      backdrop-filter:blur(24px);
+      -webkit-backdrop-filter:blur(24px);
+      box-shadow:
+        0 1px 0 var(--metal-hi) inset,            /* top highlight */
+        0 -1px 0 rgba(0,0,0,.25) inset,           /* bottom shadow */
+        1px 0 0 var(--metal-shine) inset,          /* left edge */
+        -1px 0 0 rgba(0,0,0,.15) inset,           /* right edge */
+        0 32px 80px rgba(5,12,28,.55),             /* drop shadow */
+        0 0 0 1px rgba(100,140,200,.07);           /* faint ring */
+      overflow:hidden;
+      margin-bottom:2rem;
+    }
+    /* brushed-metal sheen sweep */
+    .metal-card::before{
+      content:'';
+      position:absolute;top:0;left:-60%;width:55%;height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);
+      pointer-events:none;
+      animation:metalSheen 8s ease-in-out infinite;
+    }
+    @keyframes metalSheen{
+      0%{left:-60%;opacity:0}
+      10%{opacity:1}
+      50%{left:120%;opacity:1}
+      60%{opacity:0}
+      100%{left:120%;opacity:0}
+    }
+    .metal-card-inner-top{position:relative;z-index:1;}
+
+    /* ─── INFO CARDS ROW ─────────────────────────────── */
+    .info-row{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1.2rem;
+      margin-bottom:2rem;
+    }
+    .info-card{
+      position:relative;
+      border-radius:16px;
+      padding:1.8rem 1.5rem;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      overflow:hidden;
+      transition:background .28s,border-color .28s,transform .25s,box-shadow .28s;
+    }
+    .info-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+    }
+    .info-card:hover{
+      background:rgba(30,79,160,.16);
+      border-color:rgba(45,108,223,.3);
+      transform:translateY(-3px);
+      box-shadow:0 12px 40px rgba(10,22,40,.3);
+    }
+    .info-icon{
+      width:44px;height:44px;border-radius:12px;
+      background:rgba(30,79,160,.25);
+      border:1px solid rgba(45,108,223,.3);
+      display:flex;align-items:center;justify-content:center;
+      margin-bottom:1.1rem;
+      flex-shrink:0;
+    }
+    .info-icon svg{width:20px;height:20px;stroke:var(--blue-pale);fill:none;stroke-width:1.8;}
+    .info-label{
+      font-size:.65rem;font-weight:700;letter-spacing:.14em;
+      text-transform:uppercase;color:rgba(255,255,255,.38);
+      margin-bottom:.5rem;
+    }
+    .info-title{
+      font-family:'Libre Baskerville',serif;
+      font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.55rem;
+    }
+    .info-lines{display:flex;flex-direction:column;gap:.25rem;}
+    .info-lines span,.info-lines a{
+      font-size:.83rem;color:rgba(255,255,255,.55);
+      transition:color .2s;line-height:1.55;
+    }
+    .info-lines a:hover{color:var(--blue-pale);}
+    .info-card-wide{grid-column:1 / -1;}
+
+    /* Offices two-col inside wide card */
+    .offices-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+    .office-block{}
+    .office-city{
+      font-size:.65rem;font-weight:700;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--blue-pale);margin-bottom:.4rem;
+    }
+    .office-block p,.office-block a{font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.6;}
+    .office-block a:hover{color:var(--blue-pale);}
+    .office-divider{width:1px;background:rgba(255,255,255,.07);}
+
+    /* ─── MAP ────────────────────────────────────────── */
+    .map-wrap{
+      position:relative;border-radius:16px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.09);
+      box-shadow:0 8px 40px rgba(5,12,28,.4);
+      height:340px;
+    }
+    .map-wrap iframe{width:100%;height:100%;display:block;border:none;filter:invert(90%) hue-rotate(180deg) saturate(.85) brightness(.85);}
+    /* overlay top fade */
+    .map-wrap::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:40px;
+      background:linear-gradient(to bottom,rgba(10,22,40,.4),transparent);
+      z-index:1;pointer-events:none;
+    }
+
+    /* ─── MAP TABS ───────────────────────────────────── */
+    .map-tabs{display:flex;gap:.6rem;margin-bottom:1rem;}
+    .map-tab{
+      font-size:.73rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+      padding:.42rem 1rem;border-radius:100px;cursor:pointer;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      color:rgba(255,255,255,.5);
+      transition:all .22s;
+    }
+    .map-tab:hover{background:rgba(30,79,160,.2);border-color:rgba(45,108,223,.35);color:rgba(255,255,255,.85);}
+    .map-tab.active{background:rgba(30,79,160,.3);border-color:rgba(45,108,223,.55);color:#fff;}
+
+    /* ══════════════════════════════════════════════════
+       FORM CARD
+    ══════════════════════════════════════════════════ */
+    .form-card{
+      position:relative;
+      border-radius:24px;
+      padding:2.8rem 3rem;
+      background:
+        linear-gradient(135deg,
+          rgba(220,232,248,.10) 0%,
+          rgba(160,185,220,.05) 50%,
+          rgba(200,218,240,.08) 100%);
+      border:1px solid var(--metal-border);
+      backdrop-filter:blur(24px);
+      -webkit-backdrop-filter:blur(24px);
+      box-shadow:
+        0 1px 0 var(--metal-hi) inset,
+        0 -1px 0 rgba(0,0,0,.2) inset,
+        1px 0 0 var(--metal-shine) inset,
+        0 32px 80px rgba(5,12,28,.5),
+        0 0 0 1px rgba(100,140,200,.06);
+      overflow:hidden;
+    }
+    .form-card::before{
+      content:'';
+      position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+    }
+    .form-card-inner{position:relative;z-index:1;}
+
+    .form-head{margin-bottom:2.2rem;}
+    .form-head h2{
+      font-family:'Libre Baskerville',serif;
+      font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;color:#fff;
+      margin-bottom:.5rem;
+    }
+    .form-head p{font-size:.88rem;color:rgba(255,255,255,.48);line-height:1.7;}
+
+    /* Form grid */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+    .form-group{display:flex;flex-direction:column;gap:.5rem;}
+    .form-group.full{grid-column:1 / -1;}
+
+    label{font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+
+    input[type=text],input[type=email],input[type=tel],select,textarea{
+      width:100%;
+      padding:.88rem 1.1rem;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:var(--r);
+      color:#fff;
+      font-family:'Inter',sans-serif;
+      font-size:.88rem;
+      outline:none;
+      transition:background .22s,border-color .22s,box-shadow .22s;
+      appearance:none;
+    }
+    input::placeholder,textarea::placeholder{color:rgba(255,255,255,.3);}
+    input:focus,select:focus,textarea:focus{
+      background:rgba(30,79,160,.14);
+      border-color:rgba(45,108,223,.5);
+      box-shadow:0 0 0 3px rgba(45,108,223,.12);
+    }
+    select{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b8fe8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-position:right 1rem center;
+      background-size:16px;
+      padding-right:2.8rem;
+      cursor:pointer;
+    }
+    select option{background:#0d1f3c;color:#fff;}
+    textarea{resize:vertical;min-height:140px;line-height:1.6;}
+
+    /* privacy check */
+    .form-check{display:flex;align-items:flex-start;gap:.8rem;grid-column:1 / -1;}
+    .form-check input[type=checkbox]{
+      width:18px;height:18px;flex-shrink:0;margin-top:.1rem;
+      accent-color:var(--blue-lt);cursor:pointer;border-radius:4px;
+    }
+    .form-check-lbl{font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.6;}
+    .form-check-lbl a{color:var(--blue-pale);border-bottom:1px solid rgba(91,143,232,.3);transition:color .2s;}
+    .form-check-lbl a:hover{color:#fff;}
+
+    /* submit */
+    .form-submit{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-top:.5rem;}
+    .submit-note{font-size:.78rem;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:.45rem;}
+    .submit-note svg{width:14px;height:14px;stroke:rgba(255,255,255,.35);flex-shrink:0;}
+    .btn-submit{
+      display:inline-flex;align-items:center;gap:.55rem;
+      background:var(--blue-mid);color:#fff;
+      font-weight:700;font-size:.88rem;letter-spacing:.04em;
+      padding:.88rem 2.2rem;border-radius:var(--r);
+      border:none;cursor:pointer;
+      box-shadow:0 4px 20px rgba(30,79,160,.35);
+      transition:background .2s,transform .2s,box-shadow .2s;
+    }
+    .btn-submit:hover{background:var(--blue-lt);transform:translateY(-2px);box-shadow:0 8px 30px rgba(30,79,160,.45);}
+    .btn-submit svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .2s;}
+    .btn-submit:hover svg{transform:translateX(3px);}
+
+    /* success message */
+    .form-success{
+      display:none;
+      text-align:center;padding:3rem 1rem;
+    }
+    .form-success.show{display:block;}
+    .success-icon{
+      width:64px;height:64px;border-radius:50%;
+      background:rgba(30,79,160,.2);
+      border:2px solid rgba(45,108,223,.4);
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 1.2rem;
+    }
+    .success-icon svg{width:28px;height:28px;stroke:var(--blue-pale);fill:none;stroke-width:2;}
+    .form-success h3{font-family:'Libre Baskerville',serif;font-size:1.3rem;color:#fff;margin-bottom:.5rem;}
+    .form-success p{font-size:.88rem;color:rgba(255,255,255,.5);}
+
+    /* wa strip */
+    .wa-strip{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:1.5rem;flex-wrap:wrap;
+      margin-top:2rem;
+      padding:1.6rem 2rem;
+      border-radius:var(--r);
+      background:rgba(37,211,102,.08);
+      border:1px solid rgba(37,211,102,.2);
+      grid-column:1 / -1;
+    }
+    .wa-strip-txt p:first-child{font-size:.92rem;font-weight:600;color:#fff;margin-bottom:.2rem;}
+    .wa-strip-txt p:last-child{font-size:.8rem;color:rgba(255,255,255,.45);}
+    .wa-btn{
+      display:inline-flex;align-items:center;gap:.6rem;flex-shrink:0;
+      background:#25d366;color:#fff;
+      font-weight:700;font-size:.84rem;letter-spacing:.03em;
+      padding:.8rem 1.6rem;border-radius:var(--r);
+      box-shadow:0 4px 18px rgba(37,211,102,.25);
+      transition:background .2s,transform .2s;
+    }
+    .wa-btn:hover{background:#1eb359;transform:translateY(-2px);}
+    .wa-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0;}
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer{background:#040b18;color:rgba(255,255,255,.45);padding:5rem 0 2.5rem;}
+    .footer-top{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:4rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.07);}
+    .footer-logo img{height:42px;filter:brightness(0) invert(1) opacity(.75);}
+    .footer-brand p{font-size:.82rem;line-height:1.78;margin-top:1rem;max-width:270px;}
+    .footer-col h5{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.3rem;}
+    .footer-col li{margin-bottom:.65rem;}
+    .footer-col a{font-size:.82rem;color:rgba(255,255,255,.42);transition:color .2s;}
+    .footer-col a:hover{color:rgba(255,255,255,.88);}
+    .fc-row{display:flex;gap:.65rem;margin-bottom:.85rem;font-size:.82rem;align-items:flex-start;}
+    .fc-lbl{font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-lt);flex-shrink:0;padding-top:.14rem;}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.76rem;}
+    .footer-bottom a{color:rgba(255,255,255,.32);transition:color .2s;}
+    .footer-bottom a:hover{color:rgba(255,255,255,.7);}
+
+    /* ─── SCROLL TOP ─────────────────────────────────── */
+    #scrollTop{
+      position:fixed;bottom:1.8rem;right:1.8rem;z-index:500;
+      width:42px;height:42px;border-radius:var(--r);
+      background:var(--blue-mid);color:#fff;border:none;cursor:pointer;
+      font-size:.95rem;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 16px rgba(30,79,160,.38);
+      opacity:0;pointer-events:none;transition:opacity .3s,transform .25s;
+    }
+    #scrollTop.visible{opacity:1;pointer-events:all;}
+    #scrollTop:hover{transform:translateY(-3px);}
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media(max-width:900px){
+      .info-row{grid-template-columns:1fr 1fr;}
+      .offices-grid{grid-template-columns:1fr;}
+      .office-divider{display:none;}
+      .footer-top{grid-template-columns:1fr;gap:2.5rem;}
+      .form-card{padding:2rem 1.8rem;}
+    }
+    @media(max-width:768px){
+      .nav-links{display:none;}
+      .hamburger{display:flex;}
+      .form-grid{grid-template-columns:1fr;}
+      .form-group.full{grid-column:auto;}
+      .form-check{grid-column:auto;}
+      .form-submit{grid-column:auto;flex-direction:column;align-items:flex-start;}
+      .metal-card{padding:1.8rem 1.4rem;}
+      .footer-bottom{flex-direction:column;text-align:center;}
+      .wa-strip{flex-direction:column;align-items:flex-start;}
+    }
+    @media(max-width:600px){
+      .info-row{grid-template-columns:1fr;}
+    }
+  </style>
+
+  <style>
+    .nav-logo img{
+    height:44px;
+    width:auto;
+    filter:none;
+}
+
+  </style>
+<link rel="shortcut icon" href="NexFav.png" type="image/x-icon">
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo"><img src="NexusOficial1.png" style="width: 200; height: 150px;" alt="Nexus Consultores"></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="faq.html">Preguntas frecuentes</a></li>
+         <!--<li><a href="blog.html">Blog</a></li>-->
+        <li><a href="contact.html">Contacto</a></li>
+        <li><a href="privacidad.html" class="nav-cta">Aviso de privacidad</a></li>
+      </ul>
+      <button class="hamburger" id="hambBtn" aria-label="Men&uacute;"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mob-menu" id="mobMenu">
+    <button class="mob-close" id="mobClose">&#x2715;</button>
+    <a href="index.html" class="mml">Inicio</a>
+    <a href="faq.html" class="mml">Preguntas frecuentes</a>
+     <!--<a href="blog.html" class="mml">Blog</a> -->
+    <a href="contact.html" class="mml">Contacto</a>
+    <a href="privacidad.html" class="mml">Aviso de privacidad</a>
+  </div>
+
+<!-- ═══ PAGE HERO ═══ -->
+<header class="page-hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow g1"></div>
+  <div class="hero-glow g2"></div>
+  <div class="container page-hero-inner" data-aos="fade-up" data-aos-duration="800">
+    <span class="eyebrow">Est&aacute;mos para ti</span>
+    <h1>Cont&aacute;ctanos<span>hoy mismo</span></h1>
+    <p>Nuestros asesores est&aacute;n disponibles para orientarte sin costo en el primer contacto. Selecciona la oficina m&aacute;s cercana o esc&iacute;benos directamente.</p>
+    <div class="breadcrumb">
+      <a href="index.html">Inicio</a>
+      <span class="breadcrumb-sep">&#9656;</span>
+      <span class="breadcrumb-cur">Contacto</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ CONTACT SECTION ═══ -->
+<section class="contact-section">
+  <div class="container">
+
+    <!-- ─── METALLIC INFO + MAP CARD ─── -->
+    <div class="metal-card" data-aos="fade-up" data-aos-duration="800">
+      <div class="metal-card-inner-top">
+
+        <!-- INFO CARDS -->
+        <div class="info-row">
+
+          <!-- Ubicaci&oacute;n general -->
+         <div class="info-card">
+  <div class="info-icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+    </svg>
+  </div>
+
+  <div class="info-label">Oficina CDMX</div>
+
+  <div class="info-title">
+    Ciudad de México
+  </div>
+
+  <div class="info-lines">
+    <span>P.º de los Tamarindos 384 - Piso 9</span>
+    <span>Bosques de las Lomas</span>
+    <span>Cuajimalpa de Morelos, 05110</span>
+    <span>Ciudad de México, CDMX</span>
+  </div>
+</div>
+
+          <!-- Tel&eacute;fonos -->
+         <div class="info-card">
+  <div class="info-icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+    </svg>
+  </div>
+
+  <div class="info-label">Teléfono</div>
+  <div class="info-title">Contacto directo</div>
+
+  <div class="info-lines">
+    <a href="tel:+522311067600">231 106 7600</a>
+    <a href="https://wa.me/522311067600">WhatsApp disponible</a>
+  </div>
+</div>
+
+          <!-- Correo -->
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div class="info-label">Correo electr&oacute;nico</div>
+            <div class="info-title">At&eacute;nci&oacute;n digital</div>
+            <div class="info-lines">
+              <a href="mailto:clientes@nexusconsultores.mx">clientes@nexusconsultores.mx</a>
+              <span style="margin-top:.35rem;font-size:.78rem;">Respuesta en menos de 24 hrs</span>
+            </div>
+          </div>
+
+          <!-- Horarios 
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="info-label">Horario de atenci&oacute;n</div>
+            <div class="info-title">Disponibilidad</div>
+            <div class="info-lines">
+              <span>Lun &ndash; Vie: 9:00 &ndash; 18:00</span>
+              <span>S&aacute;b: 9:00 &ndash; 13:00</span>
+              <span>WhatsApp: 8:00 &ndash; 20:00</span>
+            </div>
+          </div>-->
+
+          <!-- Oficinas detalle (wide) -->
+          <div class="info-card info-card-wide">
+          <div class="info-card info-card-wide">
+  <div class="info-label" style="margin-bottom:1rem;">
+    Oficinas
+  </div>
+
+  <div class="offices-grid">
+
+    <div class="office-block">
+      <div class="office-city">Puebla</div>
+
+      <p>
+        Anillo Perif. Ecológico, 72820<br>
+        San Bernardino Tlaxcalancingo, Pue., México
+      </p>
+
+      
+    </div>
+
+    <div class="office-divider"></div>
+
+    <div class="office-block">
+      <div class="office-city">CDMX</div>
+
+      <p>
+        P.º de los Tamarindos 384 - Piso 9<br>
+        Bosques de las Lomas, Cuajimalpa de Morelos<br>
+        05110 Ciudad de México, CDMX
+      </p>
+
+      
+    </div>
+
+  </div>
+</div>
+
+        </div><!-- /info-row -->
+
+        <!-- MAP 
+        <div style="margin-bottom:.75rem;">
+           <div class="map-tabs" id="mapTabs">
+            <button class="map-tab active" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.0!2d-99.604!3d19.268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cd8b!2sMetepec!5e0!3m2!1ses!2smx!4v1700000000">
+              Metepec
+            </button>
+            <button class="map-tab" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.0!2d-98.206!3d19.042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc7!2sTorre+Albertina+Puebla!5e0!3m2!1ses!2smx!4v1700000001">
+              Puebla
+            </button>
+          </div>
+          <div class="map-wrap">
+            <iframe
+              id="mapFrame"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60340.37!2d-99.604!3d19.268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cd8b4e37e62f93%3A0xe1e8b5c4c97547e!2sMetepec%2C%20M%C3%A9x.!5e0!3m2!1ses!2smx!4v1700000000000"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Nexus Consultores">
+            </iframe>
+          </div>
+        </div>-->
+
+      </div>
+    </div><!-- /metal-card -->
+
+    <!-- ─── FORM CARD ─── -->
+    <div class="form-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+      <div class="form-card-inner">
+
+        <div class="form-head">
+          <span class="eyebrow">Escr&iacute;benos</span>
+          <h2>Env&iacute;anos un mensaje</h2>
+          <p>Completa el formulario y uno de nuestros asesores se pondr&aacute; en contacto contigo a la brevedad.</p>
+        </div>
+
+        <!-- Success state -->
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3>Mensaje enviado correctamente</h3>
+          <p>Nos pondremos en contacto contigo en menos de 24 horas h&aacute;biles.<br/>Gracias por confiar en Nexus Consultores.</p>
+        </div>
+
+        <!-- Form -->
+        <form  id="contactForm"
+  name="contacto"
+  method="POST"
+  action="/Gracias/"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+>
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="nombre">Nombre completo</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="name"/>
+            </div>
+
+            <div class="form-group">
+              <label for="apellidos">Apellidos</label>
+              <input type="text" id="apellidos" name="apellidos" placeholder="Tus apellidos"/>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Correo electr&oacute;nico</label>
+              <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" autocomplete="email"/>
+            </div>
+
+            <div class="form-group">
+              <label for="telefono">Tel&eacute;fono</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+52 (000) 000 0000" autocomplete="tel"/>
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="servicio">Servicio de inter&eacute;s</label>
+              <select id="servicio" name="servicio">
+                <option value="" disabled selected>Selecciona un servicio&hellip;</option>
+                <option>Retiro por desempleo</option>
+                <option>Cr&eacute;ditos de vivienda (Infonavit / Fovissste)</option>
+                <option>Aportaciones voluntarias</option>
+                <option>Pensi&oacute;n por cesan&iacute;a</option>
+                <option>Designaci&oacute;n de beneficiarios</option>
+                <option>Modalidad 40</option>
+                <option>Retiro por matrimonio</option>
+                <option>Pensi&oacute;n por vejez</option>
+                <option>Negativa de pensi&oacute;n</option>
+                <option>Otro / Asesor&iacute;a general</option>
+              </select>
+            </div> -->
+
+            <!-- <div class="form-group">
+              <label for="oficina">Oficina de preferencia</label>
+              <select id="oficina" name="oficina">
+                <option value="" disabled selected>Selecciona una oficina&hellip;</option>
+                <option>Metepec &mdash; Sede principal</option>
+                <option>Puebla &mdash; Sucursal</option>
+                <option>Atenci&oacute;n en l&iacute;nea</option>
+              </select>
+            </div> -->
+
+            <div class="form-group full">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Cu&eacute;ntanos brevemente tu situaci&oacute;n o d&uacute;da&hellip;"></textarea>
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" id="privacidad" name="privacidad"/>
+              <label class="form-check-lbl" for="privacidad">
+                He le&iacute;do y acepto el <a href="#">Aviso de Privacidad</a> y los <a href="#">T&eacute;rminos de uso</a> de Nexus Consultores.
+              </label>
+            </div>
+
+            <div class="form-submit">
+              <div class="submit-note">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                Tus datos est&aacute;n protegidos
+              </div>
+              <button type="submit" class="btn-submit">
+                Enviar mensaje
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+
+            <!-- WhatsApp strip -->
+            <div class="wa-strip">
+              <div class="wa-strip-txt">
+                <p>&iquest;Prefieres una respuesta inmediata?</p>
+                <p>Escr&iacute;benos por WhatsApp y un asesor te atiende al momento.</p>
+              </div>
+              <a href="https://wa.me/522311067600" target="_blank" rel="noopener" class="wa-btn">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Escribir por WhatsApp
+              </a>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div><!-- /form-card -->
+
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+<div class="footer-logo footer-text-logo">
+  Nexus Consultores
+</div>        <p>Especialistas en pensiones, retiros de afore y asesor&iacute;a financiera en M&eacute;xico. M&aacute;s de una d&eacute;cada acompa&ntilde;ando a trabajadores mexicanos.</p>
+      </div>
+      <div class="footer-col">
+        <h5>P&aacute;ginas</h5>
+        <ul>
+          <li><a href="index.html#about">Nosotros</a></li>
+          <li><a href="index.html#services">Servicios</a></li>
+          <li><a href="index.html#why">Por qu&eacute; elegirnos</a></li>
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
+          <li><a href="contact.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+<div class="fc-row">
+    <span class="fc-lbl">Número de oficinas</span>
+    <div>
+        <a href="tel:+522311067600">231 106 7600</a>
+    </div>
+</div>        <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.mx">clientes@nexusconsultores.mx</a></div>
+<div class="fc-row">
+    <span class="fc-lbl">Oficinas</span>
+    <div>
+        <strong>Puebla:</strong><br>
+        Anillo Perif. Ecológico, 72820 San Bernardino Tlaxcalancingo, Pue., México.
+        <br><br>
+        <strong>CDMX:</strong><br>
+        P.º de los Tamarindos 384-Piso 9, Bosques de las Lomas, Cuajimalpa de Morelos, 05110 Ciudad de México, CDMX.
+    </div>
+</div>      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Nexus Consultores. Todos los derechos reservados.</span>
+      <div style="display:flex;gap:1.4rem;"><a href="#">Aviso de privacidad</a><a href="#">T&eacute;rminos de uso</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="scrollTop" aria-label="Volver arriba">&#8593;</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({once:true,offset:60,duration:750,easing:'ease-out-cubic'});
+
+  /* Navbar */
+  const nav = document.getElementById('navbar');
+  const stBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    stBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+  stBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+  /* Mobile menu */
+  document.getElementById('hambBtn').addEventListener('click', () => document.getElementById('mobMenu').classList.add('open'));
+  document.getElementById('mobClose').addEventListener('click', () => document.getElementById('mobMenu').classList.remove('open'));
+  document.querySelectorAll('.mml').forEach(l => l.addEventListener('click', () => document.getElementById('mobMenu').classList.remove('open')));
+
+  /* Map tabs */
+  document.querySelectorAll('.map-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.map-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const src = tab.dataset.src;
+      if(src) document.getElementById('mapFrame').src = src;
+    });
+  });
+
+  /* Form submit */
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Basic validation
+    const nombre    = document.getElementById('nombre').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    const privacidad= document.getElementById('privacidad').checked;
+    const mensaje   = document.getElementById('mensaje').value.trim();
+
+    if(!nombre || !email || !mensaje || !privacidad) {
+      // shake fields
+      [document.getElementById('nombre'),document.getElementById('email'),document.getElementById('mensaje')].forEach(el => {
+        if(!el.value.trim()){
+          el.style.borderColor = 'rgba(239,68,68,.6)';
+          el.style.boxShadow   = '0 0 0 3px rgba(239,68,68,.1)';
+          setTimeout(() => { el.style.borderColor=''; el.style.boxShadow=''; }, 2000);
+        }
+      });
+      if(!privacidad){
+        document.getElementById('privacidad').style.outline = '2px solid rgba(239,68,68,.6)';
+        setTimeout(()=>{ document.getElementById('privacidad').style.outline=''; },2000);
+      }
+      return;
+    }
+
+    // Simulate send
+    const btn = this.querySelector('.btn-submit');
+    btn.textContent = 'Enviando\u2026';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      this.style.display = 'none';
+      document.querySelector('.form-head').style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+    }, 1200);
+  });
+</script>
+</body>
+</html>

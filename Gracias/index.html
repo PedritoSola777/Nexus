@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mensaje enviado | Nexus Consultores</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --navy:#0a1628;
+      --blue-mid:#1e4fa0;
+      --blue-lt:#2d6cdf;
+      --blue-pale:#5b8fe8;
+      --white:#fff;
+      --r:12px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      min-height:100vh;
+      font-family:'Inter',sans-serif;
+      color:#fff;
+      background:linear-gradient(165deg,#060e1d 0%,#0a1628 45%,#0e2248 100%);
+      overflow:hidden;
+    }
+
+    .success-page{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:2rem;
+      position:relative;
+    }
+
+    .success-page::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:72px 72px;
+    }
+
+    .glow{
+      position:absolute;
+      width:650px;
+      height:650px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(45,108,223,.22),transparent 68%);
+      top:-220px;
+      left:50%;
+      transform:translateX(-50%);
+    }
+
+    .success-card{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:680px;
+      padding:3rem;
+      text-align:center;
+      border-radius:24px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(24px);
+      box-shadow:0 32px 80px rgba(5,12,28,.55);
+    }
+
+    .success-icon{
+      width:76px;
+      height:76px;
+      margin:0 auto 1.4rem;
+      border-radius:50%;
+      background:linear-gradient(180deg,#25d366,#1eb359);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 12px 35px rgba(37,211,102,.28);
+    }
+
+    .success-icon svg{
+      width:36px;
+      height:36px;
+      fill:none;
+      stroke:#fff;
+      stroke-width:2.5;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      font-size:.68rem;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--blue-pale);
+      margin-bottom:.8rem;
+    }
+
+    h1{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(3rem,7vw,5rem);
+      line-height:.95;
+      letter-spacing:.03em;
+      margin-bottom:1rem;
+    }
+
+    h1 span{
+      display:block;
+      background:linear-gradient(90deg,var(--blue-pale),#a8c4ff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    p{
+      color:rgba(255,255,255,.62);
+      font-size:1rem;
+      line-height:1.8;
+      max-width:520px;
+      margin:0 auto 2rem;
+    }
+
+    .success-actions{
+      display:flex;
+      gap:1rem;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn-primary,
+    .btn-ghost{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:.85rem 1.4rem;
+      border-radius:var(--r);
+      font-size:.85rem;
+      font-weight:700;
+      text-decoration:none;
+    }
+
+    .btn-primary{
+      background:linear-gradient(180deg,var(--blue-lt),var(--blue-mid));
+      color:#fff;
+      box-shadow:0 8px 24px rgba(45,108,223,.28);
+    }
+
+    .btn-ghost{
+      color:rgba(255,255,255,.8);
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.06);
+    }
+
+    @media(max-width:540px){
+      .success-card{
+        padding:2.2rem 1.5rem;
+      }
+
+      .success-actions{
+        flex-direction:column;
+      }
+
+      .btn-primary,
+      .btn-ghost{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="success-page">
+    <div class="glow"></div>
+
+    <section class="success-card">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+      </div>
+
+      <span class="eyebrow">Mensaje recibido</span>
+
+      <h1>
+        Gracias por
+        <span>contactarnos</span>
+      </h1>
+
+      <p>
+        Tu mensaje fue enviado correctamente. Uno de nuestros asesores se pondrá
+        en contacto contigo a la brevedad.
+      </p>
+
+      <div class="success-actions">
+        <a href="../index.html" class="btn-primary">Volver al inicio</a>
+        <a href="https://wa.me/522311067600" class="btn-ghost">Escribir por WhatsApp</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
