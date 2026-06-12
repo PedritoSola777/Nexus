@@ -40,6 +40,64 @@
     width:auto;
     filter:none;
 }
+
+/* ─── STRIP ─────────────────────────────────────── */
+.strip{
+  position:relative;
+  overflow:hidden;
+  padding:1.6rem 0;
+  background:linear-gradient(90deg,
+    rgba(30,79,160,.16) 0%,
+    rgba(45,108,223,.10) 50%,
+    rgba(30,79,160,.16) 100%);
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.strip-track{
+  display:flex;
+  width:max-content;
+  animation:stripScroll 32s linear infinite;
+}
+.strip-row{
+  display:flex;
+  align-items:center;
+  gap:3.5rem;
+  padding-right:3.5rem;
+  flex-shrink:0;
+}
+.strip-item{
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+  font-family:'Libre Baskerville',serif;
+  font-size:1.15rem;
+  font-weight:700;
+  color:rgba(255,255,255,.85);
+  white-space:nowrap;
+  letter-spacing:.01em;
+}
+.strip-dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--blue-pale);
+  box-shadow:0 0 0 4px rgba(91,143,232,.18);
+  flex-shrink:0;
+}
+.strip-fade{
+  position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none;
+}
+.strip-fade-l{left:0;background:linear-gradient(90deg,#0a1628,transparent);}
+.strip-fade-r{right:0;background:linear-gradient(270deg,#0a1628,transparent);}
+
+@keyframes stripScroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+@media(max-width:768px){
+  .strip-item{font-size:.95rem;}
+  .strip-row{gap:2.2rem;padding-right:2.2rem;}
+}
+
   </style>
 
 <link rel="shortcut icon" href="NexFav.png" type="image/x-icon">
@@ -132,17 +190,27 @@
   </section>
 
   <!-- STRIP -->
-  <div class="strip">
-    <div class="container">
-      <div class="strip-row">
-        <div class="strip-item"><span class="strip-dot"></span> Asesor&iacute;a personalizada</div>
-        <div class="strip-item"><span class="strip-dot"></span> Contratos formales en cada tr&aacute;mite</div>
-        <div class="strip-item"><span class="strip-dot"></span> Cobertura en toda la Rep&uacute;blica</div>
-        <div class="strip-item"><span class="strip-dot"></span> Cumplimiento con la LFPDPPP</div>
-        <div class="strip-item"><span class="strip-dot"></span> M&aacute;s de 10 a&ntilde;os de trayectoria</div>
-      </div>
+  <!-- STRIP -->
+<div class="strip">
+  <div class="strip-fade strip-fade-l"></div>
+  <div class="strip-fade strip-fade-r"></div>
+  <div class="strip-track">
+    <div class="strip-row">
+      <div class="strip-item"><span class="strip-dot"></span> Asesoría personalizada</div>
+      <div class="strip-item"><span class="strip-dot"></span> Contratos formales en cada trámite</div>
+      <div class="strip-item"><span class="strip-dot"></span> Cobertura en toda la República</div>
+      <div class="strip-item"><span class="strip-dot"></span> Cumplimiento con la LFPDPPP</div>
+      <div class="strip-item"><span class="strip-dot"></span> Más de 5 años de trayectoria</div>
+    </div>
+    <div class="strip-row" aria-hidden="true">
+      <div class="strip-item"><span class="strip-dot"></span> Asesoría personalizada</div>
+      <div class="strip-item"><span class="strip-dot"></span> Contratos formales en cada trámite</div>
+      <div class="strip-item"><span class="strip-dot"></span> Cobertura en toda la República</div>
+      <div class="strip-item"><span class="strip-dot"></span> Cumplimiento con la LFPDPPP</div>
+      <div class="strip-item"><span class="strip-dot"></span> Más de 5 años de trayectoria</div>
     </div>
   </div>
+</div>
 
   <!-- ABOUT -->
   <section id="about">
@@ -240,7 +308,7 @@
           </div>
           <div class="wcard" data-aos="fade-up" data-aos-delay="320">
             <div class="wcard-n">05</div>
-            <h4>M&aacute;s de 10 a&ntilde;os de experiencia</h4>
+            <h4>M&aacute;s de 5 a&ntilde;os de experiencia</h4>
             <p>Hemos acompa&ntilde;ado a m&aacute;s de 2,800 clientes en tr&aacute;mites de pensi&oacute;n, retiro y
               gesti&oacute;n de afore.</p>
           </div>
@@ -506,6 +574,142 @@
           </div>
         </div>
 
+        <div class="swiper-slide">
+          <div class="tcard">
+            <div class="tstars">
+              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+            </div>
+            <p class="ttext">
+              Exelente servicio, tenia un problema con mi rfc q no me dejaba sacar lo de mi afore y ellos me lo solucionaron super rapido. Muy amables.
+            </p>
+            <div class="tauth">
+              <div class="tav">MC</div>
+              <div>
+                <div class="tname">Manuel Contreras</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="tcard">
+            <div class="tstars">
+              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span>
+            </div>
+            <p class="ttext">
+              El trámite al final sí salió y me dieron mi dinero, pero se tardaron más de lo que me habían dicho al principio. Falta que contesten más rápido el WhatsApp.
+            </p>
+            <div class="tauth">
+              <div class="tav">SP</div>
+              <div>
+                <div class="tname">Sandra Palacios</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="tcard">
+            <div class="tstars">
+              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+            </div>
+            <p class="ttext">
+              Abogados muy profesionales. Me orientaron con lo de mi pensión bajo la ley de 1973 y obtuve una mejor resolución de la que esperaba. Vale totalmente la pena.
+            </p>
+            <div class="tauth">
+              <div class="tav">HM</div>
+              <div>
+                <div class="tname">Héctor Mendoza</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="tcard">
+            <div class="tstars">
+              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span>
+            </div>
+            <p class="ttext">
+              pense que era estafa xq x internet luego da desconfiansa pero todo legal, me ayudaron con mi ahorro de infonavit que ya dava por perdido gracias
+            </p>
+            <div class="tauth">
+              <div class="tav">ja</div>
+              <div>
+                <div class="tname">Juan Alatorre</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="tcard">
+            <div class="tstars">
+              <span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span>
+            </div>
+            <p class="ttext">
+              Mucha vuelta con los papeles. Te piden una cosa, luego otra y el proceso se hace eterno. Al menos la atención del asesor fue educada.
+            </p>
+            <div class="tauth">
+              <div class="tav">RC</div>
+              <div>
+                <div class="tname">Rosa Carmona</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="tcard">
+            <div class="tstars">
+              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+            </div>
+            <p class="ttext">
+              La mejor decisión fue contratarlos. Hacer estos trámites en las oficinas de gobierno es un dolor de cabeza, ellos se encargaron de todo y yo solo firmé.
+            </p>
+            <div class="tauth">
+              <div class="tav">AM</div>
+              <div>
+                <div class="tname">Arturo Moreno</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="tcard">
+            <div class="tstars">
+              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+            </div>
+            <p class="ttext">
+              Muy recomendados, me atendio la lic Vero y aclaro todas mis dudas, hise mi retiro por desempleo sin dar tantas bueltas en el banco.
+            </p>
+            <div class="tauth">
+              <div class="tav">YH</div>
+              <div>
+                <div class="tname">Yolanda Hernández</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="tcard">
+            <div class="tstars">
+              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span>
+            </div>
+            <p class="ttext">
+              Buen servicio y cobran lo justo por la asesoría. Quito una estrella porque costó un poco agendar la primera cita, pero después todo fluyó muy bien.
+            </p>
+            <div class="tauth">
+              <div class="tav">or</div>
+              <div>
+                <div class="tname">Omar Ramírez</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <div class="swiper-pagination"></div>
@@ -531,7 +735,7 @@
             </svg>
             WhatsApp
           </a>
-          <a href="mailto:clientes@nexusconsultores.mx" class="email-btn">Enviar correo</a>
+          <a href="mailto:clientes@nexusconsultores.com.mx" class="email-btn">Enviar correo</a>
         </div>
       </div>
     </div>
@@ -563,7 +767,7 @@
     <div>
         <a href="tel:+522311067600">231 106 7600</a>
     </div>
-</div>        <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.mx">clientes@nexusconsultores.mx</a></div>
+</div>        <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a></div>
 <div class="fc-row">
     <span class="fc-lbl">Oficinas</span>
     <div>
@@ -571,8 +775,7 @@
         Anillo Perif. Ecológico, 72820 San Bernardino Tlaxcalancingo, Pue., México.
         <br><br>
         <strong>CDMX:</strong><br>
-        P.º de los Tamarindos 384-Piso 9, Bosques de las Lomas, Cuajimalpa de Morelos, 05110 Ciudad de México, CDMX.
-    </div>
+        Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.    </div>
 </div>      </div>
     </div>
     <div class="footer-bottom">

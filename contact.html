@@ -4,7 +4,6 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contacto | Nexus Consultores</title>
-  <meta name="description" content="Contacta a Nexus Consultores. Oficinas en Metepec y Puebla. Asesoría en afore, pensiones y retiros."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
@@ -174,12 +173,12 @@
     .metal-card-inner-top{position:relative;z-index:1;}
 
     /* ─── INFO CARDS ROW ─────────────────────────────── */
-    .info-row{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:1.2rem;
-      margin-bottom:2rem;
-    }
+ .info-row{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1.2rem;
+  margin-bottom:2rem;
+}
     .info-card{
       position:relative;
       border-radius:16px;
@@ -438,7 +437,7 @@
 
     /* ─── RESPONSIVE ─────────────────────────────────── */
     @media(max-width:900px){
-      .info-row{grid-template-columns:1fr 1fr;}
+  .info-row{grid-template-columns:1fr;}
       .offices-grid{grid-template-columns:1fr;}
       .office-divider{display:none;}
       .footer-top{grid-template-columns:1fr;gap:2.5rem;}
@@ -454,9 +453,6 @@
       .metal-card{padding:1.8rem 1.4rem;}
       .footer-bottom{flex-direction:column;text-align:center;}
       .wa-strip{flex-direction:column;align-items:flex-start;}
-    }
-    @media(max-width:600px){
-      .info-row{grid-template-columns:1fr;}
     }
   </style>
 
@@ -522,29 +518,7 @@
       <div class="metal-card-inner-top">
 
         <!-- INFO CARDS -->
-        <div class="info-row">
-
-          <!-- Ubicaci&oacute;n general -->
-         <div class="info-card">
-  <div class="info-icon">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-    </svg>
-  </div>
-
-  <div class="info-label">Oficina CDMX</div>
-
-  <div class="info-title">
-    Ciudad de México
-  </div>
-
-  <div class="info-lines">
-    <span>P.º de los Tamarindos 384 - Piso 9</span>
-    <span>Bosques de las Lomas</span>
-    <span>Cuajimalpa de Morelos, 05110</span>
-    <span>Ciudad de México, CDMX</span>
-  </div>
-</div>
+        
 
           <!-- Tel&eacute;fonos -->
          <div class="info-card">
@@ -571,7 +545,7 @@
             <div class="info-label">Correo electr&oacute;nico</div>
             <div class="info-title">At&eacute;nci&oacute;n digital</div>
             <div class="info-lines">
-              <a href="mailto:clientes@nexusconsultores.mx">clientes@nexusconsultores.mx</a>
+              <a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a>
               <span style="margin-top:.35rem;font-size:.78rem;">Respuesta en menos de 24 hrs</span>
             </div>
           </div>
@@ -798,7 +772,7 @@
     <div>
         <a href="tel:+522311067600">231 106 7600</a>
     </div>
-</div>        <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.mx">clientes@nexusconsultores.mx</a></div>
+</div>        <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a></div>
 <div class="fc-row">
     <span class="fc-lbl">Oficinas</span>
     <div>
@@ -806,8 +780,7 @@
         Anillo Perif. Ecológico, 72820 San Bernardino Tlaxcalancingo, Pue., México.
         <br><br>
         <strong>CDMX:</strong><br>
-        P.º de los Tamarindos 384-Piso 9, Bosques de las Lomas, Cuajimalpa de Morelos, 05110 Ciudad de México, CDMX.
-    </div>
+        Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.    </div>
 </div>      </div>
     </div>
     <div class="footer-bottom">
