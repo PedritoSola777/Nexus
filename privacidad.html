@@ -23,8 +23,97 @@
     .nav-inner{display:flex;align-items:center;justify-content:space-between}.nav-logo img{height:44px;width:auto;filter:brightness(0) invert(1)}.nav-links{display:flex;gap:2rem;align-items:center}
     .nav-links a{font-size:.83rem;font-weight:500;color:rgba(255,255,255,.72);transition:color .2s;position:relative}.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:var(--blue-lt);transform:scaleX(0);transform-origin:left;transition:transform .25s}.nav-links a:hover,.nav-links a.active{color:var(--white)}.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
     .nav-cta{background:var(--blue-mid)!important;color:var(--white)!important;padding:.48rem 1.2rem!important;border-radius:var(--r)!important;font-weight:600!important}.nav-cta::after{display:none!important}.nav-cta:hover{background:var(--blue-lt)!important}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.4rem;background:none;border:none}.hamburger span{display:block;width:22px;height:1.5px;background:var(--white);border-radius:2px;transition:transform .3s,opacity .3s}
-    .mob-menu{display:none;position:fixed;inset:0;z-index:998;background:rgba(4,11,24,.97);flex-direction:column;align-items:center;justify-content:center;gap:2.8rem}.mob-menu.open{display:flex}.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:.06em;color:rgba(255,255,255,.75);transition:color .2s}.mob-menu a:hover{color:var(--white)}.mob-close{position:absolute;top:1.5rem;right:1.8rem;background:none;border:none;color:rgba(255,255,255,.5);font-size:1.5rem;cursor:pointer}
+    /* HAMBURGER */
+    .hamburger{
+      display:none;flex-direction:column;justify-content:center;align-items:center;
+      gap:6px;width:42px;height:42px;
+      cursor:pointer;background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);border-radius:10px;
+      position:relative;z-index:1001;transition:background .25s,border-color .25s;
+    }
+    .hamburger:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22);}
+    .hamburger span{
+      display:block;width:18px;height:1.5px;
+      background:var(--white);border-radius:2px;
+      transition:transform .32s cubic-bezier(.65,0,.35,1),opacity .2s,width .25s;
+    }
+    .hamburger.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+    .hamburger.active span:nth-child(2){opacity:0;width:0;}
+    .hamburger.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+    /* MOBILE MENU — off-canvas panel */
+    .mob-overlay{
+      display:none;position:fixed;inset:0;z-index:998;
+      background:rgba(4,9,20,.6);
+      backdrop-filter:blur(3px);
+      opacity:0;transition:opacity .35s ease;
+    }
+    .mob-overlay.open{display:block;opacity:1;}
+
+    .mob-menu{
+      position:fixed;top:0;right:0;bottom:0;z-index:999;
+      width:min(360px,84vw);
+      background:linear-gradient(165deg,#0a1628 0%,#0d1f3c 100%);
+      border-left:1px solid rgba(255,255,255,.08);
+      box-shadow:-20px 0 60px rgba(0,0,0,.45);
+      display:flex;flex-direction:column;
+      padding:2.2rem 2rem 2.4rem;
+      transform:translateX(100%);
+      transition:transform .4s cubic-bezier(.65,0,.35,1);
+    }
+    .mob-menu.open{transform:translateX(0);}
+
+    .mob-menu-head{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:2.8rem;
+    }
+    .mob-menu-head img{height:34px;width:auto;}
+    .mob-close{
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+      border-radius:8px;width:34px;height:34px;
+      color:rgba(255,255,255,.6);font-size:1rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:background .2s,color .2s,border-color .2s;
+    }
+    .mob-close:hover{background:rgba(255,255,255,.1);color:var(--white);border-color:rgba(255,255,255,.25);}
+
+    .mob-menu nav{display:flex;flex-direction:column;flex:1;}
+    .mob-menu .mml{
+      display:flex;align-items:center;justify-content:space-between;
+      font-family:'Inter',sans-serif;font-size:1.02rem;font-weight:600;
+      color:rgba(255,255,255,.82);
+      padding:1.05rem 0;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      opacity:0;transform:translateX(18px);
+      transition:color .2s,transform .45s ease,opacity .45s ease;
+    }
+    .mob-menu.open .mml{opacity:1;transform:translateX(0);}
+    .mob-menu.open .mml:nth-child(1){transition-delay:.08s;}
+    .mob-menu.open .mml:nth-child(2){transition-delay:.14s;}
+    .mob-menu.open .mml:nth-child(3){transition-delay:.2s;}
+    .mob-menu.open .mml:nth-child(4){transition-delay:.26s;}
+    .mob-menu .mml::after{
+      content:'\2192';color:var(--blue-pale);font-size:.85rem;
+      opacity:0;transform:translateX(-4px);
+      transition:opacity .2s,transform .2s;
+    }
+    .mob-menu .mml:hover{color:var(--white);}
+    .mob-menu .mml:hover::after{opacity:1;transform:translateX(0);}
+    .mob-menu .mml.mob-cta{
+      margin-top:1.4rem;border-bottom:none;
+      background:var(--blue-mid);color:var(--white);
+      border-radius:10px;padding:.95rem 1.1rem;
+      justify-content:center;gap:.5rem;
+    }
+    .mob-menu .mml.mob-cta::after{content:'';}
+
+    .mob-menu-foot{
+      padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);
+      font-size:.78rem;color:rgba(255,255,255,.38);
+      opacity:0;transition:opacity .45s ease .32s;
+    }
+    .mob-menu.open .mob-menu-foot{opacity:1;}
+    .mob-menu-foot a{color:rgba(255,255,255,.55);}
     .page-hero{position:relative;overflow:hidden;padding:9rem 0 5rem;text-align:center}.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:72px 72px}.page-hero-glow{position:absolute;border-radius:50%;pointer-events:none}.page-hero-glow-1{width:700px;height:700px;background:radial-gradient(circle,rgba(30,79,160,.18) 0%,transparent 68%);top:-300px;left:50%;transform:translateX(-50%)}.page-hero-glow-2{width:400px;height:400px;background:radial-gradient(circle,rgba(45,108,223,.09) 0%,transparent 68%);bottom:-100px;right:-100px}.page-hero-inner{position:relative;z-index:2}
     .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-pale);margin-bottom:.9rem}.eyebrow::before{content:'';width:22px;height:2px;background:var(--blue-pale);border-radius:2px;flex-shrink:0}
     .page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,5.5rem);letter-spacing:.03em;line-height:.95;color:var(--white);margin-bottom:1.2rem}.page-hero h1 span{display:block;background:linear-gradient(90deg,var(--blue-pale),#a8c4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.page-hero p{font-size:1rem;color:rgba(255,255,255,.55);line-height:1.8;max-width:680px;margin:0 auto}
@@ -64,17 +153,26 @@
         <li><a href="contact.html">Contacto</a></li>
         <li><a href="privacidad.html" class="nav-cta active">Aviso de privacidad</a></li>
       </ul>
-      <button class="hamburger" id="hambBtn" aria-label="Men&uacute;"><span></span><span></span><span></span></button>
+      <button class="hamburger" id="hambBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mob-overlay" id="mobOverlay"></div>
   <div class="mob-menu" id="mobMenu">
-    <button class="mob-close" id="mobClose">&#x2715;</button>
-    <a href="index.html" class="mml">Inicio</a>
-    <a href="faq.html" class="mml">Preguntas frecuentes</a>
-     <!--<a href="blog.html" class="mml">Blog</a> -->
-    <a href="contact.html" class="mml">Contacto</a>
-    <a href="privacidad.html" class="mml">Aviso de privacidad</a>
+    <div class="mob-menu-head">
+      <img src="NexusOficial1.png" alt="Nexus Consultores"/>
+      <button class="mob-close" id="mobClose" aria-label="Cerrar menú">&#x2715;</button>
+    </div>
+    <nav>
+      <a href="index.html" class="mml">Inicio</a>
+      <a href="faq.html" class="mml">Preguntas frecuentes</a>
+      <a href="contact.html" class="mml">Contacto</a>
+      <a href="privacidad.html" class="mml mob-cta">Aviso de privacidad</a>
+    </nav>
+    <div class="mob-menu-foot">
+      <div style="margin-bottom:.4rem;"><a href="tel:+522311439454">231 143 9454</a></div>
+      <div><a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a></div>
+    </div>
   </div>
 
   <header class="page-hero">
@@ -110,6 +208,18 @@
           <a href="#cambios">Cambios al aviso</a>
           <a href="#contacto">Contacto</a>
         </aside>
+
+        <style>
+          .privacy-sidebar h3{
+  font-family:'Inter',sans-serif;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--blue-pale);
+  margin-bottom:1.4rem;
+}
+        </style>
 
         <section>
           <article class="privacy-card notice" id="intro" data-aos="fade-up">
@@ -199,9 +309,10 @@
             <p>Para dudas, solicitudes o aclaraciones relacionadas con el tratamiento de sus datos personales, puede contactarnos mediante los siguientes canales:</p>
             <div class="contact-box">
               <div class="contact-line"><span>Correo</span><a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a></div>
-              <div class="contact-line"><span>Tel&eacute;fono Metepec</span><a href="tel:+527297300264">(729) 730 0264</a></div>
-              <div class="contact-line"><span>Tel&eacute;fono Puebla</span><a href="tel:+522224598535">(222) 459 8535</a></div>
-              <div class="contact-line"><span>Oficina</span><p>Sor Juana In&eacute;s de la Cruz 329, San Mateo, Metepec, Edo. de M&eacute;xico.</p></div>
+              <div class="contact-line"><span>Tel&eacute;fono de oficinas</span>        <a href="tel:+522311439454">231 143 9454</a>
+</div>
+              <!-- <div class="contact-line"><span>Tel&eacute;fono Puebla</span><a href="tel:+522224598535">(222) 459 8535</a></div>
+              <div class="contact-line"><span>Oficina</span><p>Sor Juana In&eacute;s de la Cruz 329, San Mateo, Metepec, Edo. de M&eacute;xico.</p></div> -->
             </div>
           </article>
         </section>
@@ -215,7 +326,7 @@
         <div class="footer-brand">
   <div class="footer-logo footer-text-logo">
   Nexus Consultores
-</div>          <p>Especialistas en pensiones, retiros de afore y asesor&iacute;a financiera en M&eacute;xico. M&aacute;s de una d&eacute;cada acompa&ntilde;ando a trabajadores mexicanos a alcanzar su mejor retiro.</p>
+</div>          <p>Especialistas en pensiones, retiros de afore y asesor&iacute;a financiera en M&eacute;xico. M&aacute;s de cinco años acompa&ntilde;ando a trabajadores mexicanos a alcanzar su mejor retiro.</p>
         </div>
         <div class="footer-col">
           <h5>Navegaci&oacute;n</h5>
@@ -232,14 +343,14 @@
   <div class="fc-row">
     <span class="fc-lbl">Número de oficinas</span>
     <div>
-        <a href="tel:+522311067600">231 106 7600</a>
+        <a href="tel:+522311439454">231 143 9454</a>
     </div>
 </div>          <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a></div>
   <div class="fc-row">
     <span class="fc-lbl">Oficinas</span>
     <div>
         <strong>Puebla:</strong><br>
-        Anillo Perif. Ecológico, 72820 San Bernardino Tlaxcalancingo, Pue., México.
+        Anillo Periférico. Ecológico, 72820, San Bernardino Tlaxcalancingo, Puebla, México.
         <br><br>
         <strong>CDMX:</strong><br>
         Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.
@@ -267,12 +378,32 @@
     });
     stBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
 
-    document.getElementById('hambBtn').addEventListener('click', () =>
-      document.getElementById('mobMenu').classList.add('open'));
-    document.getElementById('mobClose').addEventListener('click', () =>
-      document.getElementById('mobMenu').classList.remove('open'));
-    document.querySelectorAll('.mml').forEach(l =>
-      l.addEventListener('click', () => document.getElementById('mobMenu').classList.remove('open')));
+    const hambBtn   = document.getElementById('hambBtn');
+    const mobMenu   = document.getElementById('mobMenu');
+    const mobOverlay= document.getElementById('mobOverlay');
+    const mobClose  = document.getElementById('mobClose');
+
+    function openMenu(){
+      hambBtn.classList.add('active');
+      hambBtn.setAttribute('aria-expanded','true');
+      mobMenu.classList.add('open');
+      mobOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      hambBtn.classList.remove('active');
+      hambBtn.setAttribute('aria-expanded','false');
+      mobMenu.classList.remove('open');
+      mobOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    hambBtn.addEventListener('click', () =>
+      mobMenu.classList.contains('open') ? closeMenu() : openMenu());
+    mobClose.addEventListener('click', closeMenu);
+    mobOverlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mml').forEach(l => l.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
   </script>
 </body>
 </html>

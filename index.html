@@ -15,22 +15,97 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
   <link rel="stylesheet" href="css/styles.css">
   <style>
+    /* HAMBURGER */
+    .hamburger{
+      display:none;flex-direction:column;justify-content:center;align-items:center;
+      gap:6px;width:42px;height:42px;
+      cursor:pointer;background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);border-radius:10px;
+      position:relative;z-index:1001;transition:background .25s,border-color .25s;
+    }
+    .hamburger:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22);}
+    .hamburger span{
+      display:block;width:18px;height:1.5px;
+      background:var(--white,#fff);border-radius:2px;
+      transition:transform .32s cubic-bezier(.65,0,.35,1),opacity .2s,width .25s;
+    }
+    .hamburger.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+    .hamburger.active span:nth-child(2){opacity:0;width:0;}
+    .hamburger.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+    /* MOBILE MENU — off-canvas panel */
+    .mob-overlay{
+      display:none;position:fixed;inset:0;z-index:998;
+      background:rgba(4,9,20,.6);
+      backdrop-filter:blur(3px);
+      opacity:0;transition:opacity .35s ease;
+    }
+    .mob-overlay.open{display:block;opacity:1;}
+
+    .mob-menu{
+      position:fixed;top:0;right:0;bottom:0;z-index:999;
+      width:min(360px,84vw);
+      background:linear-gradient(165deg,#0a1628 0%,#0d1f3c 100%);
+      border-left:1px solid rgba(255,255,255,.08);
+      box-shadow:-20px 0 60px rgba(0,0,0,.45);
+      display:flex;flex-direction:column;
+      padding:2.2rem 2rem 2.4rem;
+      transform:translateX(100%);
+      transition:transform .4s cubic-bezier(.65,0,.35,1);
+    }
+    .mob-menu.open{transform:translateX(0);}
+
+    .mob-menu-head{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:2.8rem;
+    }
+    .mob-menu-head img{height:34px;width:auto;}
     .mob-close{
-    position:absolute;
-    top:20px;
-    right:20px;
-    width:44px;
-    height:44px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:none;
-    border:none;
-    color:#fff;
-    font-size:32px;
-    cursor:pointer;
-    z-index:1001;
-}
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+      border-radius:8px;width:34px;height:34px;
+      color:rgba(255,255,255,.6);font-size:1rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:background .2s,color .2s,border-color .2s;
+    }
+    .mob-close:hover{background:rgba(255,255,255,.1);color:var(--white,#fff);border-color:rgba(255,255,255,.25);}
+
+    .mob-menu nav{display:flex;flex-direction:column;flex:1;}
+    .mob-menu .mml{
+      display:flex;align-items:center;justify-content:space-between;
+      font-family:'Inter',sans-serif;font-size:1.02rem;font-weight:600;
+      color:rgba(255,255,255,.82);
+      padding:1.05rem 0;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      opacity:0;transform:translateX(18px);
+      transition:color .2s,transform .45s ease,opacity .45s ease;
+    }
+    .mob-menu.open .mml{opacity:1;transform:translateX(0);}
+    .mob-menu.open .mml:nth-child(1){transition-delay:.08s;}
+    .mob-menu.open .mml:nth-child(2){transition-delay:.14s;}
+    .mob-menu.open .mml:nth-child(3){transition-delay:.2s;}
+    .mob-menu.open .mml:nth-child(4){transition-delay:.26s;}
+    .mob-menu .mml::after{
+      content:'\2192';color:var(--blue-pale,#5b8fe8);font-size:.85rem;
+      opacity:0;transform:translateX(-4px);
+      transition:opacity .2s,transform .2s;
+    }
+    .mob-menu .mml:hover{color:var(--white,#fff);}
+    .mob-menu .mml:hover::after{opacity:1;transform:translateX(0);}
+    .mob-menu .mml.mob-cta{
+      margin-top:1.4rem;border-bottom:none;
+      background:var(--blue-mid,#1e4fa0);color:var(--white,#fff);
+      border-radius:10px;padding:.95rem 1.1rem;
+      justify-content:center;gap:.5rem;
+    }
+    .mob-menu .mml.mob-cta::after{content:'';}
+
+    .mob-menu-foot{
+      padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);
+      font-size:.78rem;color:rgba(255,255,255,.38);
+      opacity:0;transition:opacity .45s ease .32s;
+    }
+    .mob-menu.open .mob-menu-foot{opacity:1;}
+    .mob-menu-foot a{color:rgba(255,255,255,.55);}
   </style>
 
   <style>
@@ -100,7 +175,189 @@
 
   </style>
 
-<link rel="shortcut icon" href="NexFav.png" type="image/x-icon">
+
+  <style>
+    /* ─── FIX MOBILE OFF-CANVAS MENU ───────────────────
+       Evita que el panel aparezca en desktop o deje una franja visible en mobile.
+    */
+    body.menu-open{
+      overflow:hidden!important;
+      touch-action:none;
+    }
+
+    @media(min-width:769px){
+      .hamburger{display:none!important;}
+      .mob-overlay,
+      .mob-menu{
+        display:none!important;
+        visibility:hidden!important;
+        pointer-events:none!important;
+      }
+      body.menu-open{
+        overflow-x:hidden!important;
+        overflow-y:auto!important;
+        touch-action:auto!important;
+      }
+    }
+
+    @media(max-width:768px){
+      html,body{overflow-x:hidden!important;}
+      .nav-links{display:none!important;}
+      .hamburger{display:flex!important;}
+
+      .mob-overlay{
+        display:block!important;
+        position:fixed!important;
+        inset:0!important;
+        z-index:1000!important;
+        background:rgba(4,9,20,.62)!important;
+        backdrop-filter:blur(3px)!important;
+        -webkit-backdrop-filter:blur(3px)!important;
+        opacity:0!important;
+        visibility:hidden!important;
+        pointer-events:none!important;
+        transition:opacity .35s ease,visibility .35s ease!important;
+      }
+      .mob-overlay.open{
+        opacity:1!important;
+        visibility:visible!important;
+        pointer-events:auto!important;
+      }
+
+      .mob-menu{
+        display:flex!important;
+        position:fixed!important;
+        top:0!important;
+        right:0!important;
+        left:auto!important;
+        bottom:0!important;
+        width:min(360px,84vw)!important;
+        max-width:360px!important;
+        height:100dvh!important;
+        z-index:1001!important;
+        background:linear-gradient(165deg,#0a1628 0%,#0d1f3c 100%)!important;
+        border-left:1px solid rgba(255,255,255,.08)!important;
+        box-shadow:-20px 0 60px rgba(0,0,0,.45)!important;
+        padding:2.2rem 2rem 2.4rem!important;
+        transform:translate3d(100%,0,0)!important;
+        visibility:hidden!important;
+        pointer-events:none!important;
+        overflow-y:auto!important;
+        transition:transform .4s cubic-bezier(.65,0,.35,1),visibility .4s ease!important;
+      }
+      .mob-menu.open{
+        transform:translate3d(0,0,0)!important;
+        visibility:visible!important;
+        pointer-events:auto!important;
+      }
+      .mob-menu-head{
+        display:flex!important;
+        align-items:center!important;
+        justify-content:space-between!important;
+        margin-bottom:2.8rem!important;
+      }
+      .mob-menu-head img{height:34px!important;width:auto!important;}
+      .mob-close{
+        position:static!important;
+        top:auto!important;
+        right:auto!important;
+        background:rgba(255,255,255,.05)!important;
+        border:1px solid rgba(255,255,255,.12)!important;
+        border-radius:8px!important;
+        width:34px!important;
+        height:34px!important;
+        color:rgba(255,255,255,.6)!important;
+        font-size:1rem!important;
+        cursor:pointer!important;
+        display:flex!important;
+        align-items:center!important;
+        justify-content:center!important;
+      }
+    }
+  </style>
+
+
+  <style>
+    /* ─── FIX MOBILE MENU TYPOGRAPHY / OVERFLOW ─────────
+       Aísla el menú móvil de estilos globales del home.
+    */
+    @media(max-width:768px){
+      .mob-menu{
+        width:min(360px,86vw)!important;
+        max-width:360px!important;
+        min-width:0!important;
+        box-sizing:border-box!important;
+      }
+      .mob-menu nav{
+        display:flex!important;
+        flex-direction:column!important;
+        flex:1 1 auto!important;
+        width:100%!important;
+        min-width:0!important;
+      }
+      .mob-menu .mml{
+        display:flex!important;
+        align-items:center!important;
+        justify-content:space-between!important;
+        width:100%!important;
+        min-width:0!important;
+        font-family:'Inter',sans-serif!important;
+        font-size:1.02rem!important;
+        line-height:1.35!important;
+        font-weight:600!important;
+        letter-spacing:0!important;
+        text-transform:none!important;
+        color:rgba(255,255,255,.82)!important;
+        padding:1.05rem 0!important;
+        border-bottom:1px solid rgba(255,255,255,.07)!important;
+        white-space:normal!important;
+      }
+      .mob-menu .mml.mob-cta{
+        margin-top:1.4rem!important;
+        border-bottom:none!important;
+        background:var(--blue-mid,#1e4fa0)!important;
+        color:#fff!important;
+        border-radius:10px!important;
+        padding:.95rem 1.1rem!important;
+        justify-content:center!important;
+        text-align:center!important;
+      }
+      .mob-menu-foot{
+        width:100%!important;
+        min-width:0!important;
+        padding-top:1.2rem!important;
+        margin-top:1.2rem!important;
+        border-top:1px solid rgba(255,255,255,.07)!important;
+        overflow:hidden!important;
+        font-family:'Inter',sans-serif!important;
+        font-size:.78rem!important;
+        line-height:1.55!important;
+        letter-spacing:0!important;
+        text-transform:none!important;
+      }
+      .mob-menu .mob-menu-foot a,
+      .mob-menu-foot a{
+        display:block!important;
+        max-width:100%!important;
+        font-family:'Inter',sans-serif!important;
+        font-size:.78rem!important;
+        line-height:1.55!important;
+        font-weight:400!important;
+        letter-spacing:0!important;
+        text-transform:none!important;
+        color:rgba(255,255,255,.55)!important;
+        white-space:normal!important;
+        overflow-wrap:anywhere!important;
+        word-break:break-word!important;
+      }
+      .mob-menu-head img{
+        height:30px!important;
+        max-width:120px!important;
+        object-fit:contain!important;
+      }
+    }
+  </style>
+
 <link rel="shortcut icon" href="NexFav.png" type="image/x-icon">
 </head>
 
@@ -119,17 +376,27 @@
         <li><a href="contact.html">Contacto</a></li>
         <li><a href="privacidad.html" class="nav-cta">Aviso de privacidad</a></li>
       </ul>
-      <button class="hamburger" id="hambBtn" aria-label="Men&uacute;"><span></span><span></span><span></span></button>
+      <button class="hamburger" id="hambBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mob-overlay" id="mobOverlay"></div>
   <div class="mob-menu" id="mobMenu">
-    <button class="mob-close" id="mobClose">&#x2715;</button>
-    <a href="index.html" class="mml">Inicio</a>
-    <a href="faq.html" class="mml">Preguntas frecuentes</a>
-     <!--<a href="blog.html" class="mml">Blog</a> -->
-    <a href="contact.html" class="mml">Contacto</a>
-    <a href="privacidad.html" class="mml">Aviso de privacidad</a>
+    <div class="mob-menu-head">
+      <img src="NexusOficial1.png" alt="Nexus Consultores"/>
+      <button class="mob-close" id="mobClose" aria-label="Cerrar menú">&#x2715;</button>
+    </div>
+    <nav>
+      <a href="index.html" class="mml">Inicio</a>
+      <a href="faq.html" class="mml">Preguntas frecuentes</a>
+      <!--<a href="blog.html" class="mml">Blog</a> -->
+      <a href="contact.html" class="mml">Contacto</a>
+      <a href="privacidad.html" class="mml mob-cta">Aviso de privacidad</a>
+    </nav>
+    <div class="mob-menu-foot">
+      <div style="margin-bottom:.4rem;"><a href="tel:+522311439454">231 143 9454</a></div>
+      <div><a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a></div>
+    </div>
   </div>
 
   <!-- HERO -->
@@ -197,7 +464,7 @@
   <div class="strip-track">
     <div class="strip-row">
       <div class="strip-item"><span class="strip-dot"></span> Asesoría personalizada</div>
-      <div class="strip-item"><span class="strip-dot"></span> Contratos formales en cada trámite</div>
+      <div class="strip-item"><span class="strip-dot"></span> Todos los trámites se manejan bajo contrato</div>
       <div class="strip-item"><span class="strip-dot"></span> Cobertura en toda la República</div>
       <div class="strip-item"><span class="strip-dot"></span> Cumplimiento con la LFPDPPP</div>
       <div class="strip-item"><span class="strip-dot"></span> Más de 5 años de trayectoria</div>
@@ -247,20 +514,21 @@
             </div>
             <div class="acheck">
               <div class="acheck-ico"></div>
-              <div><strong>Cobertura en toda la Rep&uacute;blica</strong><span>Oficinas en Metepec y Puebla,
-                  pr&oacute;ximamente en Quer&eacute;taro y Monterrey.</span></div>
+              <div><strong>Cobertura en toda la Rep&uacute;blica</strong><span>Oficinas en Ciudad de México y Puebla,
+                  y este año en Quer&eacute;taro y Monterrey.</span></div>
             </div>
           </div>
           <div class="mvv">
-            <div class="mvv-item" data-aos="fade-up" data-aos-delay="100">
-              <div class="mvv-lbl">Visi&oacute;n</div>
-              <p>Ser la consultora mexicana que garantice el retiro m&aacute;s tranquilo y financieramente estable.</p>
-            </div>
             <div class="mvv-item" data-aos="fade-up" data-aos-delay="200">
               <div class="mvv-lbl">Misi&oacute;n</div>
               <p>Guiar a cada trabajador en la planificaci&oacute;n de su afore para alcanzar su mejor pensi&oacute;n.
               </p>
             </div>
+            <div class="mvv-item" data-aos="fade-up" data-aos-delay="100">
+              <div class="mvv-lbl">Visi&oacute;n</div>
+              <p>Ser la consultora mexicana que garantice el retiro m&aacute;s tranquilo y financieramente estable.</p>
+            </div>
+            
             <div class="mvv-item" data-aos="fade-up" data-aos-delay="300">
               <div class="mvv-lbl">Valores</div>
               <p>Integridad, compromiso, excelencia, empat&iacute;a y confidencialidad en cada tr&aacute;mite.</p>
@@ -276,7 +544,7 @@
     <div class="container">
       <div class="why-layout">
         <div data-aos="fade-right" data-aos-duration="800">
-          <span class="eyebrow">Por qu&eacute; elegirnos</span>
+          <span class="eyebrow">¿Por qu&eacute; elegirnos?</span>
           <div class="wline"></div>
           <h2 class="section-title" style="color:#fff;">Lo que nos hace diferentes</h2>
           <p class="section-sub" style="color:rgba(255,255,255,.45);">Combinamos trayectoria, rigor legal y trato humano
@@ -315,7 +583,7 @@
           <div class="wcard" data-aos="fade-up" data-aos-delay="400">
             <div class="wcard-n">06</div>
             <h4>Asesores certificados</h4>
-            <p>Nuestro equipo se actualiza continuamente en normativas de IMSS, ISSSTE y CONSAR.</p>
+            <p>Nuestro equipo se actualiza continuamente en normativas de IMSS, ISSSTE, Crécditos INFONAVIT, FOVISSTE y CONSAR.</p>
           </div>
         </div>
       </div>
@@ -351,7 +619,7 @@
     <div class="container">
       <div class="svc-hd" data-aos="fade-up">
         <div><span class="eyebrow">Nuestros servicios</span>
-          <h2 class="section-title">En qu&eacute; podemos ayudarte</h2>
+          <h2 class="section-title">¿En qu&eacute; podemos ayudarte?</h2>
         </div>
         <!-- <a href="#cta" class="svc-link">Ver todos los servicios</a> -->
       </div>
@@ -448,7 +716,7 @@
       <span class="eyebrow">Testimonios</span>
       <h2 class="section-title">Lo que dicen nuestros clientes</h2>
       <p class="section-sub">
-        Personas que confiaron en Nexus Consultores para gestionar sus trámites y retiros.
+        Personas que confiaron en Nexus Consultores para gestionar sus trámites.
       </p>
     </div>
 
@@ -748,7 +1016,7 @@
       <div class="footer-brand">
 <div class="footer-logo footer-text-logo">
   Nexus Consultores
-</div>        <p>Especialistas en pensiones, retiros de afore y asesor&iacute;a financiera en M&eacute;xico. M&aacute;s de una d&eacute;cada acompa&ntilde;ando a trabajadores mexicanos a alcanzar su mejor retiro.</p>
+</div>        <p>Especialistas en pensiones, retiros de afore y asesor&iacute;a financiera en M&eacute;xico. M&aacute;s de cinco años acompa&ntilde;ando a trabajadores mexicanos a alcanzar su mejor retiro.</p>
       </div>
       <div class="footer-col">
         <h5>Navegaci&oacute;n</h5>
@@ -765,14 +1033,14 @@
 <div class="fc-row">
     <span class="fc-lbl">Número de oficinas</span>
     <div>
-        <a href="tel:+522311067600">231 106 7600</a>
+        <a href="tel:+522311439454">231 143 9454</a>
     </div>
 </div>        <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a></div>
 <div class="fc-row">
     <span class="fc-lbl">Oficinas</span>
     <div>
         <strong>Puebla:</strong><br>
-        Anillo Perif. Ecológico, 72820 San Bernardino Tlaxcalancingo, Pue., México.
+        Anillo Periférico. Ecológico, 72820, San Bernardino Tlaxcalancingo, Puebla, México.
         <br><br>
         <strong>CDMX:</strong><br>
         Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.    </div>
@@ -803,9 +1071,34 @@
       nav.classList.toggle('scrolled', window.scrollY > 60);
       stBtn.classList.toggle('visible', window.scrollY > 400);
     });
-    document.getElementById('hambBtn').addEventListener('click', () => document.getElementById('mobMenu').classList.add('open'));
-    document.getElementById('mobClose').addEventListener('click', () => document.getElementById('mobMenu').classList.remove('open'));
-    document.querySelectorAll('.mml').forEach(l => l.addEventListener('click', () => document.getElementById('mobMenu').classList.remove('open')));
+    const hambBtn = document.getElementById('hambBtn');
+    const mobMenu = document.getElementById('mobMenu');
+    const mobOverlay = document.getElementById('mobOverlay');
+    const mobClose = document.getElementById('mobClose');
+
+    function openMenu(){
+      hambBtn.classList.add('active');
+      hambBtn.setAttribute('aria-expanded','true');
+      mobMenu.classList.add('open');
+      mobOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu(){
+      hambBtn.classList.remove('active');
+      hambBtn.setAttribute('aria-expanded','false');
+      mobMenu.classList.remove('open');
+      mobOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    hambBtn.addEventListener('click', () =>
+      mobMenu.classList.contains('open') ? closeMenu() : openMenu()
+    );
+    mobClose.addEventListener('click', closeMenu);
+    mobOverlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mml').forEach(l => l.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
     stBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     const counters = document.querySelectorAll('[data-count]');
     const obs = new IntersectionObserver(entries => {
