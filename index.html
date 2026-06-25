@@ -8,390 +8,1287 @@
   <meta name="description" content="Especialistas en pensiones, retiros de afore y asesoria financiera en Mexico." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    /* HAMBURGER */
-    .hamburger{
-      display:none;flex-direction:column;justify-content:center;align-items:center;
-      gap:6px;width:42px;height:42px;
-      cursor:pointer;background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.12);border-radius:10px;
-      position:relative;z-index:1001;transition:background .25s,border-color .25s;
-    }
-    .hamburger:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22);}
-    .hamburger span{
-      display:block;width:18px;height:1.5px;
-      background:var(--white,#fff);border-radius:2px;
-      transition:transform .32s cubic-bezier(.65,0,.35,1),opacity .2s,width .25s;
-    }
-    .hamburger.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
-    .hamburger.active span:nth-child(2){opacity:0;width:0;}
-    .hamburger.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+  <link rel="shortcut icon" href="NexFav.png" type="image/x-icon">
 
-    /* MOBILE MENU — off-canvas panel */
-    .mob-overlay{
-      display:none;position:fixed;inset:0;z-index:998;
+  <style>
+    /* =============================================
+       VARIABLES & RESET
+    ============================================= */
+    :root {
+      --navy: #0a1628;
+      --navy2: #0d1f3c;
+      --blue: #1a3a6e;
+      --blue-mid: #1e4fa0;
+      --blue-lt: #2d6cdf;
+      --blue-pale: #5b8fe8;
+      --silver: #9ca3af;
+      --silver-lt: #d1d5db;
+      --charcoal: #1f2937;
+      --offwhite: #f7f8fa;
+      --white: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --r: 12px;
+      --r-lg: 20px;
+      --sh: 0 8px 40px rgba(10,22,40,.12);
+      --sh-lg: 0 20px 60px rgba(10,22,40,.18);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
+    html { scroll-behavior:smooth }
+    body {
+      font-family:'Inter',sans-serif;
+      background:var(--offwhite);
+      color:var(--text);
+      overflow-x:hidden;
+      line-height:1.6;
+      width:100%;
+      max-width:100%;
+      position:relative;
+    }
+    img { max-width:100%; display:block }
+    a { text-decoration:none; color:inherit }
+    ul { list-style:none }
+
+    html, body {
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+      background:#050d1c;
+    }
+
+    /* =============================================
+       CONTAINER
+    ============================================= */
+    .container {
+      width:94%;
+      max-width:1200px;
+      margin:0 auto;
+    }
+
+    /* =============================================
+       UTILITY
+    ============================================= */
+    .eyebrow {
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      font-size:.68rem;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--blue-lt);
+      margin-bottom:.9rem;
+    }
+    .eyebrow::before {
+      content:'';
+      width:22px;
+      height:2px;
+      background:var(--blue-lt);
+      border-radius:2px;
+      flex-shrink:0;
+    }
+
+    .section-title {
+      font-family:'Libre Baskerville',serif;
+      font-size:clamp(1.8rem,3.2vw,2.6rem);
+      font-weight:700;
+      line-height:1.15;
+      color:var(--navy2);
+    }
+    .section-title em { font-style:italic; color:var(--blue-mid) }
+
+    .section-sub {
+      font-size:.97rem;
+      color:var(--muted);
+      line-height:1.78;
+      max-width:540px;
+      margin-top:.8rem;
+    }
+
+    .btn-primary {
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      background:var(--blue-mid);
+      color:var(--white);
+      font-weight:600;
+      font-size:.85rem;
+      letter-spacing:.03em;
+      padding:.8rem 1.8rem;
+      border-radius:var(--r);
+      border:none;
+      cursor:pointer;
+      transition:background .2s, transform .2s, box-shadow .2s;
+      box-shadow:0 4px 18px rgba(30,79,160,.28);
+    }
+    .btn-primary:hover {
+      background:var(--blue-lt);
+      transform:translateY(-2px);
+      box-shadow:0 8px 28px rgba(30,79,160,.38);
+    }
+
+    .btn-ghost {
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      background:transparent;
+      color:rgba(255,255,255,.8);
+      font-weight:600;
+      font-size:.85rem;
+      letter-spacing:.03em;
+      padding:.78rem 1.8rem;
+      border-radius:var(--r);
+      border:1px solid rgba(255,255,255,.22);
+      cursor:pointer;
+      transition:background .2s, border-color .2s;
+    }
+    .btn-ghost:hover {
+      background:rgba(255,255,255,.07);
+      border-color:rgba(255,255,255,.45);
+    }
+
+    /* =============================================
+       NAV
+    ============================================= */
+    #navbar {
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:999;
+      padding:1.1rem 0;
+      transition:background .35s, box-shadow .35s, padding .3s;
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+    #navbar.scrolled {
+      background:rgba(8,16,32,.96);
+      backdrop-filter:blur(16px);
+      box-shadow:0 1px 0 rgba(255,255,255,.05), 0 4px 24px rgba(0,0,0,.3);
+      padding:.72rem 0;
+    }
+
+    .nav-inner {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .nav-logo img {
+      height:44px;
+      width:auto;
+      filter:none;
+    }
+
+    .nav-links {
+      display:flex;
+      gap:2rem;
+      align-items:center;
+    }
+    .nav-links a {
+      font-size:.83rem;
+      font-weight:500;
+      color:rgba(255,255,255,.72);
+      transition:color .2s;
+      position:relative;
+    }
+    .nav-links a::after {
+      content:'';
+      position:absolute;
+      bottom:-3px; left:0; right:0;
+      height:1.5px;
+      background:var(--blue-lt);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .25s;
+    }
+    .nav-links a:hover { color:var(--white) }
+    .nav-links a:hover::after { transform:scaleX(1) }
+
+    .nav-cta {
+      background:var(--blue-mid) !important;
+      color:var(--white) !important;
+      padding:.48rem 1.2rem !important;
+      border-radius:var(--r) !important;
+      font-weight:600 !important;
+    }
+    .nav-cta::after { display:none !important }
+    .nav-cta:hover { background:var(--blue-lt) !important }
+
+    /* =============================================
+       HAMBURGER
+    ============================================= */
+    .hamburger {
+      display:none;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:5px;
+      width:44px;
+      height:44px;
+      cursor:pointer;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:10px;
+      padding:0;
+      position:relative;
+      z-index:1001;
+      transition:background .25s, border-color .25s;
+    }
+    .hamburger:hover {
+      background:rgba(255,255,255,.09);
+      border-color:rgba(255,255,255,.22);
+    }
+    .hamburger span {
+      display:block;
+      width:22px;
+      height:2px;
+      background:var(--white);
+      border-radius:2px;
+      transition:transform .32s cubic-bezier(.65,0,.35,1), opacity .2s, width .25s;
+    }
+    .hamburger.active span:nth-child(1) { transform:translateY(7px) rotate(45deg) }
+    .hamburger.active span:nth-child(2) { opacity:0; width:0 }
+    .hamburger.active span:nth-child(3) { transform:translateY(-7px) rotate(-45deg) }
+
+    /* =============================================
+       MOBILE MENU — off-canvas panel
+    ============================================= */
+    .mob-overlay {
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:998;
       background:rgba(4,9,20,.6);
       backdrop-filter:blur(3px);
-      opacity:0;transition:opacity .35s ease;
+      opacity:0;
+      transition:opacity .35s ease;
     }
-    .mob-overlay.open{display:block;opacity:1;}
+    .mob-overlay.open { display:block; opacity:1 }
 
-    .mob-menu{
-      position:fixed;top:0;right:0;bottom:0;z-index:999;
+    .mob-menu {
+      position:fixed;
+      top:0; right:0; bottom:0;
+      z-index:999;
       width:min(360px,84vw);
       background:linear-gradient(165deg,#0a1628 0%,#0d1f3c 100%);
       border-left:1px solid rgba(255,255,255,.08);
       box-shadow:-20px 0 60px rgba(0,0,0,.45);
-      display:flex;flex-direction:column;
+      display:flex;
+      flex-direction:column;
       padding:2.2rem 2rem 2.4rem;
       transform:translateX(100%);
       transition:transform .4s cubic-bezier(.65,0,.35,1);
     }
-    .mob-menu.open{transform:translateX(0);}
+    .mob-menu.open { transform:translateX(0) }
 
-    .mob-menu-head{
-      display:flex;align-items:center;justify-content:space-between;
+    .mob-menu-head {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
       margin-bottom:2.8rem;
     }
-    .mob-menu-head img{height:34px;width:auto;}
-    .mob-close{
-      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
-      border-radius:8px;width:34px;height:34px;
-      color:rgba(255,255,255,.6);font-size:1rem;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;
-      transition:background .2s,color .2s,border-color .2s;
-    }
-    .mob-close:hover{background:rgba(255,255,255,.1);color:var(--white,#fff);border-color:rgba(255,255,255,.25);}
+    .mob-menu-head img { height:34px; width:auto }
 
-    .mob-menu nav{display:flex;flex-direction:column;flex:1;}
-    .mob-menu .mml{
-      display:flex;align-items:center;justify-content:space-between;
-      font-family:'Inter',sans-serif;font-size:1.02rem;font-weight:600;
+    .mob-close {
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:8px;
+      width:34px; height:34px;
+      color:rgba(255,255,255,.6);
+      font-size:1rem;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:background .2s, color .2s, border-color .2s;
+    }
+    .mob-close:hover {
+      background:rgba(255,255,255,.1);
+      color:var(--white);
+      border-color:rgba(255,255,255,.25);
+    }
+
+    .mob-menu nav { display:flex; flex-direction:column; flex:1 }
+
+    .mob-menu .mml {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-family:'Inter',sans-serif;
+      font-size:1.02rem;
+      font-weight:600;
       color:rgba(255,255,255,.82);
       padding:1.05rem 0;
       border-bottom:1px solid rgba(255,255,255,.07);
-      opacity:0;transform:translateX(18px);
-      transition:color .2s,transform .45s ease,opacity .45s ease;
+      opacity:0;
+      transform:translateX(18px);
+      transition:color .2s, transform .45s ease, opacity .45s ease;
     }
-    .mob-menu.open .mml{opacity:1;transform:translateX(0);}
-    .mob-menu.open .mml:nth-child(1){transition-delay:.08s;}
-    .mob-menu.open .mml:nth-child(2){transition-delay:.14s;}
-    .mob-menu.open .mml:nth-child(3){transition-delay:.2s;}
-    .mob-menu.open .mml:nth-child(4){transition-delay:.26s;}
-    .mob-menu .mml::after{
-      content:'\2192';color:var(--blue-pale,#5b8fe8);font-size:.85rem;
-      opacity:0;transform:translateX(-4px);
-      transition:opacity .2s,transform .2s;
+    .mob-menu.open .mml { opacity:1; transform:translateX(0) }
+    .mob-menu.open .mml:nth-child(1) { transition-delay:.08s }
+    .mob-menu.open .mml:nth-child(2) { transition-delay:.14s }
+    .mob-menu.open .mml:nth-child(3) { transition-delay:.2s }
+    .mob-menu.open .mml:nth-child(4) { transition-delay:.26s }
+    .mob-menu .mml::after {
+      content:'\2192';
+      color:var(--blue-pale);
+      font-size:.85rem;
+      opacity:0;
+      transform:translateX(-4px);
+      transition:opacity .2s, transform .2s;
     }
-    .mob-menu .mml:hover{color:var(--white,#fff);}
-    .mob-menu .mml:hover::after{opacity:1;transform:translateX(0);}
-    .mob-menu .mml.mob-cta{
-      margin-top:1.4rem;border-bottom:none;
-      background:var(--blue-mid,#1e4fa0);color:var(--white,#fff);
-      border-radius:10px;padding:.95rem 1.1rem;
-      justify-content:center;gap:.5rem;
+    .mob-menu .mml:hover { color:var(--white) }
+    .mob-menu .mml:hover::after { opacity:1; transform:translateX(0) }
+    .mob-menu .mml.mob-cta {
+      margin-top:1.4rem;
+      border-bottom:none;
+      background:var(--blue-mid);
+      color:var(--white);
+      border-radius:10px;
+      padding:.95rem 1.1rem;
+      justify-content:center;
+      gap:.5rem;
     }
-    .mob-menu .mml.mob-cta::after{content:'';}
+    .mob-menu .mml.mob-cta::after { content:'' }
 
-    .mob-menu-foot{
-      padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);
-      font-size:.78rem;color:rgba(255,255,255,.38);
-      opacity:0;transition:opacity .45s ease .32s;
+    .mob-menu-foot {
+      padding-top:1.6rem;
+      border-top:1px solid rgba(255,255,255,.07);
+      font-size:.78rem;
+      color:rgba(255,255,255,.38);
+      opacity:0;
+      transition:opacity .45s ease .32s;
     }
-    .mob-menu.open .mob-menu-foot{opacity:1;}
-    .mob-menu-foot a{color:rgba(255,255,255,.55);}
-  </style>
+    .mob-menu.open .mob-menu-foot { opacity:1 }
+    .mob-menu-foot a { color:rgba(255,255,255,.55) }
 
-  <style>
+    /* =============================================
+       STRIP
+    ============================================= */
+    .strip {
+      position:relative;
+      overflow:hidden;
+      padding:1.6rem 0;
+      background:linear-gradient(90deg,
+        rgba(30,79,160,.16) 0%,
+        rgba(45,108,223,.10) 50%,
+        rgba(30,79,160,.16) 100%);
+      border-top:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      width:100%;
+      max-width:100%;
+    }
+    .strip-track {
+      display:flex;
+      width:max-content;
+      animation:stripScroll 32s linear infinite;
+    }
+    .strip-row {
+      display:flex;
+      align-items:center;
+      gap:3.5rem;
+      padding-right:3.5rem;
+      flex-shrink:0;
+    }
+    .strip-item {
+      display:flex;
+      align-items:center;
+      gap:.7rem;
+      font-family:'Libre Baskerville',serif;
+      font-size:1.15rem;
+      font-weight:700;
+      color:rgba(255,255,255,.85);
+      white-space:nowrap;
+      letter-spacing:.01em;
+    }
+    .strip-dot {
+      width:9px; height:9px;
+      border-radius:50%;
+      background:var(--blue-pale);
+      box-shadow:0 0 0 4px rgba(91,143,232,.18);
+      flex-shrink:0;
+    }
+    .strip-fade {
+      position:absolute;
+      top:0; bottom:0;
+      width:90px;
+      z-index:2;
+      pointer-events:none;
+    }
+    .strip-fade-l { left:0; background:linear-gradient(90deg,#0a1628,transparent) }
+    .strip-fade-r { right:0; background:linear-gradient(270deg,#0a1628,transparent) }
 
-    .nav-logo img{
-    height:44px;
-    width:auto;
-    filter:none;
-}
-
-/* ─── STRIP ─────────────────────────────────────── */
-.strip{
-  position:relative;
-  overflow:hidden;
-  padding:1.6rem 0;
-  background:linear-gradient(90deg,
-    rgba(30,79,160,.16) 0%,
-    rgba(45,108,223,.10) 50%,
-    rgba(30,79,160,.16) 100%);
-  border-top:1px solid rgba(255,255,255,.06);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.strip-track{
-  display:flex;
-  width:max-content;
-  animation:stripScroll 32s linear infinite;
-}
-.strip-row{
-  display:flex;
-  align-items:center;
-  gap:3.5rem;
-  padding-right:3.5rem;
-  flex-shrink:0;
-}
-.strip-item{
-  display:flex;
-  align-items:center;
-  gap:.7rem;
-  font-family:'Libre Baskerville',serif;
-  font-size:1.15rem;
-  font-weight:700;
-  color:rgba(255,255,255,.85);
-  white-space:nowrap;
-  letter-spacing:.01em;
-}
-.strip-dot{
-  width:9px;height:9px;border-radius:50%;
-  background:var(--blue-pale);
-  box-shadow:0 0 0 4px rgba(91,143,232,.18);
-  flex-shrink:0;
-}
-.strip-fade{
-  position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none;
-}
-.strip-fade-l{left:0;background:linear-gradient(90deg,#0a1628,transparent);}
-.strip-fade-r{right:0;background:linear-gradient(270deg,#0a1628,transparent);}
-
-@keyframes stripScroll{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
-}
-
-@media(max-width:768px){
-  .strip-item{font-size:.95rem;}
-  .strip-row{gap:2.2rem;padding-right:2.2rem;}
-}
-
-  </style>
-
-
-  <style>
-    /* ─── FIX MOBILE OFF-CANVAS MENU ───────────────────
-       Evita que el panel aparezca en desktop o deje una franja visible en mobile.
-    */
-    body.menu-open{
-      overflow:hidden!important;
-      touch-action:none;
+    @keyframes stripScroll {
+      from { transform:translateX(0) }
+      to   { transform:translateX(-50%) }
     }
 
-    @media(min-width:769px){
-      .hamburger{display:none!important;}
-      .mob-overlay,
-      .mob-menu{
-        display:none!important;
-        visibility:hidden!important;
-        pointer-events:none!important;
-      }
-      body.menu-open{
-        overflow-x:hidden!important;
-        overflow-y:auto!important;
-        touch-action:auto!important;
-      }
+    /* =============================================
+       HERO
+    ============================================= */
+    #hero {
+      min-height:100vh;
+      background:linear-gradient(155deg,#050d1c 0%,#0a1628 42%,#10254a 100%);
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      width:100%;
+      max-width:100%;
+    }
+    .hero-grid-bg {
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+      background-size:72px 72px;
+    }
+    .hero-glow {
+      position:absolute;
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .hero-glow-1 {
+      width:800px; height:800px;
+      background:radial-gradient(circle,rgba(30,79,160,.16) 0%,transparent 68%);
+      top:-300px;
+      right:-420px;
+    }
+    .hero-glow-2 {
+      width:400px; height:400px;
+      background:radial-gradient(circle,rgba(45,108,223,.08) 0%,transparent 70%);
+      bottom:-100px;
+      left:-120px;
+    }
+    .hero-inner {
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:4.5rem;
+      align-items:center;
+      padding:8.5rem 0 5rem;
+    }
+    .hero-label {
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      border:1px solid rgba(45,108,223,.35);
+      border-radius:4px;
+      padding:.32rem .9rem;
+      font-size:.68rem;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(150,185,255,.8);
+      margin-bottom:1.5rem;
+    }
+    .hero-dot {
+      width:5px; height:5px;
+      border-radius:50%;
+      background:var(--blue-lt);
+      animation:blink 2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity:1 }
+      50%      { opacity:.25 }
+    }
+    .hero-h1 {
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(3.8rem,7.5vw,6rem);
+      color:var(--white);
+      line-height:.95;
+      letter-spacing:.025em;
+      margin-bottom:1.5rem;
+    }
+    .hero-h1 .l2 {
+      display:block;
+      background:linear-gradient(90deg,var(--blue-pale),#a8c4ff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero-h1 .l3 {
+      display:block;
+      color:transparent;
+      -webkit-text-stroke:1px rgba(45,108,223,.5);
+      font-size:80%;
+    }
+    .hero-p {
+      font-size:.97rem;
+      color:rgba(255,255,255,.58);
+      line-height:1.8;
+      max-width:470px;
+      margin-bottom:2.2rem;
+    }
+    .hero-btns { display:flex; gap:.9rem; flex-wrap:wrap }
+
+    /* hero right cards */
+    .hero-right { display:flex; flex-direction:column; gap:1.1rem }
+    .hcard {
+      border-radius:var(--r-lg);
+      padding:1.6rem 1.8rem;
+      backdrop-filter:blur(10px);
+      transition:transform .3s;
+    }
+    .hcard:hover { transform:translateX(-5px) }
+    .hcard.c1 { background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.07) }
+    .hcard.c2 { background:rgba(30,79,160,.18); border:1px solid rgba(45,108,223,.22) }
+    .hcard.c3 { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06) }
+    .hcard-tag {
+      font-size:.65rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.35);
+      margin-bottom:.7rem;
+    }
+    .hcard h3 {
+      font-family:'Libre Baskerville',serif;
+      font-size:.97rem;
+      color:var(--white);
+      margin-bottom:.35rem;
+    }
+    .hcard p { font-size:.82rem; color:rgba(255,255,255,.5); line-height:1.6 }
+    .hcard-big {
+      font-family:'Bebas Neue',sans-serif;
+      font-size:3rem;
+      color:var(--blue-pale);
+      line-height:1;
+      margin-top:.5rem;
+    }
+    .hcard-badge {
+      display:inline-block;
+      margin-top:.6rem;
+      font-size:.68rem;
+      font-weight:700;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      color:var(--blue-pale);
+      background:rgba(45,108,223,.14);
+      padding:.22rem .65rem;
+      border-radius:4px;
     }
 
-    @media(max-width:768px){
-      html,body{overflow-x:hidden!important;}
-      .nav-links{display:none!important;}
-      .hamburger{display:flex!important;}
-
-      .mob-overlay{
-        display:block!important;
-        position:fixed!important;
-        inset:0!important;
-        z-index:1000!important;
-        background:rgba(4,9,20,.62)!important;
-        backdrop-filter:blur(3px)!important;
-        -webkit-backdrop-filter:blur(3px)!important;
-        opacity:0!important;
-        visibility:hidden!important;
-        pointer-events:none!important;
-        transition:opacity .35s ease,visibility .35s ease!important;
-      }
-      .mob-overlay.open{
-        opacity:1!important;
-        visibility:visible!important;
-        pointer-events:auto!important;
-      }
-
-      .mob-menu{
-        display:flex!important;
-        position:fixed!important;
-        top:0!important;
-        right:0!important;
-        left:auto!important;
-        bottom:0!important;
-        width:min(360px,84vw)!important;
-        max-width:360px!important;
-        height:100dvh!important;
-        z-index:1001!important;
-        background:linear-gradient(165deg,#0a1628 0%,#0d1f3c 100%)!important;
-        border-left:1px solid rgba(255,255,255,.08)!important;
-        box-shadow:-20px 0 60px rgba(0,0,0,.45)!important;
-        padding:2.2rem 2rem 2.4rem!important;
-        transform:translate3d(100%,0,0)!important;
-        visibility:hidden!important;
-        pointer-events:none!important;
-        overflow-y:auto!important;
-        transition:transform .4s cubic-bezier(.65,0,.35,1),visibility .4s ease!important;
-      }
-      .mob-menu.open{
-        transform:translate3d(0,0,0)!important;
-        visibility:visible!important;
-        pointer-events:auto!important;
-      }
-      .mob-menu-head{
-        display:flex!important;
-        align-items:center!important;
-        justify-content:space-between!important;
-        margin-bottom:2.8rem!important;
-      }
-      .mob-menu-head img{height:34px!important;width:auto!important;}
-      .mob-close{
-        position:static!important;
-        top:auto!important;
-        right:auto!important;
-        background:rgba(255,255,255,.05)!important;
-        border:1px solid rgba(255,255,255,.12)!important;
-        border-radius:8px!important;
-        width:34px!important;
-        height:34px!important;
-        color:rgba(255,255,255,.6)!important;
-        font-size:1rem!important;
-        cursor:pointer!important;
-        display:flex!important;
-        align-items:center!important;
-        justify-content:center!important;
-      }
+    /* =============================================
+       ABOUT
+    ============================================= */
+    #about { padding:7rem 0; background:var(--white) }
+    .about-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:6rem;
+      align-items:center;
     }
-  </style>
+    .about-img-wrap { position:relative }
+    .about-frame {
+      border-radius:var(--r-lg);
+      overflow:hidden;
+      aspect-ratio:3/4;
+      background:var(--navy2);
+      box-shadow:var(--sh-lg);
+      position:relative;
+    }
+    .about-frame img {
+      width:100%; height:100%;
+      object-fit:cover;
+      filter:brightness(.82) saturate(.88);
+    }
+    .about-frame::after {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(10,22,40,.5) 0%,transparent 50%);
+    }
+    .about-badge {
+      position:absolute;
+      bottom:-1.8rem;
+      right:-2rem;
+      background:var(--navy2);
+      border-radius:var(--r);
+      padding:1.3rem 1.7rem;
+      box-shadow:var(--sh-lg);
+      border:1px solid rgba(45,108,223,.18);
+    }
+    .ab-n {
+      font-family:'Bebas Neue',sans-serif;
+      font-size:3rem;
+      color:var(--blue-pale);
+      line-height:1;
+    }
+    .ab-l {
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.4);
+      margin-top:.25rem;
+    }
+    .about-text {
+      padding-left:1.2rem;
+      border-left:2.5px solid var(--blue-mid);
+    }
+    .about-checks {
+      margin-top:2rem;
+      display:flex;
+      flex-direction:column;
+      gap:1.1rem;
+    }
+    .acheck {
+      display:grid;
+      grid-template-columns:20px 1fr;
+      gap:.85rem;
+      align-items:flex-start;
+    }
+    .acheck-ico {
+      width:20px; height:20px;
+      border-radius:50%;
+      border:1.5px solid var(--blue-mid);
+      background:rgba(30,79,160,.08);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      margin-top:.18rem;
+    }
+    .acheck-ico::after {
+      content:'';
+      display:block;
+      width:4.5px; height:8px;
+      border-right:1.5px solid var(--blue-mid);
+      border-bottom:1.5px solid var(--blue-mid);
+      transform:rotate(45deg) translate(-1px,-1px);
+    }
+    .acheck strong { display:block; font-size:.9rem; font-weight:600; color:var(--navy2) }
+    .acheck span { font-size:.82rem; color:var(--muted) }
 
+    .mvv {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+      margin-top:2.2rem;
+    }
+    .mvv-item {
+      background:var(--offwhite);
+      border-radius:var(--r);
+      padding:1.3rem 1.1rem;
+      border-bottom:2px solid var(--blue-mid);
+    }
+    .mvv-lbl {
+      font-size:.65rem;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--blue-mid);
+      margin-bottom:.4rem;
+    }
+    .mvv-item p { font-size:.82rem; color:var(--muted); line-height:1.6 }
 
-  <style>
-    /* ─── FIX MOBILE MENU TYPOGRAPHY / OVERFLOW ─────────
-       Aísla el menú móvil de estilos globales del home.
-    */
-    @media(max-width:768px){
-      .mob-menu{
-        width:min(360px,86vw)!important;
-        max-width:360px!important;
-        min-width:0!important;
-        box-sizing:border-box!important;
+    /* =============================================
+       WHY
+    ============================================= */
+    #why {
+      padding:7rem 0;
+      background:linear-gradient(165deg,#07101f 0%,#0d1f3c 100%);
+      position:relative;
+      overflow:hidden;
+    }
+    #why::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:radial-gradient(ellipse 80% 60% at 85% 50%,rgba(30,79,160,.1) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .why-layout {
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:300px 1fr;
+      gap:5rem;
+      align-items:start;
+    }
+    .wline {
+      width:40px; height:2px;
+      background:var(--blue-lt);
+      border-radius:2px;
+      margin:1.2rem 0 1.5rem;
+    }
+    .why-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1.1rem;
+    }
+    .wcard {
+      background:rgba(255,255,255,.038);
+      border:1px solid rgba(255,255,255,.065);
+      border-radius:var(--r);
+      padding:1.7rem 1.5rem;
+      transition:background .25s, border-color .25s, transform .25s;
+    }
+    .wcard:hover {
+      background:rgba(30,79,160,.14);
+      border-color:rgba(45,108,223,.28);
+      transform:translateY(-3px);
+    }
+    .wcard-n {
+      font-family:'Bebas Neue',sans-serif;
+      font-size:2.2rem;
+      color:rgba(45,108,223,.28);
+      line-height:1;
+      margin-bottom:.8rem;
+      transition:color .25s;
+    }
+    .wcard:hover .wcard-n { color:rgba(45,108,223,.55) }
+    .wcard h4 {
+      font-family:'Libre Baskerville',serif;
+      font-size:.95rem;
+      font-weight:700;
+      color:var(--white);
+      margin-bottom:.4rem;
+    }
+    .wcard p { font-size:.82rem; color:rgba(255,255,255,.47); line-height:1.65 }
+
+    /* =============================================
+       STATS
+    ============================================= */
+    .stats-bar {
+      background:var(--blue-mid);
+      padding:3rem 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .stats-bar::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,rgba(0,0,0,.12) 0%,transparent 50%,rgba(0,0,0,.08) 100%);
+    }
+    .stats-row {
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+    }
+    .stat-item {
+      text-align:center;
+      padding:0 1.5rem;
+      border-right:1px solid rgba(255,255,255,.14);
+    }
+    .stat-item:last-child { border-right:none }
+    .stat-n {
+      font-family:'Bebas Neue',sans-serif;
+      font-size:3.2rem;
+      letter-spacing:.02em;
+      color:var(--white);
+      line-height:1;
+    }
+    .stat-l {
+      font-size:.7rem;
+      font-weight:700;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.52);
+      margin-top:.35rem;
+    }
+
+    /* =============================================
+       SERVICES
+    ============================================= */
+    #services { padding:7rem 0; background:var(--offwhite) }
+    .svc-hd {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      margin-bottom:3rem;
+    }
+    .svc-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(265px,1fr));
+      gap:1.4rem;
+    }
+    .svc-card {
+      background:var(--white);
+      border-radius:var(--r);
+      overflow:hidden;
+      border:1px solid #e5e7eb;
+      transition:box-shadow .25s, transform .25s, border-color .25s;
+    }
+    .svc-card:hover {
+      box-shadow:var(--sh-lg);
+      transform:translateY(-4px);
+      border-color:rgba(30,79,160,.18);
+    }
+    .svc-img {
+      height:165px;
+      overflow:hidden;
+      position:relative;
+      background:var(--navy2);
+    }
+    .svc-img img {
+      width:100%; height:100%;
+      object-fit:cover;
+      filter:brightness(.8) saturate(.75);
+      transition:transform .4s, filter .4s;
+    }
+    .svc-card:hover .svc-img img {
+      transform:scale(1.06);
+      filter:brightness(.65) saturate(.65);
+    }
+    .svc-body { padding:1.4rem }
+    .svc-body h4 {
+      font-family:'Libre Baskerville',serif;
+      font-size:.97rem;
+      font-weight:700;
+      color:var(--navy2);
+      margin-bottom:.45rem;
+    }
+    .svc-body p { font-size:.81rem; color:var(--muted); line-height:1.65 }
+
+    /* =============================================
+       TESTIMONIALS
+    ============================================= */
+    #testimonials { padding:7rem 0; background:var(--white) }
+    .testi-hd { text-align:center; margin-bottom:3rem }
+    .testi-hd .section-sub { margin:0 auto; margin-top:.85rem }
+    .swiper-testi { padding:1rem .25rem 3.5rem }
+    .tcard {
+      background:var(--offwhite);
+      border:1px solid #e5e7eb;
+      border-radius:var(--r);
+      padding:1.9rem 1.7rem;
+      display:flex;
+      flex-direction:column;
+      gap:1.1rem;
+      height:auto;
+    }
+    .tstars { display:flex; gap:3px }
+    .star {
+      width:13px; height:13px;
+      background:var(--blue-mid);
+      clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    }
+    .star.empty { background:#d1d5db }
+    .ttext {
+      font-family:'Libre Baskerville',serif;
+      font-size:.88rem;
+      color:var(--charcoal);
+      line-height:1.75;
+      font-style:italic;
+      flex:1;
+    }
+    .ttext::before { content:'\201C'; font-size:1.2em; color:var(--blue-mid) }
+    .tauth {
+      display:flex;
+      align-items:center;
+      gap:.85rem;
+      border-top:1px solid #e5e7eb;
+      padding-top:1rem;
+    }
+    .tav {
+      width:40px; height:40px;
+      border-radius:50%;
+      background:var(--blue-mid);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.1rem;
+      letter-spacing:.04em;
+      color:var(--white);
+      flex-shrink:0;
+    }
+    .tname { font-size:.86rem; font-weight:700; color:var(--navy2) }
+    .swiper-pagination-bullet { background:var(--silver-lt); opacity:1 }
+    .swiper-pagination-bullet-active { background:var(--blue-mid) }
+
+    /* =============================================
+       CTA
+    ============================================= */
+    #cta {
+      padding:7rem 0;
+      background:linear-gradient(150deg,#060e1e 0%,#0d1f3c 60%,#122952 100%);
+      position:relative;
+      overflow:hidden;
+    }
+    #cta::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(30,79,160,.1) 0%,transparent 70%);
+    }
+    .cta-inner {
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:4rem;
+      align-items:center;
+    }
+    .cta-inner .section-title { color:var(--white) }
+    .cta-inner .section-sub { color:rgba(255,255,255,.5) }
+    .cta-inner .eyebrow { color:#7aaaf7 }
+    .cta-inner .eyebrow::before { background:#7aaaf7 }
+    .cta-btns {
+      display:flex;
+      flex-direction:column;
+      gap:.9rem;
+      flex-shrink:0;
+      min-width:210px;
+    }
+    .wa-btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      background:#25d366;
+      color:var(--white);
+      font-weight:600;
+      font-size:.85rem;
+      letter-spacing:.03em;
+      padding:.82rem 1.7rem;
+      border-radius:var(--r);
+      box-shadow:0 4px 18px rgba(37,211,102,.28);
+      transition:background .2s, transform .2s;
+    }
+    .wa-btn:hover { background:#1eb359; transform:translateY(-2px) }
+    .wa-ico { width:17px; height:17px; fill:currentColor; flex-shrink:0 }
+    .email-btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.18);
+      color:rgba(255,255,255,.82);
+      font-weight:600;
+      font-size:.85rem;
+      letter-spacing:.03em;
+      padding:.82rem 1.7rem;
+      border-radius:var(--r);
+      transition:background .2s, border-color .2s;
+    }
+    .email-btn:hover {
+      background:rgba(255,255,255,.11);
+      border-color:rgba(255,255,255,.38);
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background:#040b18;
+      color:rgba(255,255,255,.45);
+      padding:5rem 0 2.5rem;
+    }
+    .footer-top {
+      display:grid;
+      grid-template-columns:1.7fr 1fr 1fr;
+      gap:4rem;
+      padding-bottom:3rem;
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .footer-text-logo {
+      font-family:'Bebas Neue',sans-serif;
+      font-size:1.8rem;
+      letter-spacing:.06em;
+      color:rgba(255,255,255,.75);
+    }
+    .footer-brand p {
+      font-size:.82rem;
+      line-height:1.78;
+      margin-top:1rem;
+      max-width:270px;
+    }
+    .footer-col h5 {
+      font-size:.68rem;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.45);
+      margin-bottom:1.3rem;
+    }
+    .footer-col li { margin-bottom:.65rem }
+    .footer-col a {
+      font-size:.82rem;
+      color:rgba(255,255,255,.42);
+      transition:color .2s;
+    }
+    .footer-col a:hover { color:rgba(255,255,255,.88) }
+    .fc-row {
+      display:flex;
+      gap:.65rem;
+      margin-bottom:.85rem;
+      font-size:.82rem;
+      align-items:flex-start;
+    }
+    .fc-lbl {
+      font-size:.63rem;
+      font-weight:700;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:var(--blue-lt);
+      flex-shrink:0;
+      padding-top:.14rem;
+    }
+    .footer-bottom {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:1rem;
+      padding-top:2rem;
+      font-size:.76rem;
+    }
+    .footer-bottom a { color:rgba(255,255,255,.32); transition:color .2s }
+    .footer-bottom a:hover { color:rgba(255,255,255,.7) }
+
+    /* =============================================
+       SCROLL TOP
+    ============================================= */
+    #scrollTop {
+      position:fixed;
+      bottom:1.8rem; right:1.8rem;
+      z-index:500;
+      width:42px; height:42px;
+      border-radius:var(--r);
+      background:var(--blue-mid);
+      color:var(--white);
+      border:none;
+      cursor:pointer;
+      font-size:.95rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 4px 16px rgba(30,79,160,.38);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .3s, transform .25s;
+    }
+    #scrollTop.visible { opacity:1; pointer-events:all }
+    #scrollTop:hover { transform:translateY(-3px) }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media(max-width:1024px) {
+      .hero-inner { grid-template-columns:1fr }
+      .hero-right { display:none }
+      .why-layout { grid-template-columns:1fr; gap:3rem }
+      .cta-inner { grid-template-columns:1fr }
+      .cta-btns { flex-direction:row }
+    }
+
+    @media(max-width:900px) {
+      .about-grid { grid-template-columns:1fr; gap:4rem }
+      .stats-row { grid-template-columns:repeat(2,1fr); gap:2rem }
+      .footer-top { grid-template-columns:1fr; gap:2.5rem }
+      .svc-hd { flex-direction:column; align-items:flex-start; gap:.9rem }
+    }
+
+    @media(max-width:768px) {
+      .nav-links { display:none !important }
+      .hamburger { display:flex !important }
+      .mvv { grid-template-columns:1fr }
+      .why-grid { grid-template-columns:1fr }
+      .footer-bottom { flex-direction:column; text-align:center }
+      .strip-item { font-size:.95rem }
+      .strip-row { gap:2.2rem; padding-right:2.2rem }
+
+      .nav-logo img { width:135px !important; height:auto !important }
+      .hero-inner { padding:7.5rem 0 4rem }
+      .hero-h1 { font-size:3rem; line-height:1 }
+      .hero-btns { flex-direction:column }
+      .hero-btns a { width:100%; justify-content:center }
+      .cta-btns { flex-direction:column; width:100% }
+      .cta-btns a { width:100%; justify-content:center }
+      .fc-row { flex-direction:column; gap:.25rem }
+      .about-badge { right:0; bottom:-1rem }
+
+      /* mob menu fixes */
+      .mob-overlay {
+        display:block !important;
+        position:fixed !important;
+        inset:0 !important;
+        z-index:1000 !important;
+        background:rgba(4,9,20,.62) !important;
+        backdrop-filter:blur(3px) !important;
+        -webkit-backdrop-filter:blur(3px) !important;
+        opacity:0 !important;
+        visibility:hidden !important;
+        pointer-events:none !important;
+        transition:opacity .35s ease, visibility .35s ease !important;
       }
-      .mob-menu nav{
-        display:flex!important;
-        flex-direction:column!important;
-        flex:1 1 auto!important;
-        width:100%!important;
-        min-width:0!important;
+      .mob-overlay.open {
+        opacity:1 !important;
+        visibility:visible !important;
+        pointer-events:auto !important;
       }
-      .mob-menu .mml{
-        display:flex!important;
-        align-items:center!important;
-        justify-content:space-between!important;
-        width:100%!important;
-        min-width:0!important;
-        font-family:'Inter',sans-serif!important;
-        font-size:1.02rem!important;
-        line-height:1.35!important;
-        font-weight:600!important;
-        letter-spacing:0!important;
-        text-transform:none!important;
-        color:rgba(255,255,255,.82)!important;
-        padding:1.05rem 0!important;
-        border-bottom:1px solid rgba(255,255,255,.07)!important;
-        white-space:normal!important;
+      .mob-menu {
+        display:flex !important;
+        position:fixed !important;
+        top:0 !important; right:0 !important; left:auto !important; bottom:0 !important;
+        width:min(360px,84vw) !important;
+        max-width:360px !important;
+        height:100dvh !important;
+        z-index:1001 !important;
+        background:linear-gradient(165deg,#0a1628 0%,#0d1f3c 100%) !important;
+        border-left:1px solid rgba(255,255,255,.08) !important;
+        box-shadow:-20px 0 60px rgba(0,0,0,.45) !important;
+        padding:2.2rem 2rem 2.4rem !important;
+        transform:translate3d(100%,0,0) !important;
+        visibility:hidden !important;
+        pointer-events:none !important;
+        overflow-y:auto !important;
+        transition:transform .4s cubic-bezier(.65,0,.35,1), visibility .4s ease !important;
+        box-sizing:border-box !important;
+        min-width:0 !important;
       }
-      .mob-menu .mml.mob-cta{
-        margin-top:1.4rem!important;
-        border-bottom:none!important;
-        background:var(--blue-mid,#1e4fa0)!important;
-        color:#fff!important;
-        border-radius:10px!important;
-        padding:.95rem 1.1rem!important;
-        justify-content:center!important;
-        text-align:center!important;
+      .mob-menu.open {
+        transform:translate3d(0,0,0) !important;
+        visibility:visible !important;
+        pointer-events:auto !important;
       }
-      .mob-menu-foot{
-        width:100%!important;
-        min-width:0!important;
-        padding-top:1.2rem!important;
-        margin-top:1.2rem!important;
-        border-top:1px solid rgba(255,255,255,.07)!important;
-        overflow:hidden!important;
-        font-family:'Inter',sans-serif!important;
-        font-size:.78rem!important;
-        line-height:1.55!important;
-        letter-spacing:0!important;
-        text-transform:none!important;
+      .mob-menu nav {
+        display:flex !important;
+        flex-direction:column !important;
+        flex:1 1 auto !important;
+        width:100% !important;
+        min-width:0 !important;
+      }
+      .mob-menu .mml {
+        display:flex !important;
+        align-items:center !important;
+        justify-content:space-between !important;
+        width:100% !important;
+        min-width:0 !important;
+        font-family:'Inter',sans-serif !important;
+        font-size:1.02rem !important;
+        line-height:1.35 !important;
+        font-weight:600 !important;
+        letter-spacing:0 !important;
+        text-transform:none !important;
+        color:rgba(255,255,255,.82) !important;
+        padding:1.05rem 0 !important;
+        border-bottom:1px solid rgba(255,255,255,.07) !important;
+        white-space:normal !important;
+      }
+      .mob-menu .mml.mob-cta {
+        margin-top:1.4rem !important;
+        border-bottom:none !important;
+        background:var(--blue-mid) !important;
+        color:#fff !important;
+        border-radius:10px !important;
+        padding:.95rem 1.1rem !important;
+        justify-content:center !important;
+        text-align:center !important;
+      }
+      .mob-menu-foot {
+        width:100% !important;
+        min-width:0 !important;
+        padding-top:1.2rem !important;
+        margin-top:1.2rem !important;
+        border-top:1px solid rgba(255,255,255,.07) !important;
+        overflow:hidden !important;
+        font-family:'Inter',sans-serif !important;
+        font-size:.78rem !important;
+        line-height:1.55 !important;
+        letter-spacing:0 !important;
+        text-transform:none !important;
       }
       .mob-menu .mob-menu-foot a,
-      .mob-menu-foot a{
-        display:block!important;
-        max-width:100%!important;
-        font-family:'Inter',sans-serif!important;
-        font-size:.78rem!important;
-        line-height:1.55!important;
-        font-weight:400!important;
-        letter-spacing:0!important;
-        text-transform:none!important;
-        color:rgba(255,255,255,.55)!important;
-        white-space:normal!important;
-        overflow-wrap:anywhere!important;
-        word-break:break-word!important;
+      .mob-menu-foot a {
+        display:block !important;
+        max-width:100% !important;
+        font-family:'Inter',sans-serif !important;
+        font-size:.78rem !important;
+        line-height:1.55 !important;
+        font-weight:400 !important;
+        letter-spacing:0 !important;
+        text-transform:none !important;
+        color:rgba(255,255,255,.55) !important;
+        white-space:normal !important;
+        overflow-wrap:anywhere !important;
+        word-break:break-word !important;
       }
-      .mob-menu-head img{
-        height:30px!important;
-        max-width:120px!important;
-        object-fit:contain!important;
+      .mob-menu-head { display:flex !important; align-items:center !important; justify-content:space-between !important; margin-bottom:2.8rem !important }
+      .mob-menu-head img { height:30px !important; max-width:120px !important; object-fit:contain !important }
+      .mob-close {
+        position:static !important;
+        top:auto !important; right:auto !important;
+        background:rgba(255,255,255,.05) !important;
+        border:1px solid rgba(255,255,255,.12) !important;
+        border-radius:8px !important;
+        width:34px !important; height:34px !important;
+        color:rgba(255,255,255,.6) !important;
+        font-size:1rem !important;
+        cursor:pointer !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
       }
     }
+
+    @media(max-width:540px) {
+      .stats-row { grid-template-columns:1fr 1fr }
+    }
+
+    @media(max-width:480px) {
+      .hero-h1 { font-size:2.4rem }
+      .section-title { font-size:1.8rem }
+      .stat-n { font-size:2.3rem }
+      #scrollTop { right:1rem; bottom:1rem }
+    }
+
+    @media(min-width:769px) {
+      .hamburger { display:none !important }
+      .mob-overlay, .mob-menu {
+        display:none !important;
+        visibility:hidden !important;
+        pointer-events:none !important;
+      }
+    }
+
+    body.menu-open {
+      overflow:hidden !important;
+      touch-action:none;
+    }
   </style>
-
-<link rel="shortcut icon" href="NexFav.png" type="image/x-icon">
 </head>
-
-
 
 <body>
 
   <!-- NAV -->
   <nav id="navbar">
     <div class="container nav-inner">
-      <a href="#" class="nav-logo"><img src="NexusOficial1.png" style="width: 200; height: 150px;" alt="Nexus Consultores" /></a>
+      <a href="#" class="nav-logo"><img src="NexusOficial1.png" style="width:200px;height:auto;" alt="Nexus Consultores" /></a>
       <ul class="nav-links">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="faq.html">Preguntas frecuentes</a></li>
-         <!--<li><a href="blog.html">Blog</a></li>-->
         <li><a href="contact.html">Contacto</a></li>
-        <li><a href="privacidad.html" class="nav-cta">Aviso de privacidad</a></li>
+        <li><a href="privacidad.html">Aviso de privacidad</a></li>
       </ul>
-      <button class="hamburger" id="hambBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="hamburger" id="hambBtn" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
   <div class="mob-overlay" id="mobOverlay"></div>
   <div class="mob-menu" id="mobMenu">
     <div class="mob-menu-head">
-      <img src="NexusOficial1.png" alt="Nexus Consultores"/>
+      <!-- <img src="NexusOficial1.png" alt="Nexus Consultores"/> -->
       <button class="mob-close" id="mobClose" aria-label="Cerrar menú">&#x2715;</button>
     </div>
     <nav>
       <a href="index.html" class="mml">Inicio</a>
       <a href="faq.html" class="mml">Preguntas frecuentes</a>
-      <!--<a href="blog.html" class="mml">Blog</a> -->
       <a href="contact.html" class="mml">Contacto</a>
-      <a href="privacidad.html" class="mml mob-cta">Aviso de privacidad</a>
+      <a href="privacidad.html" class="mml">Aviso de privacidad</a>
     </nav>
     <div class="mob-menu-foot">
       <div style="margin-bottom:.4rem;"><a href="tel:+522311439454">231 143 9454</a></div>
@@ -411,28 +1308,12 @@
           <h1 class="hero-h1">
             Tu retiro,<span class="l2">en las mejores</span><span class="l3">manos</span>
           </h1>
-          <p class="hero-p">En Nexus Consultores gestionamos tus tr&aacute;mites de afore, pensiones del IMSS e ISSSTE y
-            retiros de capital con transparencia, experiencia y trato personalizado.</p>
+          <p class="hero-p">En Nexus Consultores gestionamos tus tr&aacute;mites de afore, pensiones del IMSS e ISSSTE y retiros de capital con transparencia, experiencia y trato personalizado.</p>
           <div class="hero-btns">
             <a href="#services" class="btn-primary">Ver nuestros servicios &rarr;</a>
             <a href="#cta" class="btn-ghost">Habla con un asesor</a>
           </div>
-          <!-- <div class="hero-stats">
-            <div class="hstat">
-              <div class="hstat-n">+2,800</div>
-              <div class="hstat-l">Clientes atendidos</div>
-            </div>
-            <div class="hstat">
-              <div class="hstat-n">10&nbsp;a&ntilde;os</div>
-              <div class="hstat-l">De experiencia</div>
-            </div>
-            <div class="hstat">
-              <div class="hstat-n">100%</div>
-              <div class="hstat-l">Atenci&oacute;n personalizada</div>
-            </div>
-          </div> -->
         </div>
-
         <div class="hero-right" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
           <div class="hcard c1">
             <div class="hcard-tag">Gesti&oacute;n integral</div>
@@ -448,8 +1329,7 @@
           <div class="hcard c3">
             <div class="hcard-tag">Seguridad y legalidad</div>
             <h3>Todo bajo contrato formal</h3>
-            <p>Tus datos y operaciones est&aacute;n protegidos conforme a la Ley Federal de Protecci&oacute;n de Datos.
-            </p>
+            <p>Tus datos y operaciones est&aacute;n protegidos conforme a la Ley Federal de Protecci&oacute;n de Datos.</p>
           </div>
         </div>
       </div>
@@ -457,27 +1337,26 @@
   </section>
 
   <!-- STRIP -->
-  <!-- STRIP -->
-<div class="strip">
-  <div class="strip-fade strip-fade-l"></div>
-  <div class="strip-fade strip-fade-r"></div>
-  <div class="strip-track">
-    <div class="strip-row">
-      <div class="strip-item"><span class="strip-dot"></span> Asesoría personalizada</div>
-      <div class="strip-item"><span class="strip-dot"></span> Todos los trámites se manejan bajo contrato</div>
-      <div class="strip-item"><span class="strip-dot"></span> Cobertura en toda la República</div>
-      <div class="strip-item"><span class="strip-dot"></span> Cumplimiento con la LFPDPPP</div>
-      <div class="strip-item"><span class="strip-dot"></span> Más de 5 años de trayectoria</div>
-    </div>
-    <div class="strip-row" aria-hidden="true">
-      <div class="strip-item"><span class="strip-dot"></span> Asesoría personalizada</div>
-      <div class="strip-item"><span class="strip-dot"></span> Contratos formales en cada trámite</div>
-      <div class="strip-item"><span class="strip-dot"></span> Cobertura en toda la República</div>
-      <div class="strip-item"><span class="strip-dot"></span> Cumplimiento con la LFPDPPP</div>
-      <div class="strip-item"><span class="strip-dot"></span> Más de 5 años de trayectoria</div>
+  <div class="strip">
+    <div class="strip-fade strip-fade-l"></div>
+    <div class="strip-fade strip-fade-r"></div>
+    <div class="strip-track">
+      <div class="strip-row">
+        <div class="strip-item"><span class="strip-dot"></span> Asesoría personalizada</div>
+        <div class="strip-item"><span class="strip-dot"></span> Todos los trámites se manejan bajo contrato</div>
+        <div class="strip-item"><span class="strip-dot"></span> Cobertura en toda la República</div>
+        <div class="strip-item"><span class="strip-dot"></span> Cumplimiento con la LFPDPPP</div>
+        <div class="strip-item"><span class="strip-dot"></span> Más de 5 años de trayectoria</div>
+      </div>
+      <div class="strip-row" aria-hidden="true">
+        <div class="strip-item"><span class="strip-dot"></span> Asesoría personalizada</div>
+        <div class="strip-item"><span class="strip-dot"></span> Contratos formales en cada trámite</div>
+        <div class="strip-item"><span class="strip-dot"></span> Cobertura en toda la República</div>
+        <div class="strip-item"><span class="strip-dot"></span> Cumplimiento con la LFPDPPP</div>
+        <div class="strip-item"><span class="strip-dot"></span> Más de 5 años de trayectoria</div>
+      </div>
     </div>
   </div>
-</div>
 
   <!-- ABOUT -->
   <section id="about">
@@ -485,53 +1364,45 @@
       <div class="about-grid">
         <div class="about-img-wrap" data-aos="fade-right" data-aos-duration="800">
           <div class="about-frame">
-            <img src="image.jpeg" Asesora Nexus Consultores" loading="lazy" />
+            <img src="image.jpeg" alt="Asesora Nexus Consultores" loading="lazy" />
           </div>
           <div class="about-badge">
             <div class="ab-n">5+</div>
             <div class="ab-l">A&ntilde;os en el mercado</div>
           </div>
         </div>
-
         <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
           <span class="eyebrow">Acerca de nosotros</span>
           <div class="about-text">
             <h2 class="section-title">Asesor&iacute;a financiera con <em>experiencia y compromiso</em></h2>
-            <p class="section-sub">Somos una consultora mexicana especializada en tr&aacute;mites de afore, pensiones
-              del IMSS e ISSSTE y gesti&oacute;n de retiros. Atendemos a clientes en toda la Rep&uacute;blica, de forma
-              presencial y remota, con asesores certificados y procesos claros de inicio a fin.</p>
+            <p class="section-sub">Somos una consultora mexicana especializada en tr&aacute;mites de afore, pensiones del IMSS e ISSSTE y gesti&oacute;n de retiros. Atendemos a clientes en toda la Rep&uacute;blica, de forma presencial y remota, con asesores certificados y procesos claros de inicio a fin.</p>
           </div>
           <div class="about-checks">
             <div class="acheck">
               <div class="acheck-ico"></div>
-              <div><strong>Tr&aacute;mites respaldados por contrato</strong><span>Cada gesti&oacute;n queda formalizada
-                  por escrito para proteger tus intereses en todo momento.</span></div>
+              <div><strong>Tr&aacute;mites respaldados por contrato</strong><span>Cada gesti&oacute;n queda formalizada por escrito para proteger tus intereses en todo momento.</span></div>
             </div>
             <div class="acheck">
               <div class="acheck-ico"></div>
-              <div><strong>Protecci&oacute;n de datos garantizada</strong><span>Operamos con estricto apego a la Ley
-                  Federal de Protecci&oacute;n de Datos Personales.</span></div>
+              <div><strong>Protecci&oacute;n de datos garantizada</strong><span>Operamos con estricto apego a la Ley Federal de Protecci&oacute;n de Datos Personales.</span></div>
             </div>
             <div class="acheck">
               <div class="acheck-ico"></div>
-              <div><strong>Cobertura en toda la Rep&uacute;blica</strong><span>Oficinas en Ciudad de México y Puebla,
-                  y este año en Quer&eacute;taro y Monterrey.</span></div>
+              <div><strong>Cobertura en toda la Rep&uacute;blica</strong><span>Oficinas en Ciudad de México y Puebla y para este año, se aperturarán las oficinas de Querétaro y Monterrey.</span></div>
             </div>
           </div>
           <div class="mvv">
             <div class="mvv-item" data-aos="fade-up" data-aos-delay="200">
               <div class="mvv-lbl">Misi&oacute;n</div>
-              <p>Guiar a cada trabajador en la planificaci&oacute;n de su afore para alcanzar su mejor pensi&oacute;n.
-              </p>
+              <p>Guiar a los trabajadores mexicanos en la correcta administración de su afore, para alcanzar la mejor pensión posible.</p>
             </div>
             <div class="mvv-item" data-aos="fade-up" data-aos-delay="100">
               <div class="mvv-lbl">Visi&oacute;n</div>
-              <p>Ser la consultora mexicana que garantice el retiro m&aacute;s tranquilo y financieramente estable.</p>
+              <p>Ser la agencia que garantice el retiro más estable de los trabajadores mexicanos.</p>
             </div>
-            
             <div class="mvv-item" data-aos="fade-up" data-aos-delay="300">
               <div class="mvv-lbl">Valores</div>
-              <p>Integridad, compromiso, excelencia, empat&iacute;a y confidencialidad en cada tr&aacute;mite.</p>
+              <p>-Integridad<br>-Compromiso<br>-Excelencia<br>-Empat&iacute;a<br>-Confidencialidad<br>En cada tr&aacute;mite.</p>
             </div>
           </div>
         </div>
@@ -547,21 +1418,18 @@
           <span class="eyebrow">¿Por qu&eacute; elegirnos?</span>
           <div class="wline"></div>
           <h2 class="section-title" style="color:#fff;">Lo que nos hace diferentes</h2>
-          <p class="section-sub" style="color:rgba(255,255,255,.45);">Combinamos trayectoria, rigor legal y trato humano
-            para que cada tr&aacute;mite sea sencillo, seguro y exitoso.</p>
+          <p class="section-sub" style="color:rgba(255,255,255,.45);">Combinamos trayectoria, rigor legal y trato humano para que cada tr&aacute;mite sea sencillo, seguro y exitoso.</p>
         </div>
         <div class="why-grid">
           <div class="wcard" data-aos="fade-up" data-aos-delay="0">
             <div class="wcard-n">01</div>
             <h4>Asesor&iacute;a personalizada</h4>
-            <p>Cada cliente recibe atenci&oacute;n individual adaptada a su situaci&oacute;n, sin procesos
-              gen&eacute;ricos.</p>
+            <p>Cada cliente recibe atenci&oacute;n individual adaptada a su situaci&oacute;n, sin procesos gen&eacute;ricos.</p>
           </div>
           <div class="wcard" data-aos="fade-up" data-aos-delay="80">
             <div class="wcard-n">02</div>
             <h4>Transparencia total</h4>
-            <p>Manejamos tu informaci&oacute;n con absoluta discreci&oacute;n y te mantenemos informado en cada etapa.
-            </p>
+            <p>Manejamos tu informaci&oacute;n con absoluta discreci&oacute;n y te mantenemos informado en cada etapa.</p>
           </div>
           <div class="wcard" data-aos="fade-up" data-aos-delay="160">
             <div class="wcard-n">03</div>
@@ -571,19 +1439,17 @@
           <div class="wcard" data-aos="fade-up" data-aos-delay="240">
             <div class="wcard-n">04</div>
             <h4>Todo bajo contrato</h4>
-            <p>Cada gesti&oacute;n est&aacute; respaldada por un contrato formal que protege tus derechos e intereses.
-            </p>
+            <p>Cada gesti&oacute;n est&aacute; respaldada por un contrato que protege tus derechos e intereses.</p>
           </div>
           <div class="wcard" data-aos="fade-up" data-aos-delay="320">
             <div class="wcard-n">05</div>
             <h4>M&aacute;s de 5 a&ntilde;os de experiencia</h4>
-            <p>Hemos acompa&ntilde;ado a m&aacute;s de 2,800 clientes en tr&aacute;mites de pensi&oacute;n, retiro y
-              gesti&oacute;n de afore.</p>
+            <p>Hemos ayudado a m&aacute;s de 2,800 clientes en tr&aacute;mites de pensi&oacute;n, retiro y gesti&oacute;n de afore.</p>
           </div>
           <div class="wcard" data-aos="fade-up" data-aos-delay="400">
             <div class="wcard-n">06</div>
             <h4>Asesores certificados</h4>
-            <p>Nuestro equipo se actualiza continuamente en normativas de IMSS, ISSSTE, Crécditos INFONAVIT, FOVISSTE y CONSAR.</p>
+            <p>Nuestro equipo se actualiza continuamente en normativas de IMSS, ISSSTE, créditos de INFONAVIT y FOVISSTE.</p>
           </div>
         </div>
       </div>
@@ -618,92 +1484,47 @@
   <section id="services">
     <div class="container">
       <div class="svc-hd" data-aos="fade-up">
-        <div><span class="eyebrow">Nuestros servicios</span>
+        <div>
+          <span class="eyebrow">Nuestros servicios</span>
           <h2 class="section-title">¿En qu&eacute; podemos ayudarte?</h2>
         </div>
-        <!-- <a href="#cta" class="svc-link">Ver todos los servicios</a> -->
       </div>
       <div class="svc-grid">
         <div class="svc-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=70" alt=""
-              loading="lazy" /></div>
-          <div class="svc-body">
-            <h4>Retiro por desempleo</h4>
-            <p>Accede a una parte de tus ahorros si te quedas sin empleo, cumpliendo los requisitos de ley vigentes.</p>
-            <!-- <span class="svc-arrow">M&aacute;s informaci&oacute;n &rarr;</span> -->
-          </div>
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=70" alt="" loading="lazy" /></div>
+          <div class="svc-body"><h4>Retiro por desempleo</h4><p>Accede a una parte de tus ahorros si te quedas sin empleo, cumpliendo los requisitos de ley vigentes.</p></div>
         </div>
         <div class="svc-card" data-aos="fade-up" data-aos-delay="60">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=70" alt=""
-              loading="lazy" /></div>
-          <div class="svc-body">
-            <h4>Cr&eacute;ditos de vivienda</h4>
-            <p>Obt&eacute;n financiamiento para comprar, construir o mejorar tu hogar con los esquemas disponibles.</p>
-          <!-- <span class="svc-arrow">M&aacute;s informaci&oacute;n &rarr;</span> -->
-
-          </div>
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=70" alt="" loading="lazy" /></div>
+          <div class="svc-body"><h4>Cr&eacute;ditos de vivienda</h4><p>Obt&eacute;n financiamiento para comprar, construir o mejorar tu hogar con los esquemas disponibles.</p></div>
         </div>
         <div class="svc-card" data-aos="fade-up" data-aos-delay="120">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=70" alt=""
-              loading="lazy" /></div>
-          <div class="svc-body">
-            <h4>Aportaciones voluntarias</h4>
-            <p>Recupera los recursos que depositaste voluntariamente en tu cuenta afore de forma &aacute;gil y segura.
-            </p>
-          </div>
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=70" alt="" loading="lazy" /></div>
+          <div class="svc-body"><h4>Aportaciones voluntarias</h4><p>Recupera los recursos que depositaste voluntariamente en tu cuenta afore de forma &aacute;gil y segura.</p></div>
         </div>
         <div class="svc-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&q=70" alt=""
-              loading="lazy" /></div>
-          <div class="svc-body">
-            <h4>Pensi&oacute;n por cesan&iacute;a</h4>
-            <p>Asegura un ingreso mensual si dejas de trabajar antes de la edad legal de retiro.</p>
-          </div>
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&q=70" alt="" loading="lazy" /></div>
+          <div class="svc-body"><h4>Pensi&oacute;n por cesan&iacute;a</h4><p>Asegura un ingreso mensual si dejas de trabajar antes de la edad legal de retiro.</p></div>
         </div>
         <div class="svc-card" data-aos="fade-up" data-aos-delay="60">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=70" alt=""
-              loading="lazy" /></div>
-          <div class="svc-body">
-            <h4>Designaci&oacute;n de beneficiarios</h4>
-            <p>Registra a las personas que podr&aacute;n disponer de tus recursos ante cualquier eventualidad.</p>
-          </div>
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=70" alt="" loading="lazy" /></div>
+          <div class="svc-body"><h4>Designaci&oacute;n de beneficiarios</h4><p>Registra a las personas que podr&aacute;n disponer de tus recursos ante cualquier eventualidad.</p></div>
         </div>
         <div class="svc-card" data-aos="fade-up" data-aos-delay="120">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=70" alt=""
-              loading="lazy" /></div>
-          <div class="svc-body">
-            <h4>Modalidad 40</h4>
-            <p>Contin&uacute;a cotizando por cuenta propia para incrementar tu pensi&oacute;n y semanas registradas.</p>
-<!-- <span class="svc-arrow">M&aacute;s informaci&oacute;n &rarr;</span> -->
-
-          </div>
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=70" alt="" loading="lazy" /></div>
+          <div class="svc-body"><h4>Modalidad 40</h4><p>Contin&uacute;a cotizando por cuenta propia para incrementar tu pensi&oacute;n y semanas registradas.</p></div>
         </div>
         <div class="svc-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=70" alt=""
-              loading="lazy" /></div>
-          <div class="svc-body">
-            <h4>Retiro por matrimonio</h4>
-            <p>Accede a una parte de tu ahorro afore al contraer matrimonio civil, conforme a las disposiciones
-              vigentes.</p>
-          </div>
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=70" alt="" loading="lazy" /></div>
+          <div class="svc-body"><h4>Retiro por matrimonio</h4><p>Accede a una parte de tu ahorro afore al contraer matrimonio civil, conforme a las disposiciones vigentes.</p></div>
         </div>
         <div class="svc-card" data-aos="fade-up" data-aos-delay="60">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=70" alt=""
-              loading="lazy" /></div>
-          <div class="svc-body">
-            <h4>Pensi&oacute;n por vejez</h4>
-            <p>Obt&eacute;n una pensi&oacute;n vitalicia o retiro programado al cumplir la edad y semanas de
-              cotizaci&oacute;n requeridas.</p>
-          </div>
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=70" alt="" loading="lazy" /></div>
+          <div class="svc-body"><h4>Pensi&oacute;n por vejez</h4><p>Obt&eacute;n una pensi&oacute;n vitalicia o retiro programado al cumplir la edad y semanas de cotizaci&oacute;n requeridas.</p></div>
         </div>
         <div class="svc-card" data-aos="fade-up" data-aos-delay="120">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=70" alt=""
-              loading="lazy" /></div>
-          <div class="svc-body">
-            <h4>Negativa de pensi&oacute;n</h4>
-            <p>Si no cumples los requisitos de pensi&oacute;n, te asesoramos para retirar tus fondos en una sola
-              exhibici&oacute;n.</p>
-          </div>
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=70" alt="" loading="lazy" /></div>
+          <div class="svc-body"><h4>Negativa de pensi&oacute;n</h4><p>Si no cumples los requisitos de pensi&oacute;n, te asesoramos para retirar tus fondos en una sola exhibici&oacute;n.</p></div>
         </div>
       </div>
     </div>
@@ -711,279 +1532,36 @@
 
   <!-- TESTIMONIALS -->
   <section id="testimonials">
-  <div class="container">
-    <div class="testi-hd" data-aos="fade-up">
-      <span class="eyebrow">Testimonios</span>
-      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      <p class="section-sub">
-        Personas que confiaron en Nexus Consultores para gestionar sus trámites.
-      </p>
-    </div>
-
-    <div class="swiper swiper-testi">
-      <div class="swiper-wrapper">
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="ttext">
-              Me atendieron con mucha paciencia desde el primer contacto. Todo quedó resuelto antes de lo que esperaba.
-            </p>
-            <div class="tauth">
-              <div class="tav">RV</div>
-              <div>
-                <div class="tname">Ricardo Villalobos</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="ttext">
-              No sabía nada de mi afore. Ellos localizaron mi número de seguro, encontraron mi cuenta y pude realizar el retiro sin complicaciones.
-            </p>
-            <div class="tauth">
-              <div class="tav">JM</div>
-              <div>
-                <div class="tname">José Martínez</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span>
-            </div>
-            <p class="ttext">
-              Me ayudaron con mis aportaciones voluntarias y el retiro por desempleo. El proceso fue claro y mucho más sencillo de lo que imaginaba.
-            </p>
-            <div class="tauth">
-              <div class="tav">AT</div>
-              <div>
-                <div class="tname">Alberto Torres</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="ttext">
-              Es la segunda vez que tramito un retiro con ellos y todo ha salido perfecto. Profesionales y muy atentos en cada etapa del proceso.
-            </p>
-            <div class="tauth">
-              <div class="tav">FG</div>
-              <div>
-                <div class="tname">Fernanda García</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="ttext">
-              Mi asesor me explicó a detalle cómo funciona el retiro parcial. Excelente servicio, muy recomendable para quienes no saben por dónde empezar.
-            </p>
-            <div class="tauth">
-              <div class="tav">GO</div>
-              <div>
-                <div class="tname">Gabriela Ortiz</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="ttext">
-              Me apoyaron para recuperar los ahorros de mi padre fallecido. Un trámite que parecía imposible, ellos lo hicieron realidad.
-            </p>
-            <div class="tauth">
-              <div class="tav">EL</div>
-              <div>
-                <div class="tname">Eduardo Lugo</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span>
-            </div>
-            <p class="ttext">
-              Me recomendaron la consultoría unos amigos y no me arrepiento. Todo salió exactamente como prometieron, sin sorpresas.
-            </p>
-            <div class="tauth">
-              <div class="tav">DR</div>
-              <div>
-                <div class="tname">Daniela Ríos</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="ttext">
-              Exelente servicio, tenia un problema con mi rfc q no me dejaba sacar lo de mi afore y ellos me lo solucionaron super rapido. Muy amables.
-            </p>
-            <div class="tauth">
-              <div class="tav">MC</div>
-              <div>
-                <div class="tname">Manuel Contreras</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span>
-            </div>
-            <p class="ttext">
-              El trámite al final sí salió y me dieron mi dinero, pero se tardaron más de lo que me habían dicho al principio. Falta que contesten más rápido el WhatsApp.
-            </p>
-            <div class="tauth">
-              <div class="tav">SP</div>
-              <div>
-                <div class="tname">Sandra Palacios</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="ttext">
-              Abogados muy profesionales. Me orientaron con lo de mi pensión bajo la ley de 1973 y obtuve una mejor resolución de la que esperaba. Vale totalmente la pena.
-            </p>
-            <div class="tauth">
-              <div class="tav">HM</div>
-              <div>
-                <div class="tname">Héctor Mendoza</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span>
-            </div>
-            <p class="ttext">
-              pense que era estafa xq x internet luego da desconfiansa pero todo legal, me ayudaron con mi ahorro de infonavit que ya dava por perdido gracias
-            </p>
-            <div class="tauth">
-              <div class="tav">ja</div>
-              <div>
-                <div class="tname">Juan Alatorre</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span>
-            </div>
-            <p class="ttext">
-              Mucha vuelta con los papeles. Te piden una cosa, luego otra y el proceso se hace eterno. Al menos la atención del asesor fue educada.
-            </p>
-            <div class="tauth">
-              <div class="tav">RC</div>
-              <div>
-                <div class="tname">Rosa Carmona</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="ttext">
-              La mejor decisión fue contratarlos. Hacer estos trámites en las oficinas de gobierno es un dolor de cabeza, ellos se encargaron de todo y yo solo firmé.
-            </p>
-            <div class="tauth">
-              <div class="tav">AM</div>
-              <div>
-                <div class="tname">Arturo Moreno</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-            </div>
-            <p class="ttext">
-              Muy recomendados, me atendio la lic Vero y aclaro todas mis dudas, hise mi retiro por desempleo sin dar tantas bueltas en el banco.
-            </p>
-            <div class="tauth">
-              <div class="tav">YH</div>
-              <div>
-                <div class="tname">Yolanda Hernández</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span>
-            </div>
-            <p class="ttext">
-              Buen servicio y cobran lo justo por la asesoría. Quito una estrella porque costó un poco agendar la primera cita, pero después todo fluyó muy bien.
-            </p>
-            <div class="tauth">
-              <div class="tav">or</div>
-              <div>
-                <div class="tname">Omar Ramírez</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+    <div class="container">
+      <div class="testi-hd" data-aos="fade-up">
+        <span class="eyebrow">Testimonios</span>
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        <p class="section-sub">Personas que confiaron en Nexus Consultores para gestionar sus trámites.</p>
       </div>
-
-      <div class="swiper-pagination"></div>
+      <div class="swiper swiper-testi">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo la verdad no confiaba porque hace 6 meses no pude hacer el retiro pero me volvieron a buscar y ahora hice un retiro para remodelar y ahora sí pude hacerlo.</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Pedro Gonzalez</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">El asesor me ayudó a hacer el retiro, yo la verdad no sabía hacer nada del afore y me explicó todo.</p><div class="tauth"><div class="tav">KM</div><div><div class="tname">Kassandra Mendoza</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Me atendieron con mucha paciencia desde el primer contacto. Todo quedó resuelto antes de lo que esperaba.</p><div class="tauth"><div class="tav">RV</div><div><div class="tname">Ricardo Villalobos</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">No sabía nada de mi afore. Ellos localizaron mi número de seguro, encontraron mi cuenta y pude realizar el retiro sin complicaciones.</p><div class="tauth"><div class="tav">JM</div><div><div class="tname">José Martínez</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Me ayudaron con mis aportaciones voluntarias y el retiro por desempleo. El proceso fue claro y mucho más sencillo de lo que imaginaba.</p><div class="tauth"><div class="tav">AT</div><div><div class="tname">Alberto Torres</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Es la segunda vez que tramito un retiro con ellos y todo ha salido perfecto. Profesionales y muy atentos en cada etapa del proceso.</p><div class="tauth"><div class="tav">FG</div><div><div class="tname">Fernanda García</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Mi asesor me explicó a detalle cómo funciona el retiro parcial. Excelente servicio, muy recomendable para quienes no saben por dónde empezar.</p><div class="tauth"><div class="tav">GO</div><div><div class="tname">Gabriela Ortiz</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Me apoyaron para recuperar los ahorros de mi padre fallecido. Un trámite que parecía imposible, ellos lo hicieron realidad.</p><div class="tauth"><div class="tav">EL</div><div><div class="tname">Eduardo Lugo</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Me recomendaron la consultoría unos amigos y no me arrepiento. Todo salió exactamente como prometieron, sin sorpresas.</p><div class="tauth"><div class="tav">DR</div><div><div class="tname">Daniela Ríos</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Excelente servicio, tenía un problema con mi RFC que no me dejaba sacar lo de mi afore y ellos me lo solucionaron súper rápido. Muy amables.</p><div class="tauth"><div class="tav">MC</div><div><div class="tname">Manuel Contreras</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span></div><p class="ttext">El trámite al final sí salió y me dieron mi dinero, pero se tardaron más de lo que me habían dicho al principio. Falta que contesten más rápido el WhatsApp.</p><div class="tauth"><div class="tav">SP</div><div><div class="tname">Sandra Palacios</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Abogados muy profesionales. Me orientaron con lo de mi pensión bajo la ley de 1973 y obtuve una mejor resolución de la que esperaba. Vale totalmente la pena.</p><div class="tauth"><div class="tav">HM</div><div><div class="tname">Héctor Mendoza</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Pensé que era estafa porque por internet luego da desconfianza, pero todo legal. Me ayudaron con mi ahorro de INFONAVIT que ya daba por perdido. Gracias.</p><div class="tauth"><div class="tav">JA</div><div><div class="tname">Juan Alatorre</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div><p class="ttext">Mucha vuelta con los papeles. Te piden una cosa, luego otra y el proceso se hace eterno. Al menos la atención del asesor fue educada.</p><div class="tauth"><div class="tav">RC</div><div><div class="tname">Rosa Carmona</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">La mejor decisión fue contratarlos. Hacer estos trámites en las oficinas de gobierno es un dolor de cabeza, ellos se encargaron de todo y yo solo firmé.</p><div class="tauth"><div class="tav">AM</div><div><div class="tname">Arturo Moreno</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Muy recomendados, me atendió la Lic. Vero y aclaró todas mis dudas. Hice mi retiro por desempleo sin dar tantas vueltas en el banco.</p><div class="tauth"><div class="tav">YH</div><div><div class="tname">Yolanda Hernández</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Buen servicio y cobran lo justo por la asesoría. Quito una estrella porque costó un poco agendar la primera cita, pero después todo fluyó muy bien.</p><div class="tauth"><div class="tav">OR</div><div><div class="tname">Omar Ramírez</div></div></div></div></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- CTA -->
   <section id="cta">
@@ -992,15 +1570,11 @@
         <div>
           <span class="eyebrow">Cont&aacute;ctanos</span>
           <h2 class="section-title">Habla hoy con uno de nuestros asesores</h2>
-          <p class="section-sub">Cu&eacute;ntanos tu caso y te orientamos sin costo en el primer contacto. Disponibles
-            por WhatsApp, tel&eacute;fono y correo en toda la Rep&uacute;blica.</p>
+          <p class="section-sub">Cu&eacute;ntanos tu caso y te orientamos sin costo en el primer contacto. Disponibles por WhatsApp, tel&eacute;fono y correo en toda la Rep&uacute;blica.</p>
         </div>
         <div class="cta-btns">
-          <a href="#" target="_blank" rel="noopener" class="wa-btn">
-            <svg class="wa-ico" viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
+          <a href="https://wa.me/522311439454" target="_blank" rel="noopener" class="wa-btn">
+            <svg class="wa-ico" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             WhatsApp
           </a>
           <a href="mailto:clientes@nexusconsultores.com.mx" class="email-btn">Enviar correo</a>
@@ -1010,96 +1584,104 @@
   </section>
 
   <!-- FOOTER -->
- <footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-<div class="footer-logo footer-text-logo">
-  Nexus Consultores
-</div>        <p>Especialistas en pensiones, retiros de afore y asesor&iacute;a financiera en M&eacute;xico. M&aacute;s de cinco años acompa&ntilde;ando a trabajadores mexicanos a alcanzar su mejor retiro.</p>
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo footer-text-logo">Nexus Consultores</div>
+          <p>Especialistas en pensiones, retiros de afore y asesor&iacute;a financiera en M&eacute;xico. M&aacute;s de cinco años acompa&ntilde;ando a trabajadores mexicanos a alcanzar su mejor retiro.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Navegaci&oacute;n</h5>
+          <ul>
+            <li><a href="index.html#about">Nosotros</a></li>
+            <li><a href="index.html#services">Servicios</a></li>
+            <li><a href="index.html#why">Por qu&eacute; elegirnos</a></li>
+            <li><a href="index.html#testimonials">Testimonios</a></li>
+            <li><a href="faq.html">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contacto</h5>
+          <div class="fc-row">
+            <span class="fc-lbl">Tel&eacute;fono</span>
+            <div><a href="tel:+522311439454">231 143 9454</a></div>
+          </div>
+          <div class="fc-row">
+            <span class="fc-lbl">Correo</span>
+            <a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a>
+          </div>
+          <div class="fc-row">
+            <span class="fc-lbl">Oficinas</span>
+            <div>
+              <strong>Puebla:</strong><br>
+              Anillo Periférico Ecológico, 72820, San Bernardino Tlaxcalancingo, Puebla, México.
+              <br><br>
+              <strong>CDMX:</strong><br>
+              Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="footer-col">
-        <h5>Navegaci&oacute;n</h5>
-        <ul>
-          <li><a href="index.html#about">Nosotros</a></li>
-          <li><a href="index.html#services">Servicios</a></li>
-          <li><a href="index.html#why">Por qu&eacute; elegirnos</a></li>
-          <li><a href="index.html#testimonials">Testimonios</a></li>
-          <li><a href="faq.html">Preguntas frecuentes</a></li>
-        </ul>
+      <div class="footer-bottom">
+        <span>Nexus Consultores. Todos los derechos reservados.</span>
+        <div style="display:flex;gap:1.4rem;">
+          <a href="privacidad.html">Aviso de privacidad</a>
+          <a href="#">T&eacute;rminos de uso</a>
+        </div>
       </div>
-      <div class="footer-col">
-        <h5>Contacto</h5>
-<div class="fc-row">
-    <span class="fc-lbl">Número de oficinas</span>
-    <div>
-        <a href="tel:+522311439454">231 143 9454</a>
     </div>
-</div>        <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a></div>
-<div class="fc-row">
-    <span class="fc-lbl">Oficinas</span>
-    <div>
-        <strong>Puebla:</strong><br>
-        Anillo Periférico. Ecológico, 72820, San Bernardino Tlaxcalancingo, Puebla, México.
-        <br><br>
-        <strong>CDMX:</strong><br>
-        Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.    </div>
-</div>      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>Nexus Consultores. Todos los derechos reservados.</span>
-      <div style="display:flex;gap:1.4rem;"><a href="#">Aviso de privacidad</a><a href="#">T&eacute;rminos de uso</a></div>
-    </div>
-  </div>
-</footer>
+  </footer>
 
   <button id="scrollTop" aria-label="Volver arriba">&#8593;</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
   <script>
-    AOS.init({ once: true, offset: 70, duration: 750, easing: 'ease-out-cubic' });
+    AOS.init({ once:true, offset:70, duration:750, easing:'ease-out-cubic' });
+
     new Swiper('.swiper-testi', {
-      slidesPerView: 1, spaceBetween: 20, loop: true,
-      autoplay: { delay: 5000, disableOnInteraction: false },
-      pagination: { el: '.swiper-pagination', clickable: true },
-      breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+      slidesPerView:1, spaceBetween:20, loop:true,
+      autoplay:{ delay:5000, disableOnInteraction:false },
+      pagination:{ el:'.swiper-pagination', clickable:true },
+      breakpoints:{ 640:{ slidesPerView:2 }, 1024:{ slidesPerView:3 } }
     });
-    const nav = document.getElementById('navbar');
-    const stBtn = document.getElementById('scrollTop');
+
+    const nav    = document.getElementById('navbar');
+    const stBtn  = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
       stBtn.classList.toggle('visible', window.scrollY > 400);
     });
-    const hambBtn = document.getElementById('hambBtn');
-    const mobMenu = document.getElementById('mobMenu');
-    const mobOverlay = document.getElementById('mobOverlay');
-    const mobClose = document.getElementById('mobClose');
 
-    function openMenu(){
+    const hambBtn   = document.getElementById('hambBtn');
+    const mobMenu   = document.getElementById('mobMenu');
+    const mobOverlay = document.getElementById('mobOverlay');
+    const mobClose  = document.getElementById('mobClose');
+
+    function openMenu() {
       hambBtn.classList.add('active');
       hambBtn.setAttribute('aria-expanded','true');
       mobMenu.classList.add('open');
       mobOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('menu-open');
     }
-
-    function closeMenu(){
+    function closeMenu() {
       hambBtn.classList.remove('active');
       hambBtn.setAttribute('aria-expanded','false');
       mobMenu.classList.remove('open');
       mobOverlay.classList.remove('open');
-      document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
     }
 
-    hambBtn.addEventListener('click', () =>
-      mobMenu.classList.contains('open') ? closeMenu() : openMenu()
-    );
+    hambBtn.addEventListener('click', () => mobMenu.classList.contains('open') ? closeMenu() : openMenu());
     mobClose.addEventListener('click', closeMenu);
     mobOverlay.addEventListener('click', closeMenu);
     document.querySelectorAll('.mml').forEach(l => l.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
-    stBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu() });
+
+    stBtn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
     const counters = document.querySelectorAll('[data-count]');
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -1107,7 +1689,8 @@
         const el = e.target, end = +el.dataset.count;
         const lbl = el.parentElement.querySelector('.stat-l').textContent;
         const sfx = lbl.includes('%') ? '%' : '+';
-        let cur = 0; const step = Math.ceil(end / 55);
+        let cur = 0;
+        const step = Math.ceil(end / 55);
         const t = setInterval(() => {
           cur = Math.min(cur + step, end);
           el.textContent = cur.toLocaleString('es-MX') + (cur === end ? sfx : '');
@@ -1115,9 +1698,8 @@
         }, 22);
         obs.unobserve(el);
       });
-    }, { threshold: .5 });
+    }, { threshold:.5 });
     counters.forEach(c => obs.observe(c));
   </script>
 </body>
-
 </html>
