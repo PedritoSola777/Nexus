@@ -183,21 +183,28 @@ footer{background:#040b18;color:rgba(255,255,255,.45);padding:5rem 0 2.5rem}
 }
   </style>
 
-  <style>
-
-    .nav-logo img{
-    height:44px;
-    width:auto;
-    filter:none;
+   <style>
+   .nav-logo img{
+  height:200px;      /* antes: 44px — prueba 56-64px según se vea */
+  width:auto;
+  max-width:220px;
+  filter:none;
 }
-  </style>
+
+@media(max-width:768px){
+  .nav-logo img{
+    height:150px; /* esto no aplica realmente, lo gana el !important de width:135px */
+  }
+}
+
+</style>
 
 <link rel="shortcut icon" href="NexFav1.png" type="image/x-icon">
 </head>
 <body>
   <nav id="navbar">
     <div class="container nav-inner">
-      <a href="index.html" class="nav-logo"><img src="NexusOficial1.png" style="width:200px;height:auto;" alt="Nexus Consultores" /></a>
+      <a href="index.html" class="nav-logo"><img src="NexusOficial1.png" alt="Nexus Consultores" /></a>
       <ul class="nav-links">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="faq.html">Preguntas frecuentes</a></li>

@@ -511,6 +511,8 @@
       background:linear-gradient(90deg,var(--blue-pale),#a8c4ff);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
+      font-size:.74em;        /* AGREGAR: reduce solo esta línea */
+  white-space:nowrap;
     }
     .hero-h1 .l3 {
       display:block;
@@ -1258,6 +1260,22 @@
       touch-action:none;
     }
   </style>
+   <style>
+   .nav-logo img{
+  height:200px;      /* antes: 44px — prueba 56-64px según se vea */
+  width:auto;
+  max-width:220px;
+  filter:none;
+}
+
+@media(max-width:768px){
+  .nav-logo img{
+    height:150px; /* esto no aplica realmente, lo gana el !important de width:135px */
+  }
+}
+
+</style>
+
 </head>
 
 <body>
@@ -1265,7 +1283,7 @@
   <!-- NAV -->
   <nav id="navbar">
     <div class="container nav-inner">
-      <a href="index.html" class="nav-logo"><img src="NexusOficial1.png" style="width:200px;height:auto;" alt="Nexus Consultores" /></a>
+      <a href="index.html" class="nav-logo"><img src="NexusOficial1.png" alt="Nexus Consultores" /></a>
       <ul class="nav-links">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="faq.html">Preguntas frecuentes</a></li>
@@ -1306,7 +1324,7 @@
         <div data-aos="fade-right" data-aos-duration="900">
           <div class="hero-label"><span class="hero-dot"></span> Especialistas en afore &amp; Pensiones</div>
           <h1 class="hero-h1">
-            Tu retiro,<span class="l2">en las mejores</span><span class="l3">manos</span>
+            Tu retiro,<span class="l2">en las mejores manos</span><span class="l3"></span>
           </h1>
           <p class="hero-p">En Nexus Consultores gestionamos tus tr&aacute;mites de afore, pensiones del IMSS e ISSSTE y retiros de capital con transparencia, experiencia y trato personalizado.</p>
           <div class="hero-btns">
@@ -1364,7 +1382,7 @@
       <div class="about-grid">
         <div class="about-img-wrap" data-aos="fade-right" data-aos-duration="800">
           <div class="about-frame">
-            <img src="image.jpeg" alt="Asesora Nexus Consultores" loading="lazy" />
+            <img src="https://thumbs.dreamstime.com/b/vertical-business-background-group-people-having-hand-touch-together-to-show-teamwork-unity-meeting-office-170540518.jpg" alt="Asesora Nexus Consultores" loading="lazy" />
           </div>
           <div class="about-badge">
             <div class="ab-n">5+</div>
@@ -1559,9 +1577,14 @@
       </div>
     </div>
   </div>
+
+  
+  
 </div>
           <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo retiré por desempleo pero me dieron bien poquito, ni 5000 pesos eran</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Leon Mendoza</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo la verdad no confiaba porque hace 6 meses no pude hacer el retiro pero me volvieron a buscar y ahora hice un retiro para remodelar y ahora si pude hacerlo</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Saul Gutierrez</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">100% recomendados, me atendió la señorita Sofia y me ayudó a sacar mi crédito de infonavit.</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Veronica Hernandez</div></div></div></div></div>
+          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo opte por acerlo con esta empresa porque sura me dio muchas largas para darme mi dinero si me cobraron pero si pude acer mi retiro de remodelacion</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Pancho Jimenez</div></div></div></div></div>
+          <!-- <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo la verdad no confiaba porque hace 6 meses no pude hacer el retiro pero me volvieron a buscar y ahora hice un retiro para remodelar y ahora si pude hacerlo</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Saul Gutierrez</div></div></div></div></div> -->
           <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo la verdad no confiaba porque hace 6 meses no pude hacer el retiro pero me volvieron a buscar y ahora hice un retiro para remodelar y ahora si pude hacerlo</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Pedro Gonzalez</div></div></div></div></div>
           <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">El acesor me ayudo  a acer el retiro yo la verdad no sabia acer nada del afore y me explico todo</p><div class="tauth"><div class="tav">KM</div><div><div class="tname">Kassandra Mendoza</div></div></div></div></div>
           <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Me atendieron con mucha paciencia desde el primer contacto. Todo quedó resuelto antes de lo que esperaba.</p><div class="tauth"><div class="tav">RV</div><div><div class="tname">Ricardo Villalobos</div></div></div></div></div>
