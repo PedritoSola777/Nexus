@@ -529,52 +529,125 @@
     }
     .hero-btns { display:flex; gap:.9rem; flex-wrap:wrap }
 
-    /* hero right cards */
-    .hero-right { display:flex; flex-direction:column; gap:1.1rem }
-    .hcard {
-      border-radius:var(--r-lg);
-      padding:1.6rem 1.8rem;
-      backdrop-filter:blur(10px);
-      transition:transform .3s;
+    /* hero background carousel (mobile only — images behind the text) */
+    .hero-bg-carousel {
+      display:none;
+      position:absolute;
+      inset:0;
+      z-index:0;
+      overflow:hidden;
     }
-    .hcard:hover { transform:translateX(-5px) }
-    .hcard.c1 { background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.07) }
-    .hcard.c2 { background:rgba(30,79,160,.18); border:1px solid rgba(45,108,223,.22) }
-    .hcard.c3 { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06) }
-    .hcard-tag {
+    .hero-bg-carousel .bg-slide {
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition:opacity 1.3s ease;
+    }
+    .hero-bg-carousel .bg-slide.active { opacity:1 }
+    .hero-bg-carousel .bg-slide img {
+      width:100%; height:100%;
+      object-fit:cover;
+      filter:brightness(.55) saturate(.75);
+    }
+    .hero-bg-carousel::after {
+      content:'';
+      position:absolute;
+      inset:0;
+      z-index:1;
+      background:linear-gradient(180deg,
+        rgba(5,13,28,.35) 0%,
+        rgba(5,13,28,.55) 45%,
+        rgba(5,13,28,.88) 100%);
+    }
+    .hero-bg-dots {
+      position:absolute;
+      left:0; right:0;
+      bottom:1.1rem;
+      z-index:2;
+      display:flex;
+      justify-content:center;
+      gap:.4rem;
+    }
+    .hero-bg-dots button {
+      width:22px; height:4px;
+      border-radius:2px;
+      border:none;
+      background:rgba(255,255,255,.3);
+      padding:0;
+      cursor:pointer;
+      transition:background .25s;
+    }
+    .hero-bg-dots button.active { background:var(--blue-pale) }
+
+    /* hero right — image carousel */
+    .hero-right { position:relative }
+    .hcarousel {
+      position:relative;
+      width:100%;
+      aspect-ratio:4/5;
+      border-radius:var(--r-lg);
+      overflow:hidden;
+      box-shadow:var(--sh-lg);
+      border:1px solid rgba(255,255,255,.08);
+      background:var(--navy2);
+    }
+    .hcarousel-slide {
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition:opacity 1s ease;
+    }
+    .hcarousel-slide.active { opacity:1 }
+    .hcarousel-slide img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:brightness(.8) saturate(.85);
+    }
+    .hcarousel-overlay {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(6,12,24,.82) 0%,rgba(6,12,24,.05) 55%,transparent 75%);
+      pointer-events:none;
+    }
+    .hcarousel-caption {
+      position:absolute;
+      left:0; right:0; bottom:0;
+      z-index:2;
+      padding:1.7rem 1.8rem;
+    }
+    .hcarousel-tag {
       font-size:.65rem;
       font-weight:700;
       letter-spacing:.12em;
       text-transform:uppercase;
-      color:rgba(255,255,255,.35);
-      margin-bottom:.7rem;
+      color:var(--blue-pale);
+      margin-bottom:.5rem;
     }
-    .hcard h3 {
+    .hcarousel-caption h3 {
       font-family:'Libre Baskerville',serif;
-      font-size:.97rem;
+      font-size:1.05rem;
       color:var(--white);
-      margin-bottom:.35rem;
+      margin-bottom:.3rem;
     }
-    .hcard p { font-size:.82rem; color:rgba(255,255,255,.5); line-height:1.6 }
-    .hcard-big {
-      font-family:'Bebas Neue',sans-serif;
-      font-size:3rem;
-      color:var(--blue-pale);
-      line-height:1;
-      margin-top:.5rem;
+    .hcarousel-caption p { font-size:.82rem; color:rgba(255,255,255,.6); line-height:1.55; max-width:320px }
+    .hcarousel-dots {
+      position:absolute;
+      top:1.2rem; right:1.2rem;
+      z-index:3;
+      display:flex;
+      gap:.4rem;
     }
-    .hcard-badge {
-      display:inline-block;
-      margin-top:.6rem;
-      font-size:.68rem;
-      font-weight:700;
-      letter-spacing:.07em;
-      text-transform:uppercase;
-      color:var(--blue-pale);
-      background:rgba(45,108,223,.14);
-      padding:.22rem .65rem;
-      border-radius:4px;
+    .hcarousel-dots button {
+      width:22px; height:4px;
+      border-radius:2px;
+      border:none;
+      background:rgba(255,255,255,.28);
+      cursor:pointer;
+      padding:0;
+      transition:background .25s;
     }
+    .hcarousel-dots button.active { background:var(--blue-pale) }
 
     /* =============================================
        ABOUT
@@ -1079,7 +1152,7 @@
     ============================================= */
     @media(max-width:1024px) {
       .hero-inner { grid-template-columns:1fr }
-      .hero-right { display:none }
+      .hero-right { max-width:420px; margin:0 auto }
       .why-layout { grid-template-columns:1fr; gap:3rem }
       .cta-inner { grid-template-columns:1fr }
       .cta-btns { flex-direction:row }
@@ -1102,7 +1175,7 @@
       .strip-row { gap:2.2rem; padding-right:2.2rem }
 
       .nav-logo img { width:135px !important; height:auto !important }
-      .hero-inner { padding:7.5rem 0 4rem }
+      .hero-inner { padding:7.5rem 0 3rem }
       .hero-h1 { font-size:3rem; line-height:1 }
       .hero-btns { flex-direction:column }
       .hero-btns a { width:100%; justify-content:center }
@@ -1110,6 +1183,9 @@
       .cta-btns a { width:100%; justify-content:center }
       .fc-row { flex-direction:column; gap:.25rem }
       .about-badge { right:0; bottom:-1rem }
+
+      .hero-right { display:none !important }
+      .hero-bg-carousel { display:block !important }
 
       /* mob menu fixes */
       .mob-overlay {
@@ -1319,6 +1395,16 @@
     <div class="hero-grid-bg"></div>
     <div class="hero-glow hero-glow-1"></div>
     <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-bg-carousel" id="heroBgCarousel">
+      <div class="bg-slide active"><img src="img/pensiones.jpg" alt="Asesoría personalizada Nexus Consultores" loading="eager" /></div>
+      <div class="bg-slide"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=75" alt="Trámite de afore y pensión" loading="lazy" /></div>
+      <div class="bg-slide"><img src="img/contrato.jpg" alt="Clientes satisfechos Nexus Consultores" loading="lazy" /></div>
+      <div class="hero-bg-dots" id="heroBgDots">
+        <button class="active" data-i="0" aria-label="Imagen 1"></button>
+        <button data-i="1" aria-label="Imagen 2"></button>
+        <button data-i="2" aria-label="Imagen 3"></button>
+      </div>
+    </div>
     <div class="container">
       <div class="hero-inner">
         <div data-aos="fade-right" data-aos-duration="900">
@@ -1328,26 +1414,32 @@
           </h1>
           <p class="hero-p">En Nexus Consultores gestionamos tus tr&aacute;mites de afore, pensiones del IMSS e ISSSTE y retiros de capital con transparencia, experiencia y trato personalizado.</p>
           <div class="hero-btns">
-            <a href="#services" class="btn-primary">Ver nuestros servicios &rarr;</a>
-            <a href="#cta" class="btn-ghost">Habla con un asesor</a>
+            <a href="#services" class="btn-primary">Conoce nuestros servicios &rarr;</a>
+            <a href="#cta" class="btn-primary">Solicita una asesoría con un ejecutivo &rarr;</a>
           </div>
         </div>
         <div class="hero-right" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
-          <div class="hcard c1">
-            <div class="hcard-tag">Gesti&oacute;n integral</div>
-            <h3>Retiros y pensiones sin complicaciones</h3>
-            <p>Te acompa&ntilde;amos desde el primer tr&aacute;mite hasta el dep&oacute;sito en tu cuenta.</p>
-          </div>
-          <div class="hcard c2">
-            <div class="hcard-tag">Clientes satisfechos</div>
-            <div class="hcard-big">2,800+</div>
-            <p>En toda la Rep&uacute;blica Mexicana, presencial y en l&iacute;nea.</p>
-            <span class="hcard-badge">Cobertura nacional</span>
-          </div>
-          <div class="hcard c3">
-            <div class="hcard-tag">Seguridad y legalidad</div>
-            <h3>Todo bajo contrato formal</h3>
-            <p>Tus datos y operaciones est&aacute;n protegidos conforme a la Ley Federal de Protecci&oacute;n de Datos.</p>
+          <div class="hcarousel" id="heroCarousel">
+            <div class="hcarousel-slide active">
+              <img src="img/pensiones.jpg" alt="Asesoría personalizada Nexus Consultores" loading="eager" />
+            </div>
+            <div class="hcarousel-slide">
+              <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=75" alt="Trámite de afore y pensión" loading="lazy" />
+            </div>
+            <div class="hcarousel-slide">
+              <img src="img/contrato.jpg" alt="Clientes satisfechos Nexus Consultores" loading="lazy" />
+            </div>
+            <div class="hcarousel-overlay"></div>
+            <div class="hcarousel-dots" id="heroDots">
+              <button class="active" data-i="0" aria-label="Imagen 1"></button>
+              <button data-i="1" aria-label="Imagen 2"></button>
+              <button data-i="2" aria-label="Imagen 3"></button>
+            </div>
+            <div class="hcarousel-caption">
+              <div class="hcarousel-tag" id="heroCaptionTag">Gestión integral</div>
+              <h3 id="heroCaptionTitle">Retiros y pensiones sin complicaciones</h3>
+              <p id="heroCaptionText">Te acompañamos desde el primer trámite hasta el depósito en tu cuenta.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1504,7 +1596,7 @@
       <div class="svc-hd" data-aos="fade-up">
         <div>
           <span class="eyebrow">Nuestros servicios</span>
-          <h2 class="section-title">¿En qu&eacute; podemos ayudarte?</h2>
+          <h2 class="section-title">Por medio de nuestra asesoría  podemos ayudarte con diferentes trámites de afore:</h2>
         </div>
       </div>
       <div class="svc-grid">
@@ -1549,64 +1641,68 @@
   </section>
 
   <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <div class="container">
-      <div class="testi-hd" data-aos="fade-up">
-        <span class="eyebrow">Testimonios</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-        <p class="section-sub">Personas que confiaron en Nexus Consultores para gestionar sus trámites.</p>
-      </div>
-      <div class="swiper swiper-testi">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-  <div class="tcard">
-    <div class="tstars">
-      <span class="star"></span>
-      <span class="star"></span>
-      <span class="star"></span>
-      <span class="star empty"></span>
-      <span class="star empty"></span>
+  <!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testi-hd" data-aos="fade-up">
+      <span class="eyebrow">Testimonios</span>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <p class="section-sub">Personas que confiaron en Nexus Consultores para gestionar sus trámites.</p>
     </div>
-    <p class="ttext">
-      A mí me prometieron que podía retirar más de $50,000 para remodelación, pero al final solo me consiguieron poquito más de $40,000. Sí me ayudaron y el trámite salió, pero esperaba recibir más por lo que me habían comentado al principio.
-    </p>
-    <div class="tauth">
-      <div class="tav">LM</div>
-      <div>
-        <div class="tname">Luis Martínez</div>
+    <div class="swiper swiper-testi">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="tcard">
+            <div class="tstars">
+              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span>
+            </div>
+            <p class="ttext">"A mí me prometieron que podía retirar más de $50,000 para remodelación, pero al final solo me consiguieron poquito más de $40,000. Sí me ayudaron y el trámite salió, pero esperaba recibir más por lo que me habían comentado al principio."</p>
+            <div class="tauth"><div class="tav">LM</div><div><div class="tname">Luis Martínez</div></div></div>
+          </div>
+        </div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Yo retiré por desempleo pero me dieron bien poquito, ni 5000 pesos eran"</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Leon Mendoza</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"100% recomendados, me atendió la señorita Sofia y me ayudó a sacar mi crédito de infonavit."</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Veronica Hernandez</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Yo opte por acerlo con esta empresa porque sura me dio muchas largas para darme mi dinero si me cobraron pero si pude acer mi retiro de remodelacion"</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Pancho Jimenez</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Yo la verdad no confiaba porque hace 6 meses no pude hacer el retiro pero me volvieron a buscar y ahora hice un retiro para remodelar y ahora si pude hacerlo"</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Pedro Gonzalez</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"El acesor me ayudo  a acer el retiro yo la verdad no sabia acer nada del afore y me explico todo"</p><div class="tauth"><div class="tav">KM</div><div><div class="tname">Kassandra Mendoza</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Me atendieron con mucha paciencia desde el primer contacto. Todo quedó resuelto antes de lo que esperaba."</p><div class="tauth"><div class="tav">RV</div><div><div class="tname">Ricardo Villalobos</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"No sabía nada de mi afore. Ellos localizaron mi número de seguro, encontraron mi cuenta y pude realizar el retiro sin complicaciones."</p><div class="tauth"><div class="tav">JM</div><div><div class="tname">José Martínez</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Me ayudaron con mis aportaciones voluntarias y el retiro por desempleo. El proceso fue claro y mucho más sencillo de lo que imaginaba."</p><div class="tauth"><div class="tav">AT</div><div><div class="tname">Alberto Torres</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Es la segunda vez que tramito un retiro con ellos y todo ha salido perfecto. Profesionales y muy atentos en cada etapa del proceso."</p><div class="tauth"><div class="tav">FG</div><div><div class="tname">Fernanda García</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Mi asesor me explicó a detalle cómo funciona el retiro parcial. Excelente servicio, muy recomendable para quienes no saben por dónde empezar."</p><div class="tauth"><div class="tav">GO</div><div><div class="tname">Gabriela Ortiz</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Me apoyaron para recuperar los ahorros de mi padre fallecido. Un trámite que parecía imposible, ellos lo hicieron realidad."</p><div class="tauth"><div class="tav">EL</div><div><div class="tname">Eduardo Lugo</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Me recomendaron la consultoría unos amigos y no me arrepiento. Todo salió exactamente como prometieron, sin sorpresas."</p><div class="tauth"><div class="tav">DR</div><div><div class="tname">Daniela Ríos</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Excelente servicio, tenía un problema con mi RFC que no me dejaba sacar lo de mi afore y ellos me lo solucionaron súper rápido. Muy amables."</p><div class="tauth"><div class="tav">MC</div><div><div class="tname">Manuel Contreras</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Abogados muy profesionales. Me orientaron con lo de mi pensión bajo la ley de 1973 y obtuve una mejor resolución de la que esperaba. Vale totalmente la pena."</p><div class="tauth"><div class="tav">HM</div><div><div class="tname">Héctor Mendoza</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Pensé que era estafa porque por internet luego da desconfianza, pero todo legal. Me ayudaron con mi ahorro de INFONAVIT que ya daba por perdido. Gracias."</p><div class="tauth"><div class="tav">JA</div><div><div class="tname">Juan Alatorre</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div><p class="ttext">"Mucha vuelta con los papeles. Te piden una cosa, luego otra y el proceso se hace eterno. Al menos la atención del asesor fue educada."</p><div class="tauth"><div class="tav">RC</div><div><div class="tname">Rosa Carmona</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"La mejor decisión fue contratarlos. Hacer estos trámites en las oficinas de gobierno es un dolor de cabeza, ellos se encargaron de todo y yo solo firmé."</p><div class="tauth"><div class="tav">AM</div><div><div class="tname">Arturo Moreno</div></div></div></div></div>
+
+        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Muy recomendados, me atendió la Lic. Vero y aclaró todas mis dudas. Hice mi retiro por desempleo sin dar tantas vueltas en el banco."</p><div class="tauth"><div class="tav">YH</div><div><div class="tname">Yolanda Hernández</div></div></div></div></div>
+
       </div>
+      <div class="swiper-pagination"></div>
     </div>
   </div>
-
-  
-  
-</div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo retiré por desempleo pero me dieron bien poquito, ni 5000 pesos eran</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Leon Mendoza</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">100% recomendados, me atendió la señorita Sofia y me ayudó a sacar mi crédito de infonavit.</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Veronica Hernandez</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo opte por acerlo con esta empresa porque sura me dio muchas largas para darme mi dinero si me cobraron pero si pude acer mi retiro de remodelacion</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Pancho Jimenez</div></div></div></div></div>
-          <!-- <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo la verdad no confiaba porque hace 6 meses no pude hacer el retiro pero me volvieron a buscar y ahora hice un retiro para remodelar y ahora si pude hacerlo</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Saul Gutierrez</div></div></div></div></div> -->
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo la verdad no confiaba porque hace 6 meses no pude hacer el retiro pero me volvieron a buscar y ahora hice un retiro para remodelar y ahora si pude hacerlo</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Pedro Gonzalez</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">El acesor me ayudo  a acer el retiro yo la verdad no sabia acer nada del afore y me explico todo</p><div class="tauth"><div class="tav">KM</div><div><div class="tname">Kassandra Mendoza</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Me atendieron con mucha paciencia desde el primer contacto. Todo quedó resuelto antes de lo que esperaba.</p><div class="tauth"><div class="tav">RV</div><div><div class="tname">Ricardo Villalobos</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">No sabía nada de mi afore. Ellos localizaron mi número de seguro, encontraron mi cuenta y pude realizar el retiro sin complicaciones.</p><div class="tauth"><div class="tav">JM</div><div><div class="tname">José Martínez</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Me ayudaron con mis aportaciones voluntarias y el retiro por desempleo. El proceso fue claro y mucho más sencillo de lo que imaginaba.</p><div class="tauth"><div class="tav">AT</div><div><div class="tname">Alberto Torres</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Es la segunda vez que tramito un retiro con ellos y todo ha salido perfecto. Profesionales y muy atentos en cada etapa del proceso.</p><div class="tauth"><div class="tav">FG</div><div><div class="tname">Fernanda García</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Mi asesor me explicó a detalle cómo funciona el retiro parcial. Excelente servicio, muy recomendable para quienes no saben por dónde empezar.</p><div class="tauth"><div class="tav">GO</div><div><div class="tname">Gabriela Ortiz</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Me apoyaron para recuperar los ahorros de mi padre fallecido. Un trámite que parecía imposible, ellos lo hicieron realidad.</p><div class="tauth"><div class="tav">EL</div><div><div class="tname">Eduardo Lugo</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Me recomendaron la consultoría unos amigos y no me arrepiento. Todo salió exactamente como prometieron, sin sorpresas.</p><div class="tauth"><div class="tav">DR</div><div><div class="tname">Daniela Ríos</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Excelente servicio, tenía un problema con mi RFC que no me dejaba sacar lo de mi afore y ellos me lo solucionaron súper rápido. Muy amables.</p><div class="tauth"><div class="tav">MC</div><div><div class="tname">Manuel Contreras</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span></div><p class="ttext">El trámite al final sí salió y me dieron mi dinero, pero se tardaron más de lo que me habían dicho al principio. Falta que contesten más rápido el WhatsApp.</p><div class="tauth"><div class="tav">SP</div><div><div class="tname">Sandra Palacios</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Abogados muy profesionales. Me orientaron con lo de mi pensión bajo la ley de 1973 y obtuve una mejor resolución de la que esperaba. Vale totalmente la pena.</p><div class="tauth"><div class="tav">HM</div><div><div class="tname">Héctor Mendoza</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Pensé que era estafa porque por internet luego da desconfianza, pero todo legal. Me ayudaron con mi ahorro de INFONAVIT que ya daba por perdido. Gracias.</p><div class="tauth"><div class="tav">JA</div><div><div class="tname">Juan Alatorre</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div><p class="ttext">Mucha vuelta con los papeles. Te piden una cosa, luego otra y el proceso se hace eterno. Al menos la atención del asesor fue educada.</p><div class="tauth"><div class="tav">RC</div><div><div class="tname">Rosa Carmona</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">La mejor decisión fue contratarlos. Hacer estos trámites en las oficinas de gobierno es un dolor de cabeza, ellos se encargaron de todo y yo solo firmé.</p><div class="tauth"><div class="tav">AM</div><div><div class="tname">Arturo Moreno</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Muy recomendados, me atendió la Lic. Vero y aclaró todas mis dudas. Hice mi retiro por desempleo sin dar tantas vueltas en el banco.</p><div class="tauth"><div class="tav">YH</div><div><div class="tname">Yolanda Hernández</div></div></div></div></div>
-          <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Buen servicio y cobran lo justo por la asesoría. Quito una estrella porque costó un poco agendar la primera cita, pero después todo fluyó muy bien.</p><div class="tauth"><div class="tav">OR</div><div><div class="tname">Omar Ramírez</div></div></div></div></div>
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
-  </section>
+</section>
 
   <!-- CTA -->
   <section id="cta">
@@ -1660,7 +1756,7 @@
             <span class="fc-lbl">Oficinas</span>
             <div>
               <strong>Puebla:</strong><br>
-              Anillo Periférico Ecológico, 72820, San Bernardino Tlaxcalancingo, Puebla, México.
+              Anillo Periférico Ecológico, 72820, San Bernardino Tlaxcalancingo, Puebla.
               <br><br>
               <strong>CDMX:</strong><br>
               Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.
@@ -1744,6 +1840,68 @@
       });
     }, { threshold:.5 });
     counters.forEach(c => obs.observe(c));
+
+    /* ===== HERO IMAGE CAROUSEL ===== */
+    (function () {
+      const slides = document.querySelectorAll('#heroCarousel .hcarousel-slide');
+      const dots   = document.querySelectorAll('#heroDots button');
+      const tagEl  = document.getElementById('heroCaptionTag');
+      const titleEl = document.getElementById('heroCaptionTitle');
+      const textEl  = document.getElementById('heroCaptionText');
+
+      const bgSlides = document.querySelectorAll('#heroBgCarousel .bg-slide');
+      const bgDots   = document.querySelectorAll('#heroBgDots button');
+
+      const captions = [
+        { tag: 'Gestión integral', title: 'Retiros y pensiones sin complicaciones', text: 'Te acompañamos desde el primer trámite hasta el depósito en tu cuenta.' },
+        { tag: 'Clientes satisfechos', title: '2,800+ trámites en toda la República', text: 'Atención presencial y en línea, en toda la República Mexicana.' },
+        { tag: 'Seguridad y legalidad', title: 'Todo bajo contrato formal', text: 'Tus datos y operaciones están protegidos conforme a la Ley Federal de Protección de Datos.' }
+      ];
+
+      let idx = 0;
+      let timer = null;
+      const DELAY = 4500;
+
+      function goTo(i) {
+        slides[idx].classList.remove('active');
+        dots[idx].classList.remove('active');
+        bgSlides[idx].classList.remove('active');
+        bgDots[idx].classList.remove('active');
+
+        idx = (i + slides.length) % slides.length;
+
+        slides[idx].classList.add('active');
+        dots[idx].classList.add('active');
+        bgSlides[idx].classList.add('active');
+        bgDots[idx].classList.add('active');
+
+        const c = captions[idx];
+        tagEl.textContent = c.tag;
+        titleEl.textContent = c.title;
+        textEl.textContent = c.text;
+      }
+
+      function next() { goTo(idx + 1); }
+
+      function start() {
+        stop();
+        timer = setInterval(next, DELAY);
+      }
+      function stop() { if (timer) clearInterval(timer); }
+
+      dots.forEach(btn => {
+        btn.addEventListener('click', () => { goTo(+btn.dataset.i); start(); });
+      });
+      bgDots.forEach(btn => {
+        btn.addEventListener('click', () => { goTo(+btn.dataset.i); start(); });
+      });
+
+      const carouselEl = document.getElementById('heroCarousel');
+      carouselEl.addEventListener('mouseenter', stop);
+      carouselEl.addEventListener('mouseleave', start);
+
+      start();
+    })();
   </script>
 </body>
 </html>

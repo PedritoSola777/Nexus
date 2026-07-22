@@ -284,6 +284,27 @@
                  inset 0 1px 0 rgba(255,255,255,.06);
       transform:translateY(-2px);
     }
+    .btn-primary {
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      background:var(--blue-mid);
+      color:var(--white);
+      font-weight:600;
+      font-size:.85rem;
+      letter-spacing:.03em;
+      padding:.8rem 1.8rem;
+      border-radius:var(--r);
+      border:none;
+      cursor:pointer;
+      transition:background .2s, transform .2s, box-shadow .2s;
+      box-shadow:0 4px 18px rgba(30,79,160,.28);
+    }
+    .btn-primary:hover {
+      background:var(--blue-lt);
+      transform:translateY(-2px);
+      box-shadow:0 8px 28px rgba(30,79,160,.38);
+    }
 
     /* question */
     .faq-q{
@@ -718,6 +739,64 @@
         </div>
       </div>
 
+            <!-- 13 -->
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="0">
+        <div class="faq-q">
+          <span class="faq-q-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          </span>
+          <span>&iquest;Cu&aacute;l es la diferencia entre pensionarme y retirar mi dinero de mi afore?</span>
+        </div>
+        <div class="faq-divider"></div>
+        <div class="faq-a">
+          <p>Pensionarte es obtener una pensi&oacute;n mensual al cumplir los requisitos del r&eacute;gimen de seguridad social que te corresponda, como semanas cotizadas, edad y r&eacute;gimen aplicable. Retirar tu dinero de afore significa disponer de los recursos de tu cuenta individual, ya sea total o parcialmente, dependiendo de tu situaci&oacute;n.</p>
+        </div>
+      </div>
+
+      <!-- 14 -->
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="60">
+        <div class="faq-q">
+          <span class="faq-q-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          </span>
+          <span>&iquest;Puedo pensionarme si tengo menos de 60 a&ntilde;os?</span>
+        </div>
+        <div class="faq-divider"></div>
+        <div class="faq-a">
+          <p>S&iacute;, es posible pensionarte antes de los 60 a&ntilde;os, pero las opciones dependen principalmente del r&eacute;gimen bajo el cual cotizaste y de tu situaci&oacute;n particular.</p>
+          <p>En algunos casos, si no cumples con los requisitos para obtener una pensi&oacute;n, puedes solicitar una negativa de pensi&oacute;n. Esto puede permitirte disponer de los recursos de tu cuenta individual, de acuerdo con las reglas aplicables a tu r&eacute;gimen.</p>
+        </div>
+      </div>
+
+      <!-- 15 -->
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="120">
+        <div class="faq-q">
+          <span class="faq-q-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          </span>
+          <span>&iquest;Puedo pensionarme si trabaj&eacute; para diferentes patrones?</span>
+        </div>
+        <div class="faq-divider"></div>
+        <div class="faq-a">
+          <p>S&iacute;, haber trabajado para diferentes empresas no necesariamente impide que puedas pensionarte. Lo importante es revisar que tus periodos laborales y semanas cotizadas est&eacute;n correctamente registrados.</p>
+        </div>
+      </div>
+
+      <!-- 16 -->
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="180">
+        <div class="faq-q">
+          <span class="faq-q-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          </span>
+          <span>&iquest;Qu&eacute; sucede con mi dinero de afore cuando me pensiono?</span>
+        </div>
+        <div class="faq-divider"></div>
+        <div class="faq-a">
+          <p>El destino de los recursos depende del r&eacute;gimen de pensi&oacute;n y de las condiciones aplicables a tu caso, ya que una parte puede utilizarse para financiar tu pensi&oacute;n y otros recursos pueden entregarse en una sola exhibici&oacute;n.</p>
+          <p>En Nexus Consultores revisamos tu situaci&oacute;n para explicarte qu&eacute; puede ocurrir con los recursos acumulados en tu cuenta individual.</p>
+        </div>
+      </div>
+
       <!-- CTA -->
       <div class="faq-cta" data-aos="fade-up" data-aos-delay="100">
         <div class="faq-cta-txt">
@@ -729,7 +808,7 @@
             <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Escribir por WhatsApp
           </a>
-          <a href="mailto:clientes@nexusconsultores.com.mx" class="email-btn">Enviar correo</a>
+          <a href="mailto:clientes@nexusconsultores.com.mx" class="btn-primary" style="padding-left: 70px;">Enviar correo &rarr;</a>
         </div>
       </div>
 
@@ -768,7 +847,7 @@
     <span class="fc-lbl">Oficinas</span>
     <div>
         <strong>Puebla:</strong><br>
-        Anillo Periférico Ecológico, 72820, San Bernardino Tlaxcalancingo, Puebla, México.
+        Anillo Periférico Ecológico, 72820, San Bernardino Tlaxcalancingo, Puebla.
         <br><br>
         <strong>CDMX:</strong><br>
         Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.
