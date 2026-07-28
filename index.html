@@ -957,6 +957,7 @@
       flex:1;
     }
     .ttext::before { content:'\201C'; font-size:1.2em; color:var(--blue-mid) }
+    .ttext::after  { content:'\201D'; font-size:1.2em; color:var(--blue-mid) }
     .tauth {
       display:flex;
       align-items:center;
@@ -1643,65 +1644,45 @@
   <!-- TESTIMONIALS -->
   <!-- TESTIMONIALS -->
 <section id="testimonials">
-  <div class="container">
-    <div class="testi-hd" data-aos="fade-up">
-      <span class="eyebrow">Testimonios</span>
-      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      <p class="section-sub">Personas que confiaron en Nexus Consultores para gestionar sus trámites.</p>
-    </div>
-    <div class="swiper swiper-testi">
-      <div class="swiper-wrapper">
-
-        <div class="swiper-slide">
-          <div class="tcard">
-            <div class="tstars">
-              <span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span>
-            </div>
-            <p class="ttext">"A mí me prometieron que podía retirar más de $50,000 para remodelación, pero al final solo me consiguieron poquito más de $40,000. Sí me ayudaron y el trámite salió, pero esperaba recibir más por lo que me habían comentado al principio."</p>
-            <div class="tauth"><div class="tav">LM</div><div><div class="tname">Luis Martínez</div></div></div>
-          </div>
-        </div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Yo retiré por desempleo pero me dieron bien poquito, ni 5000 pesos eran"</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Leon Mendoza</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"100% recomendados, me atendió la señorita Sofia y me ayudó a sacar mi crédito de infonavit."</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Veronica Hernandez</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Yo opte por acerlo con esta empresa porque sura me dio muchas largas para darme mi dinero si me cobraron pero si pude acer mi retiro de remodelacion"</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Pancho Jimenez</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Yo la verdad no confiaba porque hace 6 meses no pude hacer el retiro pero me volvieron a buscar y ahora hice un retiro para remodelar y ahora si pude hacerlo"</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Pedro Gonzalez</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"El acesor me ayudo  a acer el retiro yo la verdad no sabia acer nada del afore y me explico todo"</p><div class="tauth"><div class="tav">KM</div><div><div class="tname">Kassandra Mendoza</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Me atendieron con mucha paciencia desde el primer contacto. Todo quedó resuelto antes de lo que esperaba."</p><div class="tauth"><div class="tav">RV</div><div><div class="tname">Ricardo Villalobos</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"No sabía nada de mi afore. Ellos localizaron mi número de seguro, encontraron mi cuenta y pude realizar el retiro sin complicaciones."</p><div class="tauth"><div class="tav">JM</div><div><div class="tname">José Martínez</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Me ayudaron con mis aportaciones voluntarias y el retiro por desempleo. El proceso fue claro y mucho más sencillo de lo que imaginaba."</p><div class="tauth"><div class="tav">AT</div><div><div class="tname">Alberto Torres</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Es la segunda vez que tramito un retiro con ellos y todo ha salido perfecto. Profesionales y muy atentos en cada etapa del proceso."</p><div class="tauth"><div class="tav">FG</div><div><div class="tname">Fernanda García</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Mi asesor me explicó a detalle cómo funciona el retiro parcial. Excelente servicio, muy recomendable para quienes no saben por dónde empezar."</p><div class="tauth"><div class="tav">GO</div><div><div class="tname">Gabriela Ortiz</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Me apoyaron para recuperar los ahorros de mi padre fallecido. Un trámite que parecía imposible, ellos lo hicieron realidad."</p><div class="tauth"><div class="tav">EL</div><div><div class="tname">Eduardo Lugo</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Me recomendaron la consultoría unos amigos y no me arrepiento. Todo salió exactamente como prometieron, sin sorpresas."</p><div class="tauth"><div class="tav">DR</div><div><div class="tname">Daniela Ríos</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Excelente servicio, tenía un problema con mi RFC que no me dejaba sacar lo de mi afore y ellos me lo solucionaron súper rápido. Muy amables."</p><div class="tauth"><div class="tav">MC</div><div><div class="tname">Manuel Contreras</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Abogados muy profesionales. Me orientaron con lo de mi pensión bajo la ley de 1973 y obtuve una mejor resolución de la que esperaba. Vale totalmente la pena."</p><div class="tauth"><div class="tav">HM</div><div><div class="tname">Héctor Mendoza</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">"Pensé que era estafa porque por internet luego da desconfianza, pero todo legal. Me ayudaron con mi ahorro de INFONAVIT que ya daba por perdido. Gracias."</p><div class="tauth"><div class="tav">JA</div><div><div class="tname">Juan Alatorre</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div><p class="ttext">"Mucha vuelta con los papeles. Te piden una cosa, luego otra y el proceso se hace eterno. Al menos la atención del asesor fue educada."</p><div class="tauth"><div class="tav">RC</div><div><div class="tname">Rosa Carmona</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"La mejor decisión fue contratarlos. Hacer estos trámites en las oficinas de gobierno es un dolor de cabeza, ellos se encargaron de todo y yo solo firmé."</p><div class="tauth"><div class="tav">AM</div><div><div class="tname">Arturo Moreno</div></div></div></div></div>
-
-        <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">"Muy recomendados, me atendió la Lic. Vero y aclaró todas mis dudas. Hice mi retiro por desempleo sin dar tantas vueltas en el banco."</p><div class="tauth"><div class="tav">YH</div><div><div class="tname">Yolanda Hernández</div></div></div></div></div>
-
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-  </div>
+<div class="container">
+<div class="testi-hd" data-aos="fade-up">
+<span class="eyebrow">Testimonios</span>
+<h2 class="section-title">Lo que dicen nuestros clientes</h2>
+<p class="section-sub">Personas que confiaron en Nexus Consultores para gestionar sus trámites.</p>
+</div>
+<div class="swiper swiper-testi">
+<div class="swiper-wrapper">
+<div class="swiper-slide">
+<div class="tcard">
+<div class="tstars">
+<span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span>
+</div>
+<p class="ttext">A mí me prometieron que podía retirar más de $50,000 para remodelación, pero al final solo me consiguieron poquito más de $40,000. Sí me ayudaron y el trámite salió, pero esperaba recibir más por lo que me habían comentado al principio.</p>
+<div class="tauth"><div class="tav">LM</div><div><div class="tname">Luis Martínez</div></div></div>
+</div>
+</div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo retiré por desempleo pero me dieron bien poquito, ni 5000 pesos eran.</p><div class="tauth"><div class="tav">LM</div><div><div class="tname">Leon Mendoza</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">100% recomendados, me atendió la señorita Sofia y me ayudó a sacar mi crédito de Infonavit.</p><div class="tauth"><div class="tav">VH</div><div><div class="tname">Veronica Hernandez</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo opté por hacerlo con esta empresa porque Sura me dio muchas largas para darme mi dinero. Sí me cobraron, pero sí pude hacer mi retiro de remodelación.</p><div class="tauth"><div class="tav">PJ</div><div><div class="tname">Pancho Jimenez</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo la verdad no confiaba porque hace 6 meses no pude hacer el retiro, pero me volvieron a buscar y ahora hice un retiro para remodelar y sí pude hacerlo.</p><div class="tauth"><div class="tav">PG</div><div><div class="tname">Pedro Gonzalez</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">El asesor me ayudó a hacer el retiro. Yo la verdad no sabía hacer nada del afore y me explicó todo.</p><div class="tauth"><div class="tav">KM</div><div><div class="tname">Kassandra Mendoza</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Me atendieron con mucha paciencia desde el primer contacto. Todo quedó resuelto antes de lo que esperaba.</p><div class="tauth"><div class="tav">RV</div><div><div class="tname">Ricardo Villalobos</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">No sabía nada de mi afore. Ellos localizaron mi número de seguro, encontraron mi cuenta y pude realizar el retiro sin complicaciones.</p><div class="tauth"><div class="tav">JM</div><div><div class="tname">José Martínez</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Me ayudaron con mis aportaciones voluntarias y el retiro por desempleo. El proceso fue claro y mucho más sencillo de lo que imaginaba.</p><div class="tauth"><div class="tav">AT</div><div><div class="tname">Alberto Torres</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Es la segunda vez que tramito un retiro con ellos y todo ha salido perfecto. Profesionales y muy atentos en cada etapa del proceso.</p><div class="tauth"><div class="tav">FG</div><div><div class="tname">Fernanda García</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Mi asesor me explicó a detalle cómo funciona el retiro parcial. Excelente servicio, muy recomendable para quienes no saben por dónde empezar.</p><div class="tauth"><div class="tav">GO</div><div><div class="tname">Gabriela Ortiz</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Me apoyaron para recuperar los ahorros de mi padre fallecido. Un trámite que parecía imposible, ellos lo hicieron realidad.</p><div class="tauth"><div class="tav">EL</div><div><div class="tname">Eduardo Lugo</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Me recomendaron la consultoría unos amigos y no me arrepiento. Todo salió exactamente como prometieron, sin sorpresas.</p><div class="tauth"><div class="tav">DR</div><div><div class="tname">Daniela Ríos</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Excelente servicio, tenía un problema con mi RFC que no me dejaba sacar lo de mi afore y ellos me lo solucionaron súper rápido. Muy amables.</p><div class="tauth"><div class="tav">MC</div><div><div class="tname">Manuel Contreras</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Abogados muy profesionales. Me orientaron con lo de mi pensión bajo la ley de 1973 y obtuve una mejor resolución de la que esperaba. Vale totalmente la pena.</p><div class="tauth"><div class="tav">HM</div><div><div class="tname">Héctor Mendoza</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Pensé que era estafa porque por internet luego da desconfianza, pero todo legal. Me ayudaron con mi ahorro de INFONAVIT que ya daba por perdido. Gracias.</p><div class="tauth"><div class="tav">JA</div><div><div class="tname">Juan Alatorre</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div><p class="ttext">Mucha vuelta con los papeles. Te piden una cosa, luego otra y el proceso se hace eterno. Al menos la atención del asesor fue educada.</p><div class="tauth"><div class="tav">RC</div><div><div class="tname">Rosa Carmona</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">La mejor decisión fue contratarlos. Hacer estos trámites en las oficinas de gobierno es un dolor de cabeza, ellos se encargaron de todo y yo solo firmé.</p><div class="tauth"><div class="tav">AM</div><div><div class="tname">Arturo Moreno</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Muy recomendados, me atendió la Lic. Vero y aclaró todas mis dudas. Hice mi retiro por desempleo sin dar tantas vueltas en el banco.</p><div class="tauth"><div class="tav">YH</div><div><div class="tname">Yolanda Hernández</div></div></div></div></div>
+</div>
+<div class="swiper-pagination"></div>
+</div>
+</div>
 </section>
 
   <!-- CTA -->
