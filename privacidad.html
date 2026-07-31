@@ -197,10 +197,59 @@ footer{background:#040b18;color:rgba(255,255,255,.45);padding:5rem 0 2.5rem}
   }
 }
 
+@media(max-width:768px){
+  .fc-row{
+    flex-direction:column;
+    gap:.35rem;
+  }
+}
+
+@media(max-width:768px){
+  .footer-text-logo{
+    font-family:'Libre Baskerville', serif;
+    font-size:1.35rem;
+    font-weight:700;
+    color:var(--white);
+    letter-spacing:.01em;
+  }
+}
+
+
+
 </style>
 
-<link rel="shortcut icon" href="NexFav1.png" type="image/x-icon">
-</head>
+<style>
+@media(max-width:768px){
+  .fc-row{
+    flex-direction:column;
+    gap:.35rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .footer-brand{
+    text-align: left;
+  }
+
+  .footer-text-logo{
+    width: 100%;
+    display: block;
+    margin-bottom: .8rem;
+    letter-spacing: .03em;
+  }
+
+  .footer-brand p{
+    max-width: 100%;
+    width: 100%;
+    line-height: 1.9;
+  }
+
+}
+</style>
+
+<link rel="shortcut icon" href="NexFav1.png" type="image/x-icon"></head>
 <body>
   <nav id="navbar">
     <div class="container nav-inner">
@@ -249,11 +298,11 @@ footer{background:#040b18;color:rgba(255,255,255,.45);padding:5rem 0 2.5rem}
 
   <main class="privacy-section">
     <div class="container">
-      <div class="privacy-intro" data-aos="fade-up">
-        <div class="mini-card"><div class="mini-label">Responsable</div><p>Nexus Consultores es responsable del tratamiento y resguardo de los datos personales proporcionados.</p></div>
-        <div class="mini-card"><div class="mini-label">Finalidad</div><p>Usamos tus datos para asesor&iacute;a, seguimiento y gesti&oacute;n de tr&aacute;mites de afore, pensiones y retiros.</p></div>
+      <!-- <div class="privacy-intro" data-aos="fade-up">
+        <div class="mini-card"> <div class="mini-label">Responsable</div><p>Nexus Consultores es responsable del tratamiento y resguardo de los datos personales proporcionados.</p></div>
+        <div class="mini-card"> <div class="mini-label">Finalidad</div> <p>Usamos tus datos para asesor&iacute;a, seguimiento y gesti&oacute;n de tr&aacute;mites de afore, pensiones y retiros.</p> </div>
         <div class="mini-card"><div class="mini-label">Actualizaci&oacute;n</div><p>&Uacute;ltima actualizaci&oacute;n: diciembre 2025.</p></div>
-      </div>
+      </div> -->
 
       <div class="privacy-layout">
         
@@ -272,9 +321,16 @@ footer{background:#040b18;color:rgba(255,255,255,.45);padding:5rem 0 2.5rem}
 
         <section>
           <article class="privacy-card notice" id="intro" data-aos="fade-up">
+            <h2>Términos generales</h2>
+            <p>Responsable: Nexus Consultores es responsable del tratamiento y resguardo de los datos personales proporcionados.</p>
+            <p>Finalidad: Usamos tus datos para asesor&iacute;a, seguimiento y gesti&oacute;n de tr&aacute;mites de afore, pensiones y retiros.</p> 
+            <p>Actualización: &Uacute;ltima actualizaci&oacute;n: diciembre 2025.</p>         
+          </article>
+            
+          <article class="privacy-card notice" id="intro" data-aos="fade-up">
             <h2>Aviso de Privacidad Integral</h2>
-            <p>El presente Aviso de Privacidad se emite en cumplimiento de la Ley Federal de Protecci&oacute;n de Datos Personales en Posesi&oacute;n de los Particulares, su Reglamento y dem&aacute;s disposiciones aplicables en M&eacute;xico.</p>
-            <p>Al proporcionar sus datos personales por medio de nuestro sitio web, formularios, llamadas, WhatsApp, correo electr&oacute;nico, oficinas o cualquier otro canal oficial, usted reconoce haber le&iacute;do y comprendido el presente aviso.</p>
+            <p>Responsable: El presente Aviso de Privacidad se emite en cumplimiento de la Ley Federal de Protecci&oacute;n de Datos Personales en Posesi&oacute;n de los Particulares, su Reglamento y dem&aacute;s disposiciones aplicables en M&eacute;xico.</p>
+            <p>Finalidad: Al proporcionar sus datos personales por medio de nuestro sitio web, formularios, llamadas, WhatsApp, correo electr&oacute;nico, oficinas o cualquier otro canal oficial, usted reconoce haber le&iacute;do y comprendido el presente aviso.</p>
           </article>
 
           <article class="privacy-card" id="responsable" data-aos="fade-up">
@@ -395,7 +451,7 @@ footer{background:#040b18;color:rgba(255,255,255,.45);padding:5rem 0 2.5rem}
         <a href="tel:+522311439454">231 143 9454</a>
     </div>
 </div>          <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a></div>
-  <div class="fc-row">
+  <div class="fc-row fc-row-col">
     <span class="fc-lbl">Oficinas</span>
     <div>
         <strong>Puebla:</strong><br>
@@ -404,7 +460,8 @@ footer{background:#040b18;color:rgba(255,255,255,.45);padding:5rem 0 2.5rem}
         <strong>CDMX:</strong><br>
         Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.
     </div>
-</div>        </div>
+</div>       
+</div>
       </div>
       <div class="footer-bottom">
         <span>Nexus Consultores. Todos los derechos reservados.</span>

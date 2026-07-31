@@ -11,8 +11,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
-  <link rel="shortcut icon" href="NexFav1.png" type="image/x-icon">
+  
+  <style>
+    @media(max-width:768px){
+  .fc-row{
+    flex-direction:column;
+    gap:.35rem;
+  }
+}
 
+
+@media (max-width: 768px) {
+
+  .footer-brand{
+    text-align: left;
+  }
+
+  .footer-text-logo{
+    width: 100%;
+    display: block;
+    margin-bottom: .8rem;
+    letter-spacing: .03em;
+  }
+
+  .footer-brand p{
+    max-width: 100%;
+    width: 100%;
+    line-height: 1.9;
+  }
+
+}
+  </style>
+
+<link rel="shortcut icon" href="NexFav1.png" type="image/x-icon">
   <style>
     /* =============================================
        VARIABLES & RESET
@@ -1351,7 +1382,112 @@
   }
 }
 
+
+
 </style>
+
+
+  <!-- Corrección exclusiva del footer en mobile -->
+  <style>
+    @media (max-width: 768px) {
+      footer .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      footer .footer-brand {
+        text-align: left;
+      }
+
+      footer .footer-text-logo {
+        width: 100%;
+        display: block;
+        margin-bottom: .8rem;
+        font-family: 'Libre Baskerville', serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        line-height: 1.35;
+        letter-spacing: .01em;
+        color: var(--white);
+      }
+
+      footer .footer-brand p {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 0;
+        line-height: 1.9;
+      }
+
+      footer .fc-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .35rem;
+      }
+
+      footer .fc-row > div,
+      footer .fc-row > a {
+        width: 100%;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+
+      footer .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+
+
+  <!-- Footer igualado a privacidad.html; no afecta ninguna otra sección -->
+  <style>
+    footer .container{
+      width:90%;
+      max-width:1200px;
+      margin:0 auto;
+    }
+
+    @media(max-width:980px){
+      footer .footer-top{
+        grid-template-columns:1fr;
+        gap:2.5rem;
+      }
+    }
+
+    @media(max-width:768px){
+      footer .fc-row{
+        flex-direction:column;
+        gap:.35rem;
+      }
+
+      footer .footer-text-logo{
+        width:100%;
+        display:block;
+        margin-bottom:.8rem;
+        font-family:'Libre Baskerville',serif;
+        font-size:1.35rem;
+        font-weight:700;
+        color:var(--white);
+        letter-spacing:.03em;
+      }
+
+      footer .footer-brand{
+        text-align:left;
+      }
+
+      footer .footer-brand p{
+        width:100%;
+        max-width:100%;
+        line-height:1.9;
+      }
+
+      footer .footer-bottom{
+        flex-direction:column;
+        text-align:center;
+      }
+    }
+  </style>
 
 </head>
 
@@ -1679,6 +1815,13 @@
 <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div><p class="ttext">Mucha vuelta con los papeles. Te piden una cosa, luego otra y el proceso se hace eterno. Al menos la atención del asesor fue educada.</p><div class="tauth"><div class="tav">RC</div><div><div class="tname">Rosa Carmona</div></div></div></div></div>
 <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">La mejor decisión fue contratarlos. Hacer estos trámites en las oficinas de gobierno es un dolor de cabeza, ellos se encargaron de todo y yo solo firmé.</p><div class="tauth"><div class="tav">AM</div><div><div class="tname">Arturo Moreno</div></div></div></div></div>
 <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Muy recomendados, me atendió la Lic. Vero y aclaró todas mis dudas. Hice mi retiro por desempleo sin dar tantas vueltas en el banco.</p><div class="tauth"><div class="tav">YH</div><div><div class="tname">Yolanda Hernández</div></div></div></div></div>
+
+<!-- Nuevo testimonio: 5 estrellas -->
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">A mí me ayudaron a retirar el dinero que se quedó del Infonavit después de mi pensión.</p><div class="tauth"><div class="tav">MR</div><div><div class="tname">María Ramírez</div></div></div></div></div>
+
+<!-- Nuevo testimonio: 4 estrellas -->
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div><p class="ttext">Yo he hecho varios trámites de retiro con esta empresa porque no me pudieron hacer mi retiro total y tuve que ocupar mis aportaciones voluntarias. Saqué mi retiro por desempleo y el de matrimonio, solo que sí tardamos como medio año en hacer todo. Les doy 4 estrellas por eso.</p><div class="tauth"><div class="tav">CR</div><div><div class="tname">Carlos Rodríguez</div></div></div></div></div>
+
 </div>
 <div class="swiper-pagination"></div>
 </div>
@@ -1710,8 +1853,9 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <div class="footer-logo footer-text-logo">Nexus Consultores</div>
-          <p>Especialistas en pensiones, retiros de afore y asesor&iacute;a financiera en M&eacute;xico. M&aacute;s de cinco años acompa&ntilde;ando a trabajadores mexicanos a alcanzar su mejor retiro.</p>
+  <div class="footer-logo footer-text-logo">
+  Nexus Consultores
+</div>          <p>Especialistas en pensiones, retiros de afore y asesor&iacute;a financiera en M&eacute;xico. M&aacute;s de cinco años acompa&ntilde;ando a trabajadores mexicanos a alcanzar su mejor retiro.</p>
         </div>
         <div class="footer-col">
           <h5>Navegaci&oacute;n</h5>
@@ -1725,31 +1869,27 @@
         </div>
         <div class="footer-col">
           <h5>Contacto</h5>
-          <div class="fc-row">
-            <span class="fc-lbl">Tel&eacute;fono</span>
-            <div><a href="tel:+522311439454">231 143 9454</a></div>
-          </div>
-          <div class="fc-row">
-            <span class="fc-lbl">Correo</span>
-            <a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a>
-          </div>
-          <div class="fc-row">
-            <span class="fc-lbl">Oficinas</span>
-            <div>
-              <strong>Puebla:</strong><br>
-              Anillo Periférico Ecológico, 72820, San Bernardino Tlaxcalancingo, Puebla.
-              <br><br>
-              <strong>CDMX:</strong><br>
-              Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.
-            </div>
-          </div>
-        </div>
+  <div class="fc-row">
+    <span class="fc-lbl">Número de oficinas</span>
+    <div>
+        <a href="tel:+522311439454">231 143 9454</a>
+    </div>
+</div>          <div class="fc-row"><span class="fc-lbl">Correo</span><a href="mailto:clientes@nexusconsultores.com.mx">clientes@nexusconsultores.com.mx</a></div>
+  <div class="fc-row fc-row-col">
+    <span class="fc-lbl">Oficinas</span>
+    <div>
+        <strong>Puebla:</strong><br>
+        Anillo Periférico Ecológico, 72820, San Bernardino Tlaxcalancingo, Puebla.
+        <br><br>
+        <strong>CDMX:</strong><br>
+        Paseo de los Tamarindos 384, Bosques de las Lomas, Cuajimalpa de Morelos, 05110, Ciudad de México.
+    </div>
+</div>       
+</div>
       </div>
       <div class="footer-bottom">
         <span>Nexus Consultores. Todos los derechos reservados.</span>
-        <div style="display:flex;gap:1.4rem;">
-          <a href="privacidad.html">Aviso de privacidad</a>
-        </div>
+        <div style="display:flex;gap:1.4rem;"><a href="privacidad.html">Aviso de privacidad</a><a href="privacidad.html"></a></div>
       </div>
     </div>
   </footer>
