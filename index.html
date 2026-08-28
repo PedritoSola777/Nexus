@@ -611,7 +611,11 @@
     .hero-bg-dots button.active { background:var(--blue-pale) }
 
     /* hero right — image carousel */
-    .hero-right { position:relative }
+    .hero-right {
+      position:relative;
+      width:100%;
+      min-width:0;
+    }
     .hcarousel {
       position:relative;
       width:100%;
@@ -642,10 +646,13 @@
       pointer-events:none;
     }
     .hcarousel-caption {
-      position:absolute;
-      left:0; right:0; bottom:0;
-      z-index:2;
-      padding:1.7rem 1.8rem;
+      position:relative;
+      left:auto;
+      right:auto;
+      bottom:auto;
+      z-index:auto;
+      padding:1.15rem .15rem 0;
+      background:transparent;
     }
     .hcarousel-tag {
       font-size:.65rem;
@@ -659,9 +666,9 @@
       font-family:'Libre Baskerville',serif;
       font-size:1.05rem;
       color:var(--white);
-      margin-bottom:.3rem;
+      margin-bottom:.35rem;
     }
-    .hcarousel-caption p { font-size:.82rem; color:rgba(255,255,255,.6); line-height:1.55; max-width:320px }
+    .hcarousel-caption p { font-size:.82rem; color:rgba(255,255,255,.62); line-height:1.6; max-width:360px }
     .hcarousel-dots {
       position:absolute;
       top:1.2rem; right:1.2rem;
@@ -1184,7 +1191,7 @@
     ============================================= */
     @media(max-width:1024px) {
       .hero-inner { grid-template-columns:1fr }
-      .hero-right { max-width:420px; margin:0 auto }
+      .hero-right { max-width:440px; margin:0 auto }
       .why-layout { grid-template-columns:1fr; gap:3rem }
       .cta-inner { grid-template-columns:1fr }
       .cta-btns { flex-direction:row }
@@ -1216,8 +1223,25 @@
       .fc-row { flex-direction:column; gap:.25rem }
       .about-badge { right:0; bottom:-1rem }
 
-      .hero-right { display:none !important }
-      .hero-bg-carousel { display:block !important }
+      .hero-right {
+        display:block !important;
+        max-width:100%;
+        margin:2.2rem auto 0;
+      }
+      .hero-bg-carousel { display:none !important }
+      .hcarousel {
+        aspect-ratio:16/10;
+        border-radius:16px;
+      }
+      .hcarousel-caption {
+        min-height:0;
+        padding:1rem .15rem 0;
+        position:relative;
+      }
+      .hcarousel-caption h3 { font-size:1rem; }
+      .hcarousel-caption p { max-width:none; font-size:.8rem; }
+      .hcarousel-dots { top:.85rem; right:.85rem; }
+      .hcarousel-dots button { width:18px; }
 
       /* mob menu fixes */
       .mob-overlay {
@@ -1349,6 +1373,9 @@
 
     @media(max-width:480px) {
       .hero-h1 { font-size:2.4rem }
+      .hero-inner { padding-bottom:2.4rem; }
+      .hcarousel { aspect-ratio:4/3; }
+      .hcarousel-caption { padding-top:.85rem; }
       .section-title { font-size:1.8rem }
       .stat-n { font-size:2.3rem }
       #scrollTop { right:1rem; bottom:1rem }
@@ -1366,6 +1393,26 @@
     body.menu-open {
       overflow:hidden !important;
       touch-action:none;
+    }
+
+    /* Testimonials: responsive card sizing */
+    .swiper-testi .swiper-slide { height:auto; }
+    .swiper-testi .tcard { height:100%; }
+
+    @media(max-width:768px) {
+      #testimonials { padding:1rem 0 4.5rem; }
+      .testi-hd { margin-bottom:1.8rem; }
+      .swiper-testi {
+        padding:.4rem 0 3rem;
+        overflow:visible;
+      }
+      .tcard {
+        padding:1.35rem 1.2rem;
+        gap:.9rem;
+        border-radius:14px;
+      }
+      .ttext { font-size:.84rem; line-height:1.7; }
+      .tav { width:36px; height:36px; font-size:1rem; }
     }
   </style>
    <style>
@@ -1566,17 +1613,16 @@
             <div class="hcarousel-slide">
               <img src="img/contrato.jpg" alt="Clientes satisfechos Nexus Consultores" loading="lazy" />
             </div>
-            <div class="hcarousel-overlay"></div>
             <div class="hcarousel-dots" id="heroDots">
               <button class="active" data-i="0" aria-label="Imagen 1"></button>
               <button data-i="1" aria-label="Imagen 2"></button>
               <button data-i="2" aria-label="Imagen 3"></button>
             </div>
-            <div class="hcarousel-caption">
-              <div class="hcarousel-tag" id="heroCaptionTag">Gestión integral</div>
-              <h3 id="heroCaptionTitle">Retiros y pensiones sin complicaciones</h3>
-              <p id="heroCaptionText">Te acompañamos desde el primer trámite hasta el depósito en tu cuenta.</p>
-            </div>
+          </div>
+          <div class="hcarousel-caption" aria-live="polite">
+            <div class="hcarousel-tag" id="heroCaptionTag">Gestión integral</div>
+            <h3 id="heroCaptionTitle">Retiros y pensiones sin complicaciones</h3>
+            <p id="heroCaptionText">Te acompañamos desde el primer trámite hasta el depósito en tu cuenta.</p>
           </div>
         </div>
       </div>
@@ -1816,6 +1862,10 @@
 <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">La mejor decisión fue contratarlos. Hacer estos trámites en las oficinas de gobierno es un dolor de cabeza, ellos se encargaron de todo y yo solo firmé.</p><div class="tauth"><div class="tav">AM</div><div><div class="tname">Arturo Moreno</div></div></div></div></div>
 <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Muy recomendados, me atendió la Lic. Vero y aclaró todas mis dudas. Hice mi retiro por desempleo sin dar tantas vueltas en el banco.</p><div class="tauth"><div class="tav">YH</div><div><div class="tname">Yolanda Hernández</div></div></div></div></div>
 
+<!-- Testimonios adicionales: identidad mostrada de forma anónima por privacidad -->
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">Soy nuevo en esto del afore y los retiros, pero quería un poco de ese dinero y me asesoraron desde cero para sacar mi retiro por desempleo.</p><div class="tauth"><div class="tav">CN</div><div><div class="tname">Cliente Nexus</div></div></div></div></div>
+<div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">El año pasado no pude sacar mi crédito de Infonavit y me ayudaron a juntar los puntos y semanas. Gracias.</p><div class="tauth"><div class="tav">CN</div><div><div class="tname">Cliente Nexus</div></div></div></div></div>
+
 <!-- Nuevo testimonio: 5 estrellas -->
 <div class="swiper-slide"><div class="tcard"><div class="tstars"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div><p class="ttext">A mí me ayudaron a retirar el dinero que se quedó del Infonavit después de mi pensión.</p><div class="tauth"><div class="tav">MR</div><div><div class="tname">María Ramírez</div></div></div></div></div>
 
@@ -2017,7 +2067,7 @@
         btn.addEventListener('click', () => { goTo(+btn.dataset.i); start(); });
       });
 
-      const carouselEl = document.getElementById('heroCarousel');
+      const carouselEl = document.querySelector('.hero-right');
       carouselEl.addEventListener('mouseenter', stop);
       carouselEl.addEventListener('mouseleave', start);
 
